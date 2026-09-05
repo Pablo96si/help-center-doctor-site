@@ -4,4 +4,4 @@ Allow: /
 Disallow: /demo/
 
 # Update the host after choosing the final domain.
-Sitemap: https://pablo96si.github.io/help-center-doctor-site/sitemap.xml
+Sitemap: https://helpcenterdoctor.app/sitemap.xml
