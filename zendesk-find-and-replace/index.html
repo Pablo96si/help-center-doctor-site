@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find and replace across Zendesk articles | Help Center Doctor</title>
+<meta name="description" content="Zendesk Guide has no find and replace across articles. Help Center Doctor searches every article and translation, previews each change and applies it in place, with snapshot and undo.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/zendesk-find-and-replace/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Find and replace across Zendesk articles | Help Center Doctor">
+<meta property="og:description" content="Rename a product, change a domain or fix a phrase in every Zendesk help center article at once.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/zendesk-find-and-replace/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Find and replace in Zendesk</span>
+      <h1>Find and replace across every Zendesk help center article</h1>
+      <p class="lead">A product rename, a new domain, a changed phone number, a phrase legal wants gone. In Zendesk Guide that means opening every article. Help Center Doctor does it in one pass, with a preview of each change.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <h2>The problem</h2>
+      <p>The Guide editor edits one article at a time and has no search and replace across the help center. When the same string appears in 300 articles and 3 languages, the job is 900 manual edits, and every edit is a chance to miss one or break formatting.</p>
+      <div class="stats">
+        <div class="stat"><div class="num">71 likes</div><div class="label">"Find and replace", Zendesk community, May 2021, 76 replies, status Parked</div></div>
+        <div class="stat"><div class="num">2 likes</div><div class="label">"Bulk Find &amp; Replace", Zendesk community, June 2021: a Zendesk employee confirmed there is no native find and replace in Guide</div></div>
+      </div>
+      <p>Zendesk's answer in May 2021 was that the editor was not a focus of the development cycle. The thread is still marked Parked in September 2026. One user described copying all the HTML into an external editor to find and replace, then pasting it back, article by article.</p>
+
+      <h2>How people handle it today</h2>
+      <ul>
+        <li><strong>Editing each article by hand</strong>, often with the browser's find on the editor page. Slow, and translations are easy to forget.</li>
+        <li><strong>Copying the HTML out and back in.</strong> Works for one article; risky for many, because a paste can drop attributes or bring inline styles along.</li>
+        <li><strong>API scripts.</strong> A developer writes a script against the Help Center API. It works, but there is usually no preview, no snapshot and no undo, and the script needs an API token with write access.</li>
+        <li><strong>A hosted vendor app.</strong> Swifteq Help Center Manager lists find and replace for text and HTML; it runs as a hosted application with a Swifteq account (as shown on the marketplace on 2026-09-05).</li>
+      </ul>
+
+      <h2>How Help Center Doctor solves it</h2>
+      <ul class="checklist">
+        <li><strong>One search, every article, every language.</strong> Titles and bodies, any subset of your enabled languages, plain text or regular expressions with capture groups, match case and whole words.</li>
+        <li><strong>Three scopes so you cannot break markup by accident.</strong> Visible text only (tags, links and attributes are never touched), links and images only (href and src, perfect for a domain change), or raw HTML for experts, with a warning.</li>
+        <li><strong>Live preview with a diff.</strong> Matches are counted per article and field, shown with context, and each change has a word-level diff. Untick anything you do not want.</li>
+        <li><strong>Apply with a safety net.</strong> A snapshot of every affected article is downloaded before the first write, one write per article and language, and the whole change set can be undone from Activity.</li>
+        <li><strong>No token, no vendor account.</strong> The app uses your Zendesk session inside Zendesk and stores nothing on any server.</li>
+      </ul>
+      <p>Previewing is free on every plan. Applying replacements needs Pro at $29 per account per month. See the <a href="../docs/find-replace/">Find and replace guide</a> for the options and examples.</p>
+    </div>
+    <div class="shot-frame" style="margin: 32px 0 48px;"><img src="../assets/shots/replace.png" alt="Find and replace screen replacing Northwind Cloud with Northwind Platform, showing 27 matches in 25 articles with highlighted previews and a Review and apply button" loading="lazy" width="1280" height="800"></div>
+  </div>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Try a rename on sample data</h2>
+      <p>The demo help center mentions "Northwind Cloud" in dozens of articles. Replace it, review the diffs, apply, undo. Nothing is saved anywhere.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary btn-lg" href="../demo/index.html?hcd_mock=1">Open the live demo</a>
+        <a class="btn btn-secondary btn-lg" href="../pricing/">See pricing</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../features/">Features</a></li>
+          <li><a href="../pricing/">Pricing</a></li>
+          <li><a href="../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../compare/">Compare</a></li>
+          <li><a href="../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../docs/">Documentation</a></li>
+          <li><a href="../docs/faq/">FAQ</a></li>
+          <li><a href="../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../privacy/">Privacy policy</a></li>
+          <li><a href="../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

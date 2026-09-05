@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting | Help Center Doctor docs</title>
+<meta name="description" content="Fixes for common Help Center Doctor problems: rate limits, 403 permission errors, read-only roles, blocked print windows and downloads, content blocks, restoring archived articles, multi-brand, large help centers, unverified links and clearing local data.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/troubleshooting/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Troubleshooting | Help Center Doctor docs">
+<meta property="og:description" content="Rate limits, permissions, read-only roles, blocked pop-ups, content blocks, archived articles, brands, large help centers and local data.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/troubleshooting/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/">Find and replace</a></li>
+        <li><a href="../bulk/">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/">Link map</a></li>
+        <li><a href="../settings/">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/" aria-current="page">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Troubleshooting</h1>
+      <p class="lead">Most problems come from Zendesk permissions, browser settings or the size of the help center. The Activity screen shows the exact error text for anything that failed.</p>
+      <ol class="toc">
+        <li><a href="#rate-limits">"Zendesk is rate limiting requests"</a></li>
+        <li><a href="#forbidden">"Zendesk refused this action" (403)</a></li>
+        <li><a href="#read-only">Read-only banner</a></li>
+        <li><a href="#popup">The print window does not open</a></li>
+        <li><a href="#downloads">Downloads are blocked</a></li>
+        <li><a href="#content-blocks">The content blocks warning</a></li>
+        <li><a href="#archived">Restoring an archived article</a></li>
+        <li><a href="#brands">Several brands</a></li>
+        <li><a href="#large">Large help centers and memory</a></li>
+        <li><a href="#unverified">External links "could not be verified"</a></li>
+        <li><a href="#local-data">Clearing local data</a></li>
+      </ol>
+
+      <h2 id="rate-limits">"Zendesk is rate limiting requests"</h2>
+      <p>Zendesk allows a fixed number of API requests per minute per account, shared by every app and integration. The app keeps its own requests under a rolling budget and, when Zendesk answers with a rate-limit error, waits for the time Zendesk asks and halves its pace. A scan or a batch of writes therefore slows down rather than fails. If it keeps happening, another integration is probably busy; try again in a few minutes or run large batches outside peak hours.</p>
+
+      <h2 id="forbidden">"Zendesk refused this action: your role does not have permission" (403)</h2>
+      <p>Your Zendesk role cannot perform that write. Common cases:</p>
+      <ul>
+        <li>Editing an article whose permission group does not include you. Ask a Guide admin to apply the change, or to add you to the group.</li>
+        <li>Changing the permission group or user segment of an article, which needs Guide admin rights.</li>
+        <li>Creating a draft from a template in a section you cannot edit.</li>
+      </ul>
+      <p>Failed writes are not applied; the snapshot covers the successful ones, and the app stops after five failures in a batch so you can fix the cause first.</p>
+
+      <h2 id="read-only">Read-only banner</h2>
+      <p>When the app opens it reads your Zendesk role. If the role cannot edit articles, a "Read-only" banner appears and the apply dialog does not run. Scans, findings, previews and documents still work. If you believe the role is wrong, sign out and in again; the app assumes you can edit when it cannot read your role at all.</p>
+
+      <h2 id="popup">The print window does not open</h2>
+      <p>Print / Save as PDF opens the document in a new window. If your browser blocks pop-ups from Zendesk, the app downloads the document as an HTML file instead. Open that file and print from there, or allow pop-ups for your Zendesk subdomain and try again.</p>
+
+      <h2 id="downloads">Downloads are blocked</h2>
+      <p>Snapshots, documents, settings and template exports are files your browser downloads. If nothing appears, check the download bar or the browser's download settings, and allow downloads from your Zendesk subdomain. Some company policies block downloads inside iframes; in that case ask your IT team to allow them for <code>*.zendesk.com</code>. The snapshot is your safety net, so make sure downloads work before applying a large batch.</p>
+
+      <h2 id="content-blocks">The content blocks warning</h2>
+      <p>Content blocks are a Guide Enterprise feature. When an article body is saved through the Zendesk API, any content block in it is converted to plain content, and the API gives no way to detect which articles use them. So before any change that rewrites a title or body, the app asks you to confirm that the affected articles do not use content blocks, or that you accept the conversion. If you use content blocks, apply metadata fixes freely (labels, sections, publish state, promotion, translation status) and make body changes in the editor. If you never use content blocks, turn on "Do not ask about content blocks again" in Settings.</p>
+
+      <h2 id="archived">Restoring an archived article</h2>
+      <p>Archiving through the API is the same as archiving in Guide: the article disappears from the help center and can be restored in Guide. Open Guide, go to Manage articles, choose the Archived list, find the article and restore it. The app's Undo cannot do this, which is why archiving asks for a separate acknowledgement.</p>
+
+      <h2 id="brands">Several brands</h2>
+      <p>Version 1.0 scans the help center of the account subdomain you are signed in to. Other brands are listed in Settings and on the Scan screen but not scanned. To check another brand, open Zendesk Support on that brand's subdomain and open the app there. Multi-brand scanning is planned for the Business plan.</p>
+
+      <h2 id="large">Large help centers and memory</h2>
+      <p>The scan keeps a working copy of every article and translation in memory and in browser storage. Help centers with many thousands of articles in several languages can take a few minutes and a few hundred megabytes of memory. Tips:</p>
+      <ul>
+        <li>Use <strong>Refresh changed articles</strong> after the first scan instead of a full rescan.</li>
+        <li>Close other heavy tabs while scanning or applying large batches.</li>
+        <li>Run the external link check separately and let it use the 7-day cache.</li>
+        <li>If the browser reports that storage is full, the app keeps working for the session without caching; clear local data or free up space.</li>
+        <li>Narrow find and replace with the language filter on very large centers so previews stay quick.</li>
+      </ul>
+
+      <h2 id="unverified">External links "could not be verified"</h2>
+      <p>The link checker sends a small request through Zendesk's proxy and waits up to 15 seconds (adjustable). Sites that require a login, use bot protection (many sites behind Cloudflare), answer with a server error or time out are reported as unverified, never as broken. Open the link in your browser; if it works, add the host to <strong>Never check these hosts</strong> in Settings. Only 404 and 410 answers are reported as broken.</p>
+
+      <h2 id="local-data">Clearing local data</h2>
+      <p>Settings, Data and privacy, <strong>Clear local data</strong> removes the cached scan, link results, templates, settings and the activity log for this Zendesk account from this browser. Export your settings and templates first if you want to keep them. Your help center is not touched. Uninstalling the app does not clear browser storage by itself; use this control first, or clear site data for your Zendesk subdomain in the browser afterwards.</p>
+
+      <p>Not solved? <a href="../../support/">Contact support</a> with the error text from the Activity screen.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

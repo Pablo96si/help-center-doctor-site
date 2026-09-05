@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Features | Help Center Doctor</title>
+<meta name="description" content="All 34 health rules, the Fix Center, find and replace, bulk actions, print, PDF, Word and Markdown documents, article templates and the link map. Everything runs inside Zendesk.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/features/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Features | Help Center Doctor">
+<meta property="og:description" content="34 health rules, one-click and bulk fixes, find and replace, bulk actions, documents and templates for Zendesk Guide. Nothing leaves your account.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/features/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/" aria-current="page">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Features</span>
+      <h1>Seven modules, one scan, one safety path</h1>
+      <p class="lead">Every module below works on the same scan of your help center and writes back through the same preview, snapshot and undo flow. Jump to: <a href="#scan">Health Scan</a>, <a href="#fix">Fix Center</a>, <a href="#replace">Find and Replace</a>, <a href="#bulk">Bulk actions</a>, <a href="#export">Documents</a>, <a href="#templates">Templates</a>, <a href="#links">Link map</a>.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="feature-block" id="scan">
+      <div class="feature-text">
+        <span class="eyebrow">Health Scan</span>
+        <h2>34 rules across links, images, stale content, structure, accessibility, organisation and languages</h2>
+        <p>The scan reads your articles with their translations, sections, categories, labels, authors, user segments and permission groups through the Zendesk API. It then runs every rule and produces a health score from 0 to 100 with a grade from A to F. Critical findings weigh the most.</p>
+        <p>After the first scan, Refresh reads only the articles that changed. External links and images are checked separately through Zendesk's request proxy, with results cached for 7 days so re-checks only spend the budget on new URLs.</p>
+        <p>Every rule can be switched off in Settings and every finding can be hidden. Thresholds for stale, short and long articles are yours to tune.</p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/scan.png" alt="Scan screen showing the last run (140 articles, 3 languages, 8 categories, 36 sections, 1,219 links) and an external link check in progress" loading="lazy" width="1280" height="800"></div>
+    </section>
+
+    <section class="section" aria-labelledby="rules-heading" style="padding-top: 0;">
+      <h2 id="rules-heading">The 34 rules</h2>
+      <p class="muted">All rules run on every plan. Rules marked <span class="badge badge-pro">Details on Pro</span> show their count on the Free plan and their article-by-article detail on Pro and Business. Rules with a <span class="badge badge-info">Fix</span> badge can be resolved from the Fix Center; the others link straight to the Guide editor.</p>
+
+      <div class="rules-group">
+        <h3>Links <span class="count">9 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Link to an article that no longer exists</span><span class="rule-tags"><span class="badge badge-critical">Critical</span><span class="badge badge-info">Fix: replace link</span></span><span class="rule-why">Readers who click this link land on a "page not found" error. The target article was archived, deleted, or the id in the URL is wrong.</span></li>
+          <li><span class="rule-title">Link to a section or category that no longer exists</span><span class="rule-tags"><span class="badge badge-critical">Critical</span><span class="badge badge-info">Fix: replace link</span></span><span class="rule-why">The section or category behind this link has been removed, so readers get an error page.</span></li>
+          <li><span class="rule-title">Link to an unpublished (draft) article</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-info">Fix: publish target</span></span><span class="rule-why">The target is a draft, so visitors cannot open it: they see a "page not found" error until it is published.</span></li>
+          <li><span class="rule-title">Link to an article with narrower visibility</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">The target article is restricted to a user segment that readers of this article may not belong to. Those readers get an access error.</span></li>
+          <li><span class="rule-title">Link to a heading that does not exist</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-info">Fix: fix anchor</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">The link points to an anchor (#something) that is not defined in the target article, so the page opens at the top instead of the promised place.</span></li>
+          <li><span class="rule-title">Link to an old help center address</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-info">Fix: update host</span></span><span class="rule-why">These links point at a domain you listed as retired (for example a previous subdomain or host mapping). They may redirect today, but redirects are slow, break anchors, and disappear when the old domain lapses.</span></li>
+          <li><span class="rule-title">Insecure http:// link or image</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-info">Fix: switch to https</span></span><span class="rule-why">Plain http links trigger browser warnings and http images are blocked as mixed content on a secure help center, so they simply do not show. Images are reported as warnings.</span></li>
+          <li><span class="rule-title">Broken external link</span><span class="rule-tags"><span class="badge badge-critical">Critical</span><span class="badge badge-info">Fix: replace link</span></span><span class="rule-why">The website behind this link answered "not found" (404/410). Readers hit a dead end and lose trust in the article.</span></li>
+          <li><span class="rule-title">External link could not be verified</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">The site did not give a clear answer (timeout, login wall, bot protection or a server error). The link may be fine; it just needs a human look.</span></li>
+        </ul>
+      </div>
+
+      <div class="rules-group">
+        <h3>Images <span class="count">2 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Broken image</span><span class="rule-tags"><span class="badge badge-critical">Critical</span><span class="badge badge-info">Fix: replace image</span></span><span class="rule-why">The image file cannot be loaded (the server answered "not found"), so readers see an empty box or a broken-image icon.</span></li>
+          <li><span class="rule-title">Very large image</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Images wider than about 2,000 pixels are scaled down by the browser anyway; they only slow the page, especially on mobile.</span></li>
+        </ul>
+      </div>
+
+      <div class="rules-group">
+        <h3>Accessibility <span class="count">3 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Image without alt text</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-info">Fix: add alt text</span></span><span class="rule-why">Screen readers announce nothing useful for an image without alt text, and search engines cannot index it. It is also a WCAG requirement.</span></li>
+          <li><span class="rule-title">Heading levels are out of order</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">The article title is already the H1. Bodies that start with H1, or jump from H2 to H4, confuse screen readers and the automatic table of contents.</span></li>
+          <li><span class="rule-title">Table without a header row</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Screen readers rely on header cells (th) to tell users what each column means. Tables built from plain cells only are read as a stream of words.</span></li>
+        </ul>
+      </div>
+
+      <div class="rules-group">
+        <h3>Stale content <span class="count">4 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Article not updated for a long time</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">Content that has not been touched in a long time is the most likely to describe old screens, prices or policies. Readers notice, and so do search engines. Default threshold 12 months, adjustable.</span></li>
+          <li><span class="rule-title">Old draft never published</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-info">Fix: archive</span></span><span class="rule-why">Drafts that sit for months are usually forgotten work. They clutter the article list and may hold useful content nobody can see. Default threshold 90 days, adjustable.</span></li>
+          <li><span class="rule-title">Promoted article is stale</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-info">Fix: unpromote</span></span><span class="rule-why">Promoted articles are shown first in their section, so a stale one is the most visible outdated content you have.</span></li>
+          <li><span class="rule-title">Readers vote this article down</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">More thumbs-down than thumbs-up is the clearest signal readers have that an article does not solve their problem.</span></li>
+        </ul>
+      </div>
+
+      <div class="rules-group">
+        <h3>Structure <span class="count">6 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Empty article</span><span class="rule-tags"><span class="badge badge-critical">Critical</span><span class="badge badge-info">Fix: unpublish</span></span><span class="rule-why">A published article with no content is a dead end that still shows up in search results.</span></li>
+          <li><span class="rule-title">Very short article</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">Articles with only a sentence or two rarely answer the question fully and tend to collect negative votes. Default threshold 40 words, adjustable.</span></li>
+          <li><span class="rule-title">Long article without headings</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Long articles without H2/H3 headings are hard to scan, and anchors cannot be linked to. Headings also feed the article table of contents. Default threshold 500 words, adjustable.</span></li>
+          <li><span class="rule-title">Heavy use of inline styles</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Inline style attributes (usually pasted from Word or Google Docs) override your theme, break dark mode and mobile layouts, and bloat the article.</span></li>
+          <li><span class="rule-title">Script or form embedded in the article</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">Scripts and forms inside article bodies are stripped or blocked by most help center themes and browsers, and are a security smell in shared content.</span></li>
+          <li><span class="rule-title">Title is very long</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Long titles get cut off in search results and section lists, so readers cannot tell articles apart. Default threshold 90 characters, adjustable.</span></li>
+        </ul>
+      </div>
+
+      <div class="rules-group">
+        <h3>Organisation <span class="count">6 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Two articles share the same title</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">Identical titles compete in search and confuse readers and agents about which one is current.</span></li>
+          <li><span class="rule-title">Two articles have nearly the same title</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Titles that differ by a word or two usually mean the same topic was written twice. Readers pick one at random.</span></li>
+          <li><span class="rule-title">Article has no labels</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-info">Fix: add labels</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">Labels power help center search, Answer Bot and article recommendations. Unlabelled articles are found less often.</span></li>
+          <li><span class="rule-title">Section with no published articles</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">Empty sections still appear in navigation and search, leading readers to a page with nothing on it.</span></li>
+          <li><span class="rule-title">Category with a single section</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">A category that only holds one section adds a click without adding structure. Readers navigate faster when categories group several sections.</span></li>
+          <li><span class="rule-title">Article in a section that no longer exists</span><span class="rule-tags"><span class="badge badge-critical">Critical</span><span class="badge badge-info">Fix: move to section</span></span><span class="rule-why">The article points at a section that was deleted, so it cannot be reached from navigation.</span></li>
+        </ul>
+      </div>
+
+      <div class="rules-group">
+        <h3>Languages <span class="count">4 rules</span></h3>
+        <ul class="rules">
+          <li><span class="rule-title">Article missing in some languages</span><span class="rule-tags"><span class="badge badge-warning">Warning</span></span><span class="rule-why">Your help center is enabled in several languages, but this article exists only in some of them. Visitors in the other languages get the fallback or nothing.</span></li>
+          <li><span class="rule-title">Translation is out of date</span><span class="rule-tags"><span class="badge badge-warning">Warning</span><span class="badge badge-info">Fix: mark as current</span></span><span class="rule-why">The source article changed after this translation was written, so readers in this language see old instructions.</span></li>
+          <li><span class="rule-title">Translation is unpublished while the source is live</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-info">Fix: publish translation</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">The article is published in its source language but this translation is still a draft, so visitors in that language cannot read it.</span></li>
+          <li><span class="rule-title">Source language is not one of the enabled languages</span><span class="rule-tags"><span class="badge badge-info">Info</span><span class="badge badge-pro">Details on Pro</span></span><span class="rule-why">The article was written in a language your help center no longer offers, so its "source" version is invisible and every translation is compared against it.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="feature-block reverse" id="fix">
+      <div class="feature-text">
+        <span class="eyebrow">Fix Center</span>
+        <h2>From finding to fixed without leaving the list</h2>
+        <p>Findings are grouped by rule or by article and filtered by severity, category, rule, language or section. Each one shows what is wrong, why it matters and how to fix it, with links to the Guide editor and the public page.</p>
+        <ul class="checklist">
+          <li>Replace a broken link, with suggestions of articles that have a similar title, or remove the link and keep the text.</li>
+          <li>Replace or remove a broken image; add alt text to one image or the same alt text to many.</li>
+          <li>Publish a draft target, switch http links to https, update a retired host, fix an anchor.</li>
+          <li>Unpromote a stale article, unpublish an empty one, archive an old draft, mark a translation as current, publish a translation.</li>
+          <li>Add labels or move articles to a section, for one finding or a selection of the same kind.</li>
+        </ul>
+        <p>Several fixes on the same article are merged into a single write. Metadata-only fixes never touch the article body.</p>
+        <p><a href="../docs/fix/">Read the Fix Center docs</a></p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/findings.png" alt="Findings screen grouped by rule with Unpublish and Replace image buttons and filters for severity, category, rule, language and section" loading="lazy" width="1280" height="800"></div>
+    </section>
+
+    <section class="feature-block" id="replace">
+      <div class="feature-text">
+        <span class="eyebrow">Find and Replace</span>
+        <h2>One search across every article and every language</h2>
+        <p>Type what to find and what to replace it with. Matches are previewed live across every scanned article and translation with a highlighted excerpt and a word-level diff. Nothing changes until you review and apply.</p>
+        <ul class="checklist">
+          <li>Plain text or JavaScript regular expressions with captured groups ($1, $2, $&amp;).</li>
+          <li>Match case, whole words, titles and bodies, any subset of languages.</li>
+          <li>Visible text scope: tags, links and attributes are never touched.</li>
+          <li>Links and images scope: only the address of links (href) and images (src). Ideal after a domain change.</li>
+          <li>Raw HTML scope for experts, with a warning and the same snapshot protection.</li>
+        </ul>
+        <p><a href="../docs/find-replace/">Read the Find and Replace docs</a></p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/replace.png" alt="Find and replace screen replacing Northwind Cloud with Northwind Platform: 27 matches in 25 articles with highlighted previews" loading="lazy" width="1280" height="800"></div>
+    </section>
+
+    <section class="feature-block reverse" id="bulk">
+      <div class="feature-text">
+        <span class="eyebrow">Bulk actions</span>
+        <h2>Filter, select, change hundreds of articles at once</h2>
+        <p>Zendesk's own bulk tools stop at 30 articles. Here you filter by search, category, section, label, author, status, language, health or last edit date, select everything that matches, and pick an action.</p>
+        <ul class="checklist">
+          <li>Add or remove labels</li>
+          <li>Move to a section</li>
+          <li>Change author, visibility (user segment) or permission group</li>
+          <li>Promote or unpromote, enable or disable comments</li>
+          <li>Publish or unpublish, mark translations as current</li>
+          <li>Archive, with a separate acknowledgement because undo cannot restore archived articles</li>
+        </ul>
+        <p>Every bulk action is previewed article by article before anything is written, and articles that already have the requested setting are skipped.</p>
+        <p><a href="../docs/bulk/">Read the bulk actions docs</a></p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/bulk.png" alt="Bulk actions screen with filters, an article table showing section, author, edited date, votes and findings, and the action picker" loading="lazy" width="1280" height="800"></div>
+    </section>
+
+    <section class="feature-block" id="export">
+      <div class="feature-text">
+        <span class="eyebrow">Print, PDF, Word and Markdown</span>
+        <h2>Documents of your own articles, built in your browser</h2>
+        <p>Pick selected articles, a whole section or a whole category in one language, with or without drafts. Add a document title, company name, footer and logo; turn the cover page, table of contents, "last updated" line, source link and page breaks on or off.</p>
+        <ul class="checklist">
+          <li>Print / Save as PDF: opens a clean print page; the PDF comes from your browser's print dialog.</li>
+          <li>HTML file: a self-contained document with the same print styling.</li>
+          <li>Word (.docx): headings, lists, tables, links, code and callouts; images embedded when publicly reachable, otherwise linked.</li>
+          <li>Markdown: CommonMark with tables, one file for the whole document.</li>
+        </ul>
+        <p>Up to 200 articles per document on Pro and Business. The Free plan prints one article at a time.</p>
+        <p><a href="../docs/export/">Read the documents docs</a></p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/export.png" alt="Print and export screen with scope, language, look options, logo upload and Print / Save as PDF, HTML file, Word (.docx) and Markdown buttons" loading="lazy" width="1280" height="800"></div>
+    </section>
+
+    <section class="feature-block reverse" id="templates">
+      <div class="feature-text">
+        <span class="eyebrow">Templates and snippets</span>
+        <h2>Consistent articles from the first draft</h2>
+        <p>Six built-in article templates (How-to guide, FAQ, Troubleshooting, Release notes, Policy, Product overview) and six snippets (note, tip and warning callouts, a steps table, a shortcuts table and a contact footer). Customise them or add your own with default titles, labels and the placeholders {{date}} and {{title}}.</p>
+        <p>New article creates a draft in the section you choose, with your permission group, and opens the Guide editor. Snippets are copied as HTML for the editor's source view.</p>
+        <p>Templates live in your browser. Export them as a file to share with colleagues or move to another computer.</p>
+        <p><a href="../docs/templates/">Read the templates docs</a></p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/templates.png" alt="Templates and snippets screen with six built-in article templates, each with New article, Preview and Customise buttons" loading="lazy" width="1280" height="800"></div>
+    </section>
+
+    <section class="feature-block" id="links">
+      <div class="feature-text">
+        <span class="eyebrow">Link map and safe delete</span>
+        <h2>Know who links to an article before you archive or move it</h2>
+        <p>Pick any article and see every scanned article that links to it, with the link text and address, plus its own outgoing links. If archiving would leave broken links, the app says so and lets you redirect the selected links to a replacement first.</p>
+        <p>When nothing links to the article, it is marked safe to archive and you can archive it from the same screen.</p>
+        <p><a href="../docs/link-map/">Read the link map docs</a></p>
+      </div>
+      <div class="shot-frame"><img src="../assets/shots/links.png" alt="Link map and safe delete screen with an article picker and a note that 116 articles receive links from other articles" loading="lazy" width="1280" height="800"></div>
+    </section>
+  </div>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Also included</span>
+        <h2>The parts you notice only when you need them</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><h3>Activity and undo</h3><p>Every scan, check and change is logged in your browser. The last 20 change sets of the session can be undone, and any snapshot file can be restored later.</p></div>
+        <div class="card"><h3>Rate-limit friendly</h3><p>Requests go through a queue with a rolling per-minute budget and automatic backoff, so a scan never slows down your agents.</p></div>
+        <div class="card"><h3>Read-only awareness</h3><p>If your role cannot edit articles, the app says so up front and keeps everything else available.</p></div>
+        <div class="card"><h3>Five app languages</h3><p>English, Spanish, German, French and Portuguese (Brazil), following your Zendesk profile.</p></div>
+        <div class="card"><h3>Settings backup</h3><p>Export thresholds, retired domains, skip list, disabled rules and hidden findings as a file and import them in another browser.</p></div>
+        <div class="card"><h3>Clear local data</h3><p>One control removes everything the app stored in your browser. Your help center is not affected.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Try every module on sample data</h2>
+      <p>The demo runs the real app on a generated help center. Scan, fix, replace and export as much as you like; nothing is saved anywhere.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary btn-lg" href="../demo/index.html?hcd_mock=1">Open the live demo</a>
+        <a class="btn btn-secondary btn-lg" href="../pricing/">See pricing</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../features/">Features</a></li>
+          <li><a href="../pricing/">Pricing</a></li>
+          <li><a href="../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../compare/">Compare</a></li>
+          <li><a href="../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../docs/">Documentation</a></li>
+          <li><a href="../docs/faq/">FAQ</a></li>
+          <li><a href="../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../privacy/">Privacy policy</a></li>
+          <li><a href="../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

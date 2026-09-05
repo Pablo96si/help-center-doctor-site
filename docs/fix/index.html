@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fix Center | Help Center Doctor docs</title>
+<meta name="description" content="Which fixes Help Center Doctor can apply, how the apply dialog previews changes, snapshots, undo, the content blocks acknowledgement and archiving.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/fix/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fix Center | Help Center Doctor docs">
+<meta property="og:description" content="Fixes, the apply dialog, snapshots, undo and safety acknowledgements.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/fix/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/" aria-current="page">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/">Find and replace</a></li>
+        <li><a href="../bulk/">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/">Link map</a></li>
+        <li><a href="../settings/">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Fix Center</h1>
+      <p class="lead">Fixes turn findings into changes. Every change goes through the same apply dialog, whether it comes from a finding, from find and replace, from a bulk action or from the link map. Fixes need the Pro or Business plan.</p>
+      <img src="../../assets/shots/findings.png" alt="Findings screen with Unpublish and Replace image buttons next to each finding" width="1280" height="800" loading="lazy">
+
+      <h2>Available fixes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Fix</th><th scope="col">Used for</th><th scope="col">Touches the body?</th></tr></thead>
+          <tbody>
+            <tr><td>Replace link (with suggestions of similar titles) or remove the link and keep its text</td><td>Links to missing articles, sections or categories; broken external links</td><td>Yes</td></tr>
+            <tr><td>Fix anchor</td><td>Links to headings that do not exist</td><td>Yes</td></tr>
+            <tr><td>Update host</td><td>Links to a retired help center domain</td><td>Yes</td></tr>
+            <tr><td>Switch to https</td><td>Insecure http links and images</td><td>Yes</td></tr>
+            <tr><td>Replace image or remove the image</td><td>Broken images</td><td>Yes</td></tr>
+            <tr><td>Add alt text (one text for one or many images)</td><td>Images without alt text</td><td>Yes</td></tr>
+            <tr><td>Publish target / Publish translation</td><td>Links to drafts; unpublished translations of live articles</td><td>No</td></tr>
+            <tr><td>Unpromote</td><td>Stale promoted articles</td><td>No</td></tr>
+            <tr><td>Unpublish</td><td>Empty published articles</td><td>No</td></tr>
+            <tr><td>Archive</td><td>Old drafts</td><td>No (see below)</td></tr>
+            <tr><td>Mark as current</td><td>Outdated translations after you have reviewed them</td><td>No</td></tr>
+            <tr><td>Add labels</td><td>Articles without labels</td><td>No</td></tr>
+            <tr><td>Move to section</td><td>Articles in deleted sections</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Findings without a fix (stale articles, negative votes, short bodies, heading problems and so on) open the Guide editor instead.</p>
+
+      <h2>Fixing many at once</h2>
+      <p>Select findings that use the same kind of fix and click <strong>Fix selected</strong>. Fixes that need input (a new URL, alt text, labels, a section) apply the same input to every selected finding, so pick findings that share the same target. Several fixes on one article are merged into a single write.</p>
+
+      <h2>The apply dialog</h2>
+      <ol>
+        <li>The dialog lists every change, one row per article and language, with a word-level diff under <strong>Show changes</strong>. Untick anything you do not want.</li>
+        <li>If any change rewrites a title or body, you are asked to confirm that the articles do not use content blocks, or that you accept them being converted (Guide Enterprise only). You can silence this in Settings if your help center does not use content blocks.</li>
+        <li>If any change archives an article, you are asked to acknowledge that undo cannot restore it; you can restore it in Guide under Manage articles, Archived.</li>
+        <li>Click <strong>Apply</strong>. A snapshot file of the affected articles is downloaded first, then the writes run one by one. Keep the tab open.</li>
+        <li>The result shows how many changes were applied and how many failed. The app stops after five failures so a permissions problem does not burn through the batch; the snapshot covers the successful ones.</li>
+      </ol>
+
+      <h2>Snapshots</h2>
+      <p>A snapshot is a JSON file with the previous title, body and status of every article about to change. It is saved to your downloads folder before anything is written. You can restore it any time from Activity with <strong>Restore from snapshot file</strong>, which writes the saved content back. Snapshots are your files; the app does not keep them anywhere else.</p>
+
+      <h2>Undo</h2>
+      <p>The Activity screen keeps the last 20 change sets of the session. Undo restores the previous content and settings of the affected articles, one write per article. If someone edited an article after the change, undo overwrites that edit with the snapshot content, so check first. The undo stack is lost when you close the app; snapshot files are permanent.</p>
+
+      <h2>Read-only roles</h2>
+      <p>If your Zendesk role cannot edit articles, the apply dialog says so and does not run. Ask a Guide admin to apply the change, or export your settings so they can reproduce your filters.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

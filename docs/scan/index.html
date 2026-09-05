@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scan | Help Center Doctor docs</title>
+<meta name="description" content="How the Help Center Doctor scan reads your Zendesk help center, how long it takes, Refresh versus Full rescan, plan limits and the external link check.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/scan/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scan | Help Center Doctor docs">
+<meta property="og:description" content="What the scan reads, how long it takes and how external links are checked.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/scan/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/" aria-current="page">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/">Find and replace</a></li>
+        <li><a href="../bulk/">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/">Link map</a></li>
+        <li><a href="../settings/">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Scan</h1>
+      <p class="lead">The scan builds the working copy every other screen uses. It reads, it never writes.</p>
+      <img src="../../assets/shots/scan.png" alt="Scan screen showing the last run, the external link check with a progress bar, the brands panel and the list of what the scan reads" width="1280" height="800" loading="lazy">
+
+      <h2>Starting a scan</h2>
+      <p>On first open, click <strong>Scan now</strong> on the welcome screen. Afterwards the Scan screen offers two buttons:</p>
+      <ul>
+        <li><strong>Refresh changed articles</strong> reads only the articles edited since the last scan and re-runs the rules. Use this day to day.</li>
+        <li><strong>Full rescan</strong> reads everything again. Use it after big restructures or when sections and categories changed.</li>
+      </ul>
+      <p>You can stop a scan at any time; findings then show the previous scan, if there was one. Keep the tab open while it runs.</p>
+
+      <h2>What the scan reads</h2>
+      <p>Articles (title, body, labels, status, votes, dates) with all their translations, sections, categories, author names, user segments, permission groups and the list of brands. Everything is requested from the Zendesk API with your own permissions. Items your role cannot read (for example user segments on some roles) are skipped and the affected rules adapt.</p>
+
+      <h2>How long it takes</h2>
+      <p>Translations are fetched together with the articles, so a scan uses about one API request per 100 articles. Requests go through a queue with a rolling budget well under Zendesk's rate limits and slow down automatically if Zendesk asks. A few thousand articles take a minute or two.</p>
+
+      <h2>Plan limits</h2>
+      <ul>
+        <li><strong>Free:</strong> the first 200 articles in the default language. The dashboard says when a help center was truncated, and whole-help-center rules (missing targets, empty sections) are skipped because they would give wrong answers on a partial scan.</li>
+        <li><strong>Pro and Business:</strong> every article in every enabled language.</li>
+      </ul>
+
+      <h2>External link check</h2>
+      <p>Internal links and images are checked against the scanned index immediately. External URLs are checked one by one through Zendesk's request proxy, at most 50 (Free), 1,000 (Pro) or 3,000 (Business) per scan. Results are cached for 7 days, so a re-check only spends budget on new URLs. Tick <strong>Check external links automatically after each scan</strong> to run it every time, or start it by hand with <strong>Check links now</strong>. You can pause, resume and stop it.</p>
+      <p>Only a definite "not found" answer (HTTP 404 or 410) counts as broken. Sites behind login walls or bot protection, timeouts and server errors are reported as <em>could not be verified</em> and never as broken. Add such hosts to the skip list in Settings so they are not checked again.</p>
+
+      <h2>Brands</h2>
+      <p>Version 1.0 scans the help center of the account you are signed in to. If your account has several brands with a help center, the Scan screen lists them and tells you which one is being scanned. To check another brand, open the app while signed in to that brand's subdomain.</p>
+
+      <h2>Where the scan is stored</h2>
+      <p>The working copy is kept in your browser's storage so re-scans and every other screen are fast. It is never sent anywhere. Clear it from Settings, Data and privacy, or by uninstalling the app and clearing site data in your browser.</p>
+      <p>Next: <a href="../findings/">Findings</a>.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

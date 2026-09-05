@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings and Activity | Help Center Doctor docs</title>
+<meta name="description" content="Help Center Doctor settings: app language, thresholds, retired domains and skip list, rules, plan, data and privacy, settings backup, clear local data, and the Activity screen with undo.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/settings/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Settings and Activity | Help Center Doctor docs">
+<meta property="og:description" content="Every setting explained, plus the Activity log, undo and snapshot restore.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/settings/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/">Find and replace</a></li>
+        <li><a href="../bulk/">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/">Link map</a></li>
+        <li><a href="../settings/" aria-current="page">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Settings and Activity</h1>
+      <p class="lead">Settings are stored in your browser for the Zendesk account you are signed in to. Export them as a file to share with a colleague or another browser.</p>
+
+      <h2>General</h2>
+      <h3>App language</h3>
+      <p>Same as your Zendesk profile by default. English, Spanish, German, French and Portuguese (Brazil) are available.</p>
+      <h3>Thresholds</h3>
+      <p>Tune what counts as stale or too short for your help center. Findings update immediately, no rescan needed.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Setting</th><th scope="col">Default</th><th scope="col">Rule it feeds</th></tr></thead>
+          <tbody>
+            <tr><td>Stale after (months without edits)</td><td>12</td><td>Article not updated for a long time; Promoted article is stale</td></tr>
+            <tr><td>Old draft after (days)</td><td>90</td><td>Old draft never published</td></tr>
+            <tr><td>Very short article (words)</td><td>40</td><td>Very short article</td></tr>
+            <tr><td>Long article needs headings (words)</td><td>500</td><td>Long article without headings</td></tr>
+            <tr><td>Title too long (characters)</td><td>90</td><td>Title is very long</td></tr>
+            <tr><td>Near-duplicate title similarity</td><td>0.8</td><td>Two articles have nearly the same title</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Domains</h3>
+      <ul>
+        <li><strong>Retired help center domains</strong>: one host per line. Links to these hosts are flagged by the "Link to an old help center address" rule and can be updated in one go.</li>
+        <li><strong>Never check these hosts</strong>: one per line, <code>*.example.com</code> for subdomains. Good for sites that block automated requests; their links are then neither checked nor reported as unverified.</li>
+        <li><strong>External link timeout</strong> and <strong>parallel external checks</strong> for the link checker.</li>
+      </ul>
+      <h3>Safety</h3>
+      <p><strong>Do not ask about content blocks again</strong>: only turn this on if your help center does not use content blocks (Guide Enterprise). The acknowledgement protects articles built with content blocks from being flattened by an API write.</p>
+
+      <h2>Rules</h2>
+      <p>Switch off rules that do not apply to your help center. Disabled rules do not run and are not counted in the score. Hidden findings are listed here too, with a way to show them again.</p>
+
+      <h2>Plan</h2>
+      <p>Shows the plan read from your Zendesk Marketplace subscription and its limits. To change plans, open Admin Center, Apps and integrations, Zendesk Support apps, then Help Center Doctor and Change plan. If the plan name is not recognised, the app applies Free limits and says so; contact support if that is wrong.</p>
+
+      <h2>Data and privacy</h2>
+      <p>Where your data is: the Zendesk account and user the app is running as, the cached scan (how many articles, when), cached link checks, browser storage used and the brands in the account.</p>
+      <ul>
+        <li><strong>Settings backup</strong>: export thresholds, domains, disabled rules and hidden findings as a file; import it elsewhere.</li>
+        <li><strong>Clear local data</strong>: removes the cached scan, link results, templates, settings and activity log from this browser. Your Zendesk articles are not affected.</li>
+      </ul>
+
+      <h2>Activity</h2>
+      <p>The Activity screen is the app's log and its undo button.</p>
+      <ul>
+        <li><strong>Log</strong>: every scan, link check, change set, export and created draft, with counts and errors. It stays in your browser.</li>
+        <li><strong>Undo history (this session)</strong>: the last 20 change sets. Undo restores the previous content and settings of the affected articles, one write per article, after a confirmation that lists what will be reverted.</li>
+        <li><strong>Restore from snapshot file</strong>: pick a snapshot the app downloaded earlier and write its content back. Works after the session has ended, on another computer, or weeks later.</li>
+        <li><strong>API usage</strong>: requests completed, retried and failed, and how many ran in the last minute.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

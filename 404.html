@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found | Help Center Doctor</title>
+<meta name="description" content="The page you asked for does not exist on the Help Center Doctor site.">
+<meta name="robots" content="noindex">
+<style>
+  /* Self-contained: a 404 page can be served from any path, so it loads no external assets. */
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; color: #2f3941; background: #f8f9f9; line-height: 1.55; }
+  main { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
+  .box { max-width: 520px; background: #fff; border: 1px solid #d8dcde; border-radius: 10px; padding: 32px; text-align: center; }
+  h1 { font-size: 1.6rem; margin: 12px 0 8px; }
+  p { margin: 0 0 16px; color: #49545c; }
+  a { color: #1f73b7; }
+  a:focus-visible { outline: 3px solid #1f73b7; outline-offset: 2px; }
+  .btn { display: inline-block; background: #1f73b7; color: #fff; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; margin-top: 4px; }
+  .btn:hover { background: #144a75; }
+  .links { font-size: 0.95rem; margin-top: 18px; }
+  .links a { margin: 0 6px; }
+  .skip-link { position: absolute; left: -9999px; }
+  .skip-link:focus { left: 12px; top: 12px; background: #144a75; color: #fff; padding: 8px 12px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<main id="main">
+  <div class="box">
+    <svg width="56" height="56" viewBox="0 0 320 320" aria-hidden="true"><rect x="20" y="20" width="280" height="280" rx="64" fill="#1f73b7"/><path d="M160 88v144M88 160h144" stroke="#fff" stroke-width="40" stroke-linecap="round"/><path d="M62 214c18-16 30-10 40 0s22 14 36-8 26-8 36 2 22 14 36-6 26-8 44 6" stroke="#9fe0b0" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1>Page not found</h1>
+    <p>That link points to a page that does not exist. Like a broken link in a help center, it happens; unlike one, this page tells you where to go instead.</p>
+    <a class="btn" href="./" data-root="">Go to the home page</a>
+    <p class="links"><a href="./docs/" data-root="docs/">Documentation</a> · <a href="./pricing/" data-root="pricing/">Pricing</a> · <a href="./support/" data-root="support/">Support</a></p>
+  </div>
+</main>
+<script>
+  // A 404 page is served at the missing URL, so relative links would break on nested paths.
+  // Rewrite them from the site root: "/<repo>/" on GitHub project pages, "/" everywhere else.
+  (function () {
+    var parts = location.pathname.split('/').filter(Boolean);
+    var root = (/\.github\.io$/i.test(location.hostname) && parts.length > 0) ? '/' + parts[0] + '/' : '/';
+    var links = document.querySelectorAll('a[data-root]');
+    for (var i = 0; i < links.length; i++) links[i].setAttribute('href', root + links[i].getAttribute('data-root'));
+  })();
+</script>
+</body>
+</html>

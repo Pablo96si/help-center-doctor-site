@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link map and safe delete | Help Center Doctor docs</title>
+<meta name="description" content="See which Zendesk help center articles link to an article before you archive or move it, redirect those links to a replacement and archive safely.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/link-map/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Link map and safe delete | Help Center Doctor docs">
+<meta property="og:description" content="Incoming and outgoing links, safe-delete check and link redirection.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/link-map/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/">Find and replace</a></li>
+        <li><a href="../bulk/">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/" aria-current="page">Link map</a></li>
+        <li><a href="../settings/">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Link map and safe delete</h1>
+      <p class="lead">Archiving an article that other articles link to creates broken links the moment you click. The link map shows you those links first. It needs Pro or Business.</p>
+      <img src="../../assets/shots/links.png" alt="Link map and safe delete screen with an article picker and the count of articles that receive links from other articles" width="1280" height="800" loading="lazy">
+
+      <h2>Pick an article</h2>
+      <p>Type a title or <code>#id</code>. The screen then shows:</p>
+      <ul>
+        <li><strong>Incoming links</strong>: every scanned article that links here, with the linking article, the link text and the address. If nothing links to the article, it is marked <em>safe to archive</em>.</li>
+        <li><strong>Outgoing links</strong>: the links inside this article, for reference.</li>
+      </ul>
+
+      <h2>Redirect links before archiving</h2>
+      <p>Select the incoming links and click <strong>Redirect selected links</strong>. Choose the replacement article and the app rewrites those links in the linking articles, through the normal apply dialog with preview, snapshot and undo. Then click <strong>Archive article</strong>, acknowledge that undo does not cover archives, and the article is archived without leaving a dead end.</p>
+
+      <h2>Moving instead of archiving</h2>
+      <p>Moving an article to another section keeps its id and its links working, so the link map is only a check. Use <a href="../bulk/">Bulk actions</a> to move articles.</p>
+
+      <h2>Notes</h2>
+      <ul>
+        <li>The map covers links found in scanned articles. On the Free plan (200 articles) it may be incomplete; the app tells you when the scan was truncated.</li>
+        <li>Links from outside your help center (your website, emails, tickets) are not visible to the app. Consider a redirect rule in Guide for articles that were linked externally.</li>
+        <li>Archived articles can be restored in Guide under Manage articles, Archived.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

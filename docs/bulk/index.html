@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bulk actions | Help Center Doctor docs</title>
+<meta name="description" content="Filter and select Zendesk help center articles, then add labels, move, change author, visibility or permission group, promote, publish, mark translations current or archive, all previewed first.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/bulk/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bulk actions | Help Center Doctor docs">
+<meta property="og:description" content="Filters, selection and the twelve bulk actions.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/bulk/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/">Find and replace</a></li>
+        <li><a href="../bulk/" aria-current="page">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/">Link map</a></li>
+        <li><a href="../settings/">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Bulk actions</h1>
+      <p class="lead">Filter, select, change many articles at once. Browsing and filtering is free; applying an action needs Pro or Business.</p>
+      <img src="../../assets/shots/bulk.png" alt="Bulk actions screen with filter controls, an article table and the action picker at the bottom" width="1280" height="800" loading="lazy">
+
+      <h2>Filters</h2>
+      <p>Search by title, label or <code>#id</code>, then narrow by category, section, label, author, status (published, draft, promoted, outdated translation), language, health (with findings, with critical findings, no findings) and <strong>edited before</strong> a date. The table shows section, author, last edit, vote balance and the number of findings for each article.</p>
+      <p>Tick rows one by one, or use <strong>Select all matching</strong> to select every article that matches the filters, including the ones not shown yet. There is no 30-article cap.</p>
+
+      <h2>Actions</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Group</th><th scope="col">Action</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Labels</td><td>Add labels</td><td>Existing labels are kept.</td></tr>
+            <tr><td>Labels</td><td>Remove labels</td><td></td></tr>
+            <tr><td>Organise</td><td>Move to section</td><td>Any section in the scanned help center.</td></tr>
+            <tr><td>Organise</td><td>Change author</td><td>Only authors of existing articles are listed.</td></tr>
+            <tr><td>Permissions</td><td>Change visibility (user segment)</td><td>"Everyone" is always available; segments depend on what your role can read.</td></tr>
+            <tr><td>Permissions</td><td>Change permission group</td><td>Groups depend on what your role can read.</td></tr>
+            <tr><td>Status</td><td>Promote / unpromote</td><td></td></tr>
+            <tr><td>Status</td><td>Enable / disable comments</td><td></td></tr>
+            <tr><td>Status</td><td>Publish / unpublish</td><td>Unpublish sets the article to draft.</td></tr>
+            <tr><td>Status</td><td>Mark translations as current</td><td>Clears the "outdated" flag on translations you have reviewed.</td></tr>
+            <tr><td>Danger zone</td><td>Archive</td><td>Needs a separate acknowledgement; restore only in Guide.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Preview and apply</h2>
+      <p>Pick an action, fill in its input (labels, a section, an author and so on) and click <strong>Preview</strong>. The apply dialog lists one row per article with exactly what will change. Articles that already have the requested setting are skipped, so re-running an action is harmless. A snapshot is downloaded before the first write, and undo is available afterwards from Activity. Metadata actions never touch article bodies, so the content blocks acknowledgement does not appear.</p>
+
+      <h2>Typical uses</h2>
+      <ul>
+        <li>Label every article in a category so search and Answer Bot find them.</li>
+        <li>Move a section's articles to a new structure before deleting the old section.</li>
+        <li>Reassign articles from an author who left the company.</li>
+        <li>Unpromote everything not edited in the last year (filter: promoted, edited before).</li>
+        <li>Mark translations current after a cosmetic change to the source.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

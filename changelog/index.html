@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog | Help Center Doctor</title>
+<meta name="description" content="Release notes for Help Center Doctor, the Zendesk Marketplace app that scans and fixes help centers from inside Zendesk. Version 1.0.0.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/changelog/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Changelog | Help Center Doctor">
+<meta property="og:description" content="Release notes for every version of Help Center Doctor.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/changelog/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Changelog</span>
+      <h1>What changed in each version</h1>
+      <p class="lead">Updates reach your Zendesk account through the Marketplace after review; you get the new version the next time you refresh Zendesk. Anything that affects what the app reads, stores or writes is called out here and in the privacy policy.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 64px;">
+      <section class="release">
+        <h2>1.0.0</h2>
+        <p class="meta">5 September 2026. First release on the Zendesk Marketplace.</p>
+        <h3>Added</h3>
+        <ul>
+          <li>Health Scan: reads articles with all translations, sections, categories, authors, user segments and permission groups; incremental refresh of changed articles; health score and A to F grade.</li>
+          <li>34 health rules across links (9), images (2), accessibility (3), stale content (4), structure (6), organisation (6) and languages (4), each with an explanation and how-to-fix text; per-rule disable and per-finding hide; adjustable thresholds.</li>
+          <li>External link and image check through Zendesk's request proxy with plan budgets (50 / 1,000 / 3,000 per scan), 7-day cache, pause and resume, skip list, and a conservative "unverified" state for sites that block automated requests.</li>
+          <li>Fix Center: replace or remove links and images, fix anchors, update retired hosts, switch to https, add alt text, publish targets and translations, unpromote, unpublish, archive, mark translations current, add labels, move to section; single or multi-finding fixes of the same kind.</li>
+          <li>Apply dialog with per-article word-level diff, untick rows, snapshot file download before the first write, content blocks acknowledgement, archive acknowledgement, read-only detection, stop after five failures.</li>
+          <li>Undo of the last 20 change sets per session and restore from any snapshot file, from the Activity screen.</li>
+          <li>Find and replace: plain text or regular expression, match case, whole words, titles and bodies, language subset, visible text / links and images / raw HTML scopes, live preview.</li>
+          <li>Bulk actions: filters by search, category, section, label, author, status, language, health and edit date; add and remove labels, move to section, change author, visibility and permission group, promote, comments, publish, mark translations current, archive.</li>
+          <li>Print and export: print / save as PDF, HTML file, Word (.docx) and Markdown documents of selected articles, a section or a category; cover page, table of contents, last-updated line, source link, page breaks, logo, company name and footer; up to 200 articles per document.</li>
+          <li>Templates and snippets: six built-in article templates and six snippets, custom templates with {{date}} and {{title}} placeholders, new draft from template through the API, copy snippet HTML, export and import by file.</li>
+          <li>Link map and safe delete: incoming and outgoing links for any article, redirect selected links to a replacement, archive with a safe-to-archive check.</li>
+          <li>Settings: app language (English, Spanish, German, French, Portuguese (Brazil)), thresholds, retired domains, skip list, link check timeout and concurrency, rules, plan information, data and privacy panel, settings export and import, clear local data.</li>
+          <li>Plans: Free, Pro and Business limits read from the Marketplace subscription.</li>
+          <li>Public demo of the app on generated sample data.</li>
+        </ul>
+        <h3>Known limitations</h3>
+        <ul>
+          <li>Single brand per account; multi-brand scanning is planned for the Business plan.</li>
+          <li>PDF output uses the browser's print dialog; there is no built-in PDF renderer.</li>
+          <li>Images in Word documents are embedded only when publicly reachable; otherwise they become links.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../features/">Features</a></li>
+          <li><a href="../pricing/">Pricing</a></li>
+          <li><a href="../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../compare/">Compare</a></li>
+          <li><a href="../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../docs/">Documentation</a></li>
+          <li><a href="../docs/faq/">FAQ</a></li>
+          <li><a href="../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../privacy/">Privacy policy</a></li>
+          <li><a href="../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

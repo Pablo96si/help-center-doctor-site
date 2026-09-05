@@ -1,0 +1,7 @@
+# Help Center Doctor marketing site
+User-agent: *
+Allow: /
+Disallow: /demo/
+
+# Update the host after choosing the final domain.
+Sitemap: https://pablo96si.github.io/help-center-doctor-site/sitemap.xml

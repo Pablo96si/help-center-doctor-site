@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find and replace | Help Center Doctor docs</title>
+<meta name="description" content="Find and replace across every Zendesk help center article and translation: plain text or regular expressions, visible text, links or raw HTML scope, live preview and safe apply.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/docs/find-replace/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Find and replace | Help Center Doctor docs">
+<meta property="og:description" content="Plain text or regex, three scopes, every language, previewed before it is written.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/docs/find-replace/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/" aria-current="page">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Getting started</h2>
+      <ul>
+        <li><a href="../">Overview</a></li>
+        <li><a href="../scan/">Scan</a></li>
+        <li><a href="../findings/">Findings</a></li>
+        <li><a href="../fix/">Fix Center</a></li>
+      </ul>
+      <h2>Tools</h2>
+      <ul>
+        <li><a href="../find-replace/" aria-current="page">Find and replace</a></li>
+        <li><a href="../bulk/">Bulk actions</a></li>
+        <li><a href="../export/">Print and export</a></li>
+        <li><a href="../templates/">Templates</a></li>
+        <li><a href="../link-map/">Link map</a></li>
+        <li><a href="../settings/">Settings</a></li>
+      </ul>
+      <h2>Help</h2>
+      <ul>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../troubleshooting/">Troubleshooting</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Find and replace</h1>
+      <p class="lead">Search every scanned article and translation, preview the result article by article, then apply. Previewing is free; applying needs Pro or Business.</p>
+      <img src="../../assets/shots/replace.png" alt="Find and replace screen with Find and Replace with fields, options, scope buttons, language checkboxes and a preview table with highlighted matches" width="1280" height="800" loading="lazy">
+
+      <h2>Search options</h2>
+      <ul>
+        <li><strong>Find</strong> and <strong>Replace with</strong>. Leave Replace with empty to delete the matched text.</li>
+        <li><strong>Match case</strong>, <strong>Whole words</strong> (Unicode-aware, so accented and non-Latin words work).</li>
+        <li><strong>Regular expression</strong>: a JavaScript pattern without the surrounding slashes. Use <code>$1</code>, <code>$2</code> for captured groups and <code>$&amp;</code> for the whole match in the replacement. Patterns that can match an empty string are rejected.</li>
+        <li><strong>Titles</strong> and <strong>Bodies</strong> can be included separately.</li>
+        <li><strong>Languages</strong>: tick any subset of your enabled languages.</li>
+      </ul>
+
+      <h2>Where to look</h2>
+      <dl class="kv">
+        <dt>Visible text</dt><dd>Only the text readers see. Tags, links and attributes are never touched. Safe for rebrands, product names, prices and wording.</dd>
+        <dt>Links and images</dt><dd>Only the address of links (href) and images (src), including iframes and videos. Ideal after a domain change or a move to a new file host.</dd>
+        <dt>Raw HTML</dt><dd>The HTML source itself. Powerful, and the only mode that can break markup. The app warns you, and the snapshot lets you restore, but review the preview first.</dd>
+      </dl>
+
+      <h2>Preview</h2>
+      <p>Matches are previewed live: a count per article and field, highlighted excerpts with context, and <strong>Show changes</strong> for a word-level diff. Rows are sorted by match count. Untick any row you want to leave alone. Only rows with real changes are listed in the apply dialog.</p>
+
+      <h2>Applying</h2>
+      <p><strong>Review and apply</strong> opens the same dialog as every other change: one row per article translation, a snapshot download before the first write, the content blocks acknowledgement when bodies change, and undo afterwards from Activity. See the <a href="../fix/">Fix Center</a> guide.</p>
+
+      <h2>Examples</h2>
+      <ul>
+        <li>Rename a product: find <code>Northwind Cloud</code>, replace with <code>Northwind Platform</code>, scope Visible text, all languages.</li>
+        <li>Move to a new domain: find <code>old-help.example.com</code>, replace with <code>help.example.com</code>, scope Links and images.</li>
+        <li>Update a support phone number in every language: find the old number with Whole words on, scope Visible text.</li>
+        <li>Turn a legacy path into the new one with a capture group: regular expression <code>/hc/en-us/articles/(\d+)-old-</code> replaced by <code>/hc/en-us/articles/$1-</code>, scope Links and images.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../../features/">Features</a></li>
+          <li><a href="../../pricing/">Pricing</a></li>
+          <li><a href="../../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../../compare/">Compare</a></li>
+          <li><a href="../../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../../docs/">Documentation</a></li>
+          <li><a href="../../docs/faq/">FAQ</a></li>
+          <li><a href="../../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../../privacy/">Privacy policy</a></li>
+          <li><a href="../../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

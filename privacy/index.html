@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy | Help Center Doctor</title>
+<meta name="description" content="Help Center Doctor privacy policy: what the app reads through the Zendesk API, what it stores in your browser, and why nothing is transmitted to the developer or any third party. Effective 5 September 2026.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://pablo96si.github.io/help-center-doctor-site/privacy/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Privacy policy | Help Center Doctor">
+<meta property="og:description" content="A zero-backend app: what is read, what is stored in your browser, and what is never sent anywhere.">
+<meta property="og:image" content="https://pablo96si.github.io/help-center-doctor-site/assets/logo.png">
+<meta property="og:url" content="https://pablo96si.github.io/help-center-doctor-site/privacy/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy policy</h1>
+      <p class="lead">Effective 5 September 2026. This policy explains what Help Center Doctor does with data, in plain words. The short version: the app runs in your browser, your help center data stays in Zendesk and in your browser, and nothing is sent to us or to anyone else.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <article class="prose" style="padding: 40px 0 64px;">
+      <ol class="toc">
+        <li><a href="#who">Who we are</a></li>
+        <li><a href="#what">What the app is</a></li>
+        <li><a href="#reads">What the app reads</a></li>
+        <li><a href="#writes">What the app writes</a></li>
+        <li><a href="#stores">What is stored, and where</a></li>
+        <li><a href="#transmits">What is transmitted</a></li>
+        <li><a href="#not">What we do not do</a></li>
+        <li><a href="#billing">Marketplace and billing</a></li>
+        <li><a href="#support">Support correspondence</a></li>
+        <li><a href="#delete">Deleting data</a></li>
+        <li><a href="#gdpr">GDPR and your rights</a></li>
+        <li><a href="#site">This website and the demo</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+
+      <h2 id="who">1. Who we are</h2>
+      <p>Help Center Doctor is developed and published by Pablo Simón, an independent software developer based in Ireland ("we", "us"). Contact: <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>. Help Center Doctor is not affiliated with or endorsed by Zendesk, Inc.</p>
+
+      <h2 id="what">2. What the app is</h2>
+      <p>Help Center Doctor is an app for Zendesk Support, installed from the Zendesk Marketplace. It runs entirely in the browser of the person who opens it, inside Zendesk. It has no server component. It reads and writes help center content through the Zendesk API using that person's own Zendesk session and permissions, exactly as the Zendesk interface itself does.</p>
+
+      <h2 id="reads">3. What the app reads</h2>
+      <p>When you run a scan, the app requests the following from your Zendesk account through the Zendesk API, using your session:</p>
+      <ul>
+        <li>Help center articles: title, body, labels, publication status, promotion, comment setting, vote counts, creation, edit and update dates, section, author id, user segment and permission group ids.</li>
+        <li>Translations of those articles: title, body, status, outdated flag, dates.</li>
+        <li>Sections and categories: names, ids, structure.</li>
+        <li>The names of article authors (looked up from their Zendesk user id), so the app can show who wrote an article.</li>
+        <li>User segments, permission groups and brands, where your role can read them, so the app can list and change them.</li>
+        <li>Your own user record (name, role, language) and the account subdomain, so the app can show who is signed in, apply read-only mode and store data per account.</li>
+        <li>The name of your Marketplace plan, provided by Zendesk to the app, to apply plan limits.</li>
+      </ul>
+      <p>The app reads only what it needs to run the checks and the actions you ask for. It does not read tickets, end users, organisations or any other Zendesk data.</p>
+
+      <h2 id="writes">4. What the app writes</h2>
+      <p>The app changes your help center only when you explicitly confirm a change in the apply dialog (a fix, a find and replace, a bulk action, a link redirection, an archive, an undo or a snapshot restore), or when you click "New article" on a template, which creates a draft. Before the first write of a change set, a snapshot file of the affected articles is saved to your computer. Nothing is written in the background.</p>
+
+      <h2 id="stores">5. What is stored, and where</h2>
+      <p>The app stores data in your browser's local storage (IndexedDB), in a database named after your Zendesk subdomain. This data never leaves your browser:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Store</th><th scope="col">Contents</th><th scope="col">Why</th></tr></thead>
+          <tbody>
+            <tr><td>Scan cache</td><td>The working copy of your scanned articles, translations, sections and categories, including article bodies, and the findings</td><td>So every screen is fast and re-scans read only changed articles</td></tr>
+            <tr><td>Link cache</td><td>External URLs found in your articles and the result of their last check</td><td>So re-checks do not repeat requests for 7 days</td></tr>
+            <tr><td>Settings</td><td>Thresholds, retired domains, skip list, disabled rules, language, safety options, document look options and an optional logo you upload</td><td>Your preferences</td></tr>
+            <tr><td>Templates</td><td>Article templates and snippets you create or customise</td><td>Your templates</td></tr>
+            <tr><td>Activity log</td><td>A log of scans, checks, changes and exports with counts and error messages</td><td>So you can see what happened and undo</td></tr>
+            <tr><td>Hidden findings</td><td>Ids of findings you chose to hide</td><td>So they stay hidden across scans</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>In addition, files the app generates for you (snapshots, documents, settings and template exports) are saved by your browser to your downloads folder. They are your files; we have no access to them. The undo history is kept in memory only and disappears when you close the app.</p>
+      <p>Browser storage is per browser and per computer. Another admin, or you on another device, will have a separate cache.</p>
+
+      <h2 id="transmits">6. What is transmitted</h2>
+      <ul>
+        <li><strong>To Zendesk:</strong> the API requests described above, sent from your browser to your own Zendesk account, as with any Zendesk feature. Zendesk's own privacy policy and your agreement with Zendesk govern that data.</li>
+        <li><strong>To websites you link to:</strong> when you run the external link check, the app asks Zendesk's request proxy to fetch each external URL found in your articles, so it can tell whether the page still exists. The destination site receives a request for that URL from Zendesk's proxy. No article content, no personal data and nothing else is sent with it. You can exclude hosts from checking in Settings or not run the check at all.</li>
+        <li><strong>To us:</strong> nothing. The app has no server, no telemetry, no error reporting and no update check. We cannot see your help center, your findings, your settings or whether you use the app.</li>
+        <li><strong>To anyone else:</strong> nothing. No analytics providers, no advertising networks, no AI services, no third-party content delivery networks. The app ships all its code inside the Zendesk app package; the only script it loads from outside the package is the Zendesk App Framework SDK, served by Zendesk itself.</li>
+      </ul>
+
+      <h2 id="not">7. What we do not do</h2>
+      <ul>
+        <li>We do not collect, store, copy, index or archive your help center data on any system of ours.</li>
+        <li>We do not sell, share or disclose data to third parties, because we do not have it.</li>
+        <li>We do not use your data to train or improve any AI model or for any purpose other than running the app in your browser.</li>
+        <li>We do not set cookies or use analytics in the app or on this website.</li>
+        <li>We do not offer bulk export or scraping of help center content. Documents are built for reading your own articles, up to 200 at a time, on your computer.</li>
+      </ul>
+
+      <h2 id="billing">8. Marketplace and billing</h2>
+      <p>Installation, subscription and payment are handled by Zendesk and its payment processor, Stripe, under their own terms and privacy policies. We do not receive or store card details. For paid plans, our Stripe account shows the subscription status and the Zendesk subdomain it belongs to, which we use only to provide support and to account for the subscription. Zendesk also shows us the subdomains that installed the app.</p>
+
+      <h2 id="support">9. Support correspondence</h2>
+      <p>If you email us, we keep the correspondence (your email address, name and what you wrote) for as long as needed to help you and to keep a record of the request, and delete it on request. Please do not send passwords, API tokens or personal data of your customers; we will ask you to remove them.</p>
+
+      <h2 id="delete">10. Deleting data</h2>
+      <ul>
+        <li>In the app: Settings, Data and privacy, <strong>Clear local data</strong> removes everything the app stored in that browser for that Zendesk account.</li>
+        <li>Uninstalling the app from Admin Center stops all activity. Browser storage remains until you clear local data in the app first, or clear site data for your Zendesk subdomain in your browser.</li>
+        <li>Files in your downloads folder (snapshots, documents, exports) are deleted by you like any other file.</li>
+        <li>Support correspondence: email us and we will delete it.</li>
+      </ul>
+
+      <h2 id="gdpr">11. GDPR and your rights</h2>
+      <p>Because your help center data is processed in your browser and in your Zendesk account, under your control, and never reaches our systems, we do not act as a controller or processor of that data. Your agreement with Zendesk covers its processing. The only personal data we hold is support correspondence, which we process on the basis of our legitimate interest in answering your request (Article 6(1)(f) GDPR). You may ask us to access, correct or delete it, or object to its processing, by writing to the address below. You also have the right to lodge a complaint with the Data Protection Commission in Ireland or your local supervisory authority.</p>
+      <p>Data is not transferred outside the European Economic Area by us. Zendesk and Stripe describe their own transfers in their policies.</p>
+
+      <h2 id="site">12. This website and the demo</h2>
+      <p>This website is static: no cookies, no analytics, no forms. Our hosting provider may keep standard server logs (IP address, time, requested page) for security, under its own policy. The live demo runs the app on generated sample data in your browser; it does not connect to any Zendesk account and stores its demo state in your browser only.</p>
+
+      <h2 id="changes">13. Changes to this policy</h2>
+      <p>If the app ever changes what it reads, stores or transmits, we will update this policy, change the effective date at the top, and describe the change in the <a href="../changelog/">changelog</a> and on the Marketplace listing before the new version is released.</p>
+
+      <h2 id="contact">14. Contact</h2>
+      <p>Pablo Simón, Ireland. <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>. This policy is governed by the laws of Ireland.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+        <p>Keep your help center healthy from inside Zendesk. Nothing leaves your account.</p>
+        <p>Built and supported by Pablo Simón, Ireland.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Product</h2>
+        <ul>
+          <li><a href="../features/">Features</a></li>
+          <li><a href="../pricing/">Pricing</a></li>
+          <li><a href="../demo/index.html?hcd_mock=1">Live demo</a></li>
+          <li><a href="../compare/">Compare</a></li>
+          <li><a href="../changelog/">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Help</h2>
+        <ul>
+          <li><a href="../docs/">Documentation</a></li>
+          <li><a href="../docs/faq/">FAQ</a></li>
+          <li><a href="../docs/troubleshooting/">Troubleshooting</a></li>
+          <li><a href="../support/">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Legal</h2>
+        <ul>
+          <li><a href="../privacy/">Privacy policy</a></li>
+          <li><a href="../terms/">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
+      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+    </div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
