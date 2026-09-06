@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help Center Find &amp; Replace, bulk find and replace for Zendesk articles | Help Center Doctor</title>
+<meta name="description" content="Help Center Find & Replace searches and replaces text, links and images across every Zendesk help center article and language, with a preview of each change, a snapshot before writing and one-click undo.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/find-replace/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Help Center Find &amp; Replace for Zendesk">
+<meta property="og:description" content="Find and replace text, links and images in every article, with preview and undo. Free for small runs, Pro for whole help centers.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/find-replace/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">App for Zendesk Support · Free and Pro</span>
+      <h1>Help Center Find &amp; Replace</h1>
+      <p class="lead">Rename a product, move to a new domain, update prices or legal wording in every help center article and language at once. Search with plain text or regular expressions, review each match with its context and a word-by-word diff, keep a snapshot, apply, and undo with one click. It runs in your browser with your own Zendesk permissions.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <p><img src="../assets/shots/find-replace/search.png" alt="The Search screen: query, options and filters on top, matching articles with context and diff below" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>How a run works</h2>
+      <ol>
+        <li><strong>Search.</strong> Type what to find and what to replace it with. Match case, whole word and regular expressions with $1 groups are available. Narrow by category, section, label, status and language.</li>
+        <li><strong>Choose where.</strong> Visible text only (tags, attributes and link addresses are never touched), links and images (href and src, ideal for domain migrations) or the HTML source for power users.</li>
+        <li><strong>Review.</strong> Every matching translation is a row with its context and a diff of the replacement. Untick anything you want to keep.</li>
+        <li><strong>Apply.</strong> The preview dialog lists each change again; a snapshot of the previous version downloads and is kept in the browser before anything is written. Progress and per-article errors are reported, and requests are paced inside Zendesk's rate limits.</li>
+        <li><strong>Undo.</strong> Any run can be undone from History, or restored from the snapshot file on another computer.</li>
+      </ol>
+      <p><img src="../assets/shots/find-replace/apply.png" alt="The apply dialog listing each change with a diff, the content-blocks notice and the Apply button" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Plans</h2>
+      <table>
+        <thead><tr><th></th><th>Free</th><th>Pro · $19 per month per account</th></tr></thead>
+        <tbody>
+          <tr><td>Search and preview</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>Translations changed per run</td><td>5</td><td>500</td></tr>
+          <tr><td>Languages</td><td>Default language</td><td>All enabled languages</td></tr>
+          <tr><td>Where it replaces</td><td>Visible text</td><td>Visible text, links and images, HTML source</td></tr>
+          <tr><td>Regular expressions</td><td>—</td><td>✓</td></tr>
+          <tr><td>Snapshot before every run, undo, restore from file</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Runs kept for undo</td><td>3</td><td>30</td></tr>
+          <tr><td>Saved searches</td><td>—</td><td>✓</td></tr>
+          <tr><td>Free trial</td><td></td><td>14 days</td></tr>
+        </tbody>
+      </table>
+      <p>Pro is billed through the Zendesk Marketplace per account, not per agent, and can be cancelled from Admin Center at any time.</p>
+
+      <h2>Safety</h2>
+      <ul>
+        <li>Nothing is written until you confirm in the preview, and what you see in the diff is exactly what is sent: the same engine builds the preview and the change.</li>
+        <li>A snapshot of every changed translation is saved before writing. Undo puts the previous version back; the snapshot file also works with Restore on any computer.</li>
+        <li>Agents whose role cannot edit articles can search and preview but never apply.</li>
+        <li>Articles that use content blocks are flagged: rewriting a body detaches its blocks, which is how the Zendesk API works and cannot be avoided by any app.</li>
+      </ul>
+
+      <h2>Privacy</h2>
+      <p>The app has no server. Articles are read and written through the Zendesk API with the signed-in agent's session. The article cache, the runs with their snapshots, saved searches and settings live in the browser's local storage on the agent's computer and can be cleared from Settings. Nothing is sent to the developer or to any third party; there are no analytics, cookies or AI services. The same <a href="../privacy/">privacy policy</a> and <a href="../terms/">terms</a> as Help Center Doctor apply.</p>
+
+      <h2>Install</h2>
+      <ol>
+        <li>Open the listing on the Zendesk Marketplace (link added once the listing is approved), click <strong>Install</strong> and choose a plan. You need to be a Zendesk admin.</li>
+        <li>Choose the roles or groups that may use the app, then click <strong>Install</strong>.</li>
+        <li>In Zendesk Support, open <strong>Find &amp; Replace</strong> from the left navigation bar and click <strong>Load help center</strong>.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Can it break my articles?</strong> In the default mode it only edits the text people read, never tags or attributes. Links and images mode only edits addresses. HTML source mode can change markup, which is why it shows a warning and a diff for every article. Every run has a snapshot and Undo.</p>
+      <p><strong>Does it handle translations?</strong> Yes. Each language is a separate row; Pro searches every enabled language, Free the default one.</p>
+      <p><strong>How fast is it?</strong> A 5,000-article, three-language help center loads in a couple of seconds and a search over all 15,000 translations answers in about six seconds. Writes go one request per translation, paced to Zendesk's limits.</p>
+      <p><strong>Also from the same developer:</strong> <a href="../">Help Center Doctor</a> finds and fixes broken links, missing images, stale content and structure problems; <a href="../print-export/">Help Center Print &amp; Export</a> turns articles into PDF, Word, HTML, Markdown, ZIP and CSV; <a href="../link-checker/">Help Center Link Checker</a> is the free link checker.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
