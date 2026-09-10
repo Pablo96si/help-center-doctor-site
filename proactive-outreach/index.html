@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proactive Outreach, proactive tickets in bulk for Zendesk Support | Help Center Doctor</title>
+<meta name="description" content="Proactive Outreach sends one proactive ticket per customer from inside Zendesk Support: build the audience from tags, organizations, ticket requesters or a CSV, write once with placeholders, review the exclusions, send with a rate limit and resume, and read the report. A replacement for the Proactive Tickets app Zendesk is discontinuing on 21 October 2026.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/proactive-outreach/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Proactive Outreach for Zendesk Support">
+<meta property="og:description" content="Pick an audience, write once, one proactive ticket per customer. Free up to 200 tickets a month; Starter, Pro and Business for more.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/proactive-outreach/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">App for Zendesk Support · Free, Starter, Pro and Business</span>
+      <h1>Proactive Outreach</h1>
+      <p class="lead">Tell many customers something at once, from inside Support: a maintenance window, a recall, a policy change, a follow-up after an incident. Build the audience, write the message once, and the app creates one proactive ticket per person through your own account and support address. Replies come back as normal tickets, to the agents who already handle them.</p>
+      <p class="lead"><strong>Zendesk's Proactive Tickets app stops functioning after 21 October 2026</strong> (unavailable for download since April 2026, unsupported since June). Proactive Outreach is an independent replacement from a third-party developer, not affiliated with or endorsed by Zendesk. <a href="../zendesk-proactive-tickets-app-discontinued/">What changes and how to migrate.</a></p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <p><img src="../assets/shots/proactive-outreach/report.png" alt="A campaign report: tickets created, failed, replied and opted out as cards, the sending timeline, and a table with one row per recipient linking to each ticket" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>How it works</h2>
+      <ol>
+        <li><strong>Build the audience.</strong> End users by tag, language, organization or custom field; every member of an organization; the requesters of tickets that match tags, status or a date range; or a CSV file. Sources are merged and deduplicated by e-mail, and the app shows exactly who is excluded and why before you go on.</li>
+        <li><strong>Write the message once.</strong> Subject and HTML body with placeholders such as <code>{{user.first_name|there}}</code>, organization fields, CSV columns and <code>{{date}}</code>, each with a fallback. Start from a template or a macro, preview it for a real recipient, and on Pro add a variant per language.</li>
+        <li><strong>Review.</strong> The review step checks your plan, the trigger that will e-mail the tickets, unresolved placeholders, and asks for a test ticket to yourself above 100 recipients. You tick that you have a customer relationship with these people, then send.</li>
+        <li><strong>Send and watch.</strong> Tickets are created in batches through Zendesk's bulk API at the rate you set, with progress, pause and stop. If the tab closes, the campaign resumes later without sending anyone a second ticket.</li>
+        <li><strong>Read the report.</strong> Created, failed (with the exact Zendesk error and a retry), replied, opted out; one row per recipient with a link to the ticket; CSV export; a Zendesk view for the campaign in one click.</li>
+      </ol>
+      <p><img src="../assets/shots/proactive-outreach/audience.png" alt="The audience step: sources on the left, the number of people who will receive a ticket, the exclusion reasons and the language breakdown" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Built for support teams, with guard rails</h2>
+      <ul>
+        <li><strong>Exclusions before anything is sent:</strong> agents, suspended and shared users, people with an opt-out tag, anyone contacted by a campaign in the last N days, domains you list, invalid addresses, and a hard cap per campaign.</li>
+        <li><strong>Opt-outs that stick:</strong> the app can create a trigger that tags a ticket when a reply says "stop", "unsubscribe" or the words you choose; the report counts those replies and one click tags the users so the next campaign skips them.</li>
+        <li><strong>Test first:</strong> a test ticket to your own address renders the message with a real recipient's data. It is required above 100 recipients.</li>
+        <li><strong>Who can send:</strong> admins choose the groups allowed to send campaigns; everyone else can look but not send.</li>
+        <li><strong>Rate limits respected:</strong> a per-minute limit you control (200 by default), at most two bulk jobs in flight, and Zendesk's own throttling absorbed rather than surfaced as errors.</li>
+      </ul>
+      <p><img src="../assets/shots/proactive-outreach/message.png" alt="The message step: subject and HTML body with placeholders, the template and macro pickers, and a preview rendered for one recipient" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Delivery setup</h2>
+      <p>Zendesk e-mails a proactive ticket to its requester through a trigger, usually the standard "Notify requester of new proactive ticket". The <strong>Delivery setup</strong> screen checks that such a trigger exists and is active. If it does not, the app can create one scoped to the <code>outreach</code> tag, so nothing else on your account changes. It can also create the STOP trigger and, per campaign, a view. Every rule the app creates is listed there and can be deleted from the same screen.</p>
+      <p><img src="../assets/shots/proactive-outreach/setup.png" alt="The Delivery setup screen: the notification trigger detected, the STOP trigger created by the app, who may send, and the guard-rail settings" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Plans</h2>
+      <table>
+        <thead><tr><th></th><th>Free</th><th>Starter · $19</th><th>Pro · $49</th><th>Business · $99</th></tr></thead>
+        <tbody>
+          <tr><td>Outreach tickets per month</td><td>200</td><td>1,000</td><td>10,000</td><td>50,000</td></tr>
+          <tr><td>Recipients per campaign</td><td>50</td><td>1,000</td><td>10,000</td><td>50,000</td></tr>
+          <tr><td>Audience sources (users, organizations, ticket requesters, CSV)</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Exclusions, opt-out tags, recently-contacted window</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Placeholders, templates, macros, test ticket</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Saved audiences and templates</td><td>1 each</td><td>5 each</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>Reports with CSV export, retry, opt-out tagging</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>One message variant per language</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>A Zendesk view per campaign</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Priority support (one business day)</td><td>—</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Free trial</td><td></td><td>14 days</td><td>14 days</td><td>14 days</td></tr>
+        </tbody>
+      </table>
+      <p>Prices are per month per Zendesk account, not per agent, billed through the Zendesk Marketplace and cancellable from Admin Center at any time. The monthly counter is the number of tickets carrying the <code>outreach</code> tag created on your account that month, so several agents share one quota.</p>
+
+      <h2>Compared with the alternatives</h2>
+      <table>
+        <thead><tr><th></th><th>Proactive Outreach</th><th>Proactive Campaigns (GrowthDot)</th><th>Sparkly</th><th>Your own script or App Builder</th></tr></thead>
+        <tbody>
+          <tr><td>Pricing</td><td>Per account, from $0</td><td>Per agent, from $5 per agent per month</td><td>Per account, from $99 per month</td><td>Engineering time, plus hosting if it runs outside Zendesk</td></tr>
+          <tr><td>Where your data goes</td><td>Stays in your Zendesk account and the agent's browser</td><td>Vendor servers</td><td>Vendor servers</td><td>Wherever you run it</td></tr>
+          <tr><td>Audience from tickets and CSV</td><td>✓</td><td>✓</td><td>✓</td><td>Write it</td></tr>
+          <tr><td>Resume after an interruption, no duplicates</td><td>✓</td><td>Varies</td><td>Varies</td><td>Write it</td></tr>
+          <tr><td>Opt-out handling</td><td>STOP trigger, tags, exclusions</td><td>Varies</td><td>Varies</td><td>Write it</td></tr>
+          <tr><td>Scheduling and open tracking</td><td>Not in v1 (see FAQ)</td><td>✓</td><td>✓</td><td>Write it</td></tr>
+        </tbody>
+      </table>
+      <p>Competitor details are from their public listings in September 2026 and may change; check their pages before deciding.</p>
+
+      <h2>Privacy</h2>
+      <p>The app has no server. It reads users, organizations, tickets, groups, brands, forms, macros, triggers and views through the Zendesk API with the signed-in agent's session, and writes only what you ask for: the tickets of a campaign when you click Send, the two triggers and the views it offers to create, the opt-out tag on users, and its shared settings as a setting of its own installation. Campaigns, audiences, templates and the delivery ledger live in the browser's local storage on the agent's computer and can be cleared from Settings. Nothing is sent to the developer or to any third party; there are no analytics, cookies or AI services. The same <a href="../privacy/">privacy policy</a> and <a href="../terms/">terms</a> as Help Center Doctor apply.</p>
+
+      <h2>Install</h2>
+      <ol>
+        <li>Open the listing on the Zendesk Marketplace (link added once the listing is approved), click <strong>Install</strong> and choose a plan. You need to be a Zendesk admin.</li>
+        <li>Choose the roles or groups that may use the app, then click <strong>Install</strong>.</li>
+        <li>In Zendesk Support, open <strong>Proactive Outreach</strong> from the left navigation bar, visit <strong>Delivery setup</strong> once, then click <strong>New campaign</strong>.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Will the customers see a normal ticket?</strong> Yes. Each recipient gets a ticket created on their behalf, e-mailed by your own trigger from your support address, with your branding. Their reply reopens that ticket like any other.</p>
+      <p><strong>Do I have to keep the tab open?</strong> Yes, while the campaign is sending: the app runs in your browser and has no server. A thousand tickets take about five minutes at the default rate. If the tab closes, open the campaign again and click Resume; nobody is sent a second ticket.</p>
+      <p><strong>Can I schedule a campaign for later?</strong> Not in version 1. Scheduling while the tab stays open, and a ticket-sidebar companion, are the next items on the roadmap.</p>
+      <p><strong>Does it track opens or clicks?</strong> No, and by design: there are no tracking pixels or rewritten links. The report counts what Zendesk knows, which is tickets, replies and opt-outs.</p>
+      <p><strong>What happens to Zendesk's Proactive Tickets app?</strong> Zendesk <a href="https://support.zendesk.com/hc/en-us/articles/10479808424986-Announcing-the-discontinuation-of-select-Built-by-Zendesk-apps" rel="noopener">announced</a> that it is no longer downloadable since 7 April 2026, unsupported after 30 June 2026 and stops functioning after 21 October 2026. Tickets it created stay in your account. <a href="../zendesk-proactive-tickets-app-discontinued/">Our migration guide</a> covers what to check and how to run your first campaign here.</p>
+      <p><strong>Also from the same developer:</strong> <a href="../">Help Center Doctor</a> finds and fixes broken links, missing images, stale content and structure problems; <a href="../find-replace/">Help Center Find &amp; Replace</a> changes text, links and images across every article; <a href="../print-export/">Help Center Print &amp; Export</a> turns articles into PDF, Word, HTML, Markdown, ZIP and CSV; <a href="../article-templates/">Help Center Article Templates</a> drafts articles from templates; <a href="../link-checker/">Help Center Link Checker</a> is the free link checker.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

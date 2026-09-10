@@ -1,18 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0e9bb0"/>
-      <stop offset="1" stop-color="#0b4f63"/>
+      <stop offset="0" stop-color="#5b5bd6"/>
+      <stop offset="1" stop-color="#2b2a7a"/>
     </linearGradient>
   </defs>
   <rect x="20" y="20" width="280" height="280" rx="64" fill="url(#bg)"/>
-  <path d="M96 62h92l44 44v152H96z" fill="#ffffff"/>
-  <path d="M188 62v44h44" fill="#c7ecf2"/>
-  <rect x="120" y="128" width="88" height="14" rx="7" fill="#0e7490"/>
-  <rect x="120" y="160" width="64" height="10" rx="5" fill="#9fd3de"/>
-  <rect x="120" y="182" width="80" height="10" rx="5" fill="#9fd3de"/>
-  <rect x="120" y="204" width="52" height="10" rx="5" fill="#9fd3de"/>
-  <rect x="120" y="226" width="72" height="10" rx="5" fill="#9fd3de"/>
-  <circle cx="236" cy="236" r="40" fill="#ffd166"/>
-  <path d="M236 216v40M216 236h40" stroke="#0b4f63" stroke-width="10" stroke-linecap="round"/>
+  <!-- three recipients, reached by one message -->
+  <circle cx="236" cy="96" r="14" fill="#c7c8f5"/>
+  <circle cx="252" cy="160" r="14" fill="#c7c8f5"/>
+  <circle cx="236" cy="224" r="14" fill="#c7c8f5"/>
+  <path d="M150 160h64M150 160l60-56M150 160l60 56" stroke="#c7c8f5" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- paper plane -->
+  <path d="M160 96 40 148l46 17 17 46L160 96z" fill="#ffffff"/>
+  <path d="M160 96 86 165l17 46 12-27-15-14z" fill="#dcdcf7"/>
+  <path d="M100 184l60-88-74 69z" fill="#b9baf0"/>
+  <circle cx="252" cy="160" r="20" fill="#ffd166"/>
+  <path d="M244 160l6 6 10-12" stroke="#2b2a7a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
