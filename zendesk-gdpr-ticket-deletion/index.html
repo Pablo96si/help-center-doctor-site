@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to delete Zendesk tickets for GDPR retention, with a dry run and evidence | Help Center Doctor</title>
+<meta name="description" content="A retention procedure for Zendesk tickets that an auditor accepts: criteria, a dry run with counts and a sample, a guard for recently updated tickets, a cap per run, soft deletion with 30 days to restore, permanent deletion, redaction instead of deletion where needed, and evidence of every step. With Zendesk's own tools or with Data Custodian.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/zendesk-gdpr-ticket-deletion/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deleting Zendesk tickets for GDPR retention, with evidence">
+<meta property="og:description" content="Dry run, guards, cap, soft then permanent deletion, redaction where deletion is too much, and an evidence file.">
+<meta property="og:url" content="https://helpcenterdoctor.app/zendesk-gdpr-ticket-deletion/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">How-to · updated September 2026</span>
+      <h1>Deleting Zendesk tickets for GDPR retention, with a dry run and evidence</h1>
+      <p class="lead">Retention is easy to state ("closed tickets are deleted after two years") and easy to get wrong in practice: a query that also catches tickets reopened last week, a deletion nobody can prove happened, or a deletion that should have been a redaction. This is the procedure we built <a href="../data-custodian/">Data Custodian</a> around; it also works by hand.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <h2>1. Write the criteria as a query, not as a sentence</h2>
+      <p>"Closed tickets older than two years" becomes <code>type:ticket status:closed created&lt;2024-09-12</code>. Decide whether "older than" means created or solved, whether closed only or solved too, and whether some brands, forms or tags are exempt (legal holds, complaints). In Data Custodian the rule editor renders the exact query it will send, and the same criteria can be saved as a search to review the candidates first.</p>
+
+      <h2>2. Add a guard for activity</h2>
+      <p>A ticket can be closed and still matter: a follow-up was created from it, a customer wrote again, an agent added a note. Append <code>updated&lt;date</code> so tickets touched in the last 30 (or 90) days are never in scope. Data Custodian's rules have this guard as a field, added to the query on every run.</p>
+
+      <h2>3. Dry run: count, sample, cap</h2>
+      <p>Before deleting anything, get the exact count for the whole account (Zendesk's search stops at 1,000; use the export endpoint or the app), look at a sample of ten, and cap the first run (500, then 5,000). The dry run in the app shows four numbers: how many match, how many this run would process, how many the guard skipped, how many wait for later.</p>
+
+      <h2>4. Soft delete first</h2>
+      <p>Zendesk keeps deleted tickets for 30 days in the deleted tickets list, restorable by an admin. Delete, wait a week, listen for complaints, then delete permanently. Data Custodian shows the list inside the app with restore and permanent delete, both with typed confirmation.</p>
+
+      <h2>5. Redact where deletion is too much</h2>
+      <p>Some tickets have to stay (warranty, disputes, tax) but the personal data in them does not. Redact instead: e-mail addresses, phone numbers, card numbers, IBANs, national ids, and attachments. The app's redaction packs check card numbers with Luhn and IBANs with mod 97 so a random number is not touched, preview every string masked before replacing it, and keep the longest match when two packs overlap so nothing is left half-visible.</p>
+
+      <h2>6. Keep evidence</h2>
+      <p>For every run: who, when, the query, the guard, the cap, how many were deleted, how many failed and why, and the ids. Data Custodian records this automatically as an event, exportable as CSV or a printable report, and on Business and up also as records of a custom object inside your account so it survives the admin's browser.</p>
+
+      <h2>Doing it with Zendesk alone</h2>
+      <ul>
+        <li>Views can bulk-delete 100 tickets at a time from the agent interface; no dry run, no evidence beyond the audit log on Enterprise.</li>
+        <li>The Advanced Data Privacy and Protection add-on has deletion schedules (a policy that runs on its own) and redaction inside the ticket; priced per agent. <a href="../zendesk-adpp-alternative/">Compared here.</a></li>
+        <li>The API: <code>DELETE /api/v2/tickets/destroy_many.json?ids=…</code> in batches of 100 as background jobs, then <code>DELETE /api/v2/deleted_tickets/destroy_many.json</code> for permanent deletion, <code>PUT /api/v2/tickets/{t}/comments/{c}/redact.json</code> with the exact string for redaction. Works, needs code, a token, a ledger so a crashed script does not repeat batches, and your own evidence file.</li>
+      </ul>
+
+      <h2>Doing it with Data Custodian</h2>
+      <ol>
+        <li><strong>Retention → New rule:</strong> name, criteria (the builder offers status, dates, tags, brands, forms, custom fields), action (delete, delete permanently, redact attachments, anonymise), guard days, maximum per run.</li>
+        <li><strong>Dry run:</strong> the four counts and a sample table; the exact query is shown at the bottom.</li>
+        <li><strong>Type "RUN 500"</strong> and the app runs batches of 100 through Zendesk's job endpoints, with pause and stop, per-ticket results and a ledger so a closed tab never repeats a batch.</li>
+        <li><strong>Audit:</strong> the run is an event with the rule id; export the period's events as CSV or the printable report for the file.</li>
+      </ol>
+      <p>Retention runs are admin-only and available on the Business and Enterprise plans. Nothing runs unattended: a rule waits for an admin to dry-run and confirm it.</p>
+
+      <p>Related: <a href="../export-zendesk-tickets-with-comments/">exporting tickets with comments before deleting</a> · <a href="../zendesk-adpp-alternative/">the ADPP add-on compared</a> · <a href="../demo/index.html?hcd_mock=1">try the demo</a>.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

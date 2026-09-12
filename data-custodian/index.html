@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Custodian, search, export, bulk-change, delete and redact Zendesk tickets with evidence | Help Center Doctor</title>
+<meta name="description" content="Data Custodian runs inside Zendesk Support with no server: search the whole account with exact counts, export tickets with comments to CSV, Excel or JSON, change or delete thousands of tickets with undo, redact personal data with checked patterns, build DSAR packs, forget a person and run retention rules after a dry run. Every action leaves evidence.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/data-custodian/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data Custodian for Zendesk Support">
+<meta property="og:description" content="Search, export, bulk-change, delete and redact tickets and people from inside Zendesk, with evidence of every action. Free plan; Pro, Business and Enterprise per account.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/data-custodian/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">App for Zendesk Support · Free, Pro, Business and Enterprise</span>
+      <h1>Data Custodian</h1>
+      <p class="lead">Your Zendesk data under control, from inside Support and without a server: search the whole account with exact counts, export tickets with their comments to CSV, Excel or JSON, change or delete thousands of tickets in batches with undo, redact personal data with checked patterns, answer a data subject access request with a complete pack, forget a person, and run retention rules after a dry run. Every action leaves evidence of who did what, when, on which tickets.</p>
+      <p class="lead">Built for accounts that need data hygiene and privacy tooling without Zendesk's Advanced Data Privacy and Protection add-on. An independent app from a third-party developer, not affiliated with or endorsed by Zendesk. <a href="../zendesk-adpp-alternative/">How it compares with the add-on.</a></p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <p><img src="../assets/shots/data-custodian/search.png" alt="Search results in Data Custodian: criteria on status and age, the exact count for the whole account, a table with resolved requester and assignee names, and a selection with Bulk change, Redact and Delete actions" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>What it does</h2>
+      <ol>
+        <li><strong>Search everything.</strong> Tickets, people and organizations by status, dates (absolute or "older than N days"), tags, priority, channel, requester, assignee, group, organization, brand, satisfaction, custom fields and free text. The count is exact for the whole account because the app uses Zendesk's export endpoint, not the search endpoint that stops at 1,000. Rows load in pages, names are resolved, searches can be saved for you or shared with the account.</li>
+        <li><strong>Export with the columns you choose.</strong> CSV, Excel or JSON; standard fields, custom fields, metrics (first reply and resolution time, replies, reopens), satisfaction. Comments as one row per comment, with or without internal notes. The file is built in your browser and saved by your browser.</li>
+        <li><strong>Change in bulk, with undo.</strong> Status, priority, type, group, assignee, brand, form, tags, custom fields and an internal note. Review the change, see a sample, type the count above 100 tickets, and the app runs batches of 100 through Zendesk's job endpoints with per-ticket results. Previous values are snapshotted so the change can be reverted from the history.</li>
+        <li><strong>Delete, restore, delete permanently.</strong> Typed confirmation every time; the deleted tickets list is inside the app for 30 days.</li>
+        <li><strong>Redact personal data.</strong> Packs for e-mail addresses, phone numbers, payment cards (Luhn-checked), IBANs (mod-97-checked), national ids for Spain, Ireland, the UK, the US, Germany, France, Italy and Portugal, plus your own patterns and exact strings. Every string is shown masked before it is replaced; attachments can be redacted too.</li>
+        <li><strong>One person at a time.</strong> A DSAR pack as a ZIP: printable report, tickets, comments, attachment links and the raw JSON. A forget sequence for erasure requests: redact their data in every ticket, anonymise the profile, delete the user.</li>
+        <li><strong>Retention rules.</strong> Criteria plus an action (delete, delete permanently, redact attachments, anonymise) plus guards: skip tickets updated in the last N days, at most N per run. Dry run with counts and a sample, then confirm. Nothing runs unattended.</li>
+        <li><strong>Evidence.</strong> Every action becomes an event with the actor, the time, the criteria, the counts and the ids. Filter, export as CSV or a printable report; on Business and up the events are also written inside your account as records of a custom object, where every admin can see them.</li>
+      </ol>
+      <p><img src="../assets/shots/data-custodian/redact.png" alt="The redaction preview: comments with e-mail addresses, phone numbers and card numbers shown masked, the list of attachments that would be redacted, and the typed confirmation" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Guard rails</h2>
+      <ul>
+        <li><strong>Admin-only destruction:</strong> deleting, redacting, anonymising and retention runs are for admins on Business and up; they cannot be delegated to agents. Admins decide whether agents may export or run bulk changes.</li>
+        <li><strong>Review before write:</strong> a sample of what will change, the exact query sent to Zendesk, and typed confirmation ("DELETE 250", "REDACT") for anything irreversible.</li>
+        <li><strong>Batches and a ledger:</strong> 100 tickets per job, at most two or four jobs in flight, a ledger written before each submit so a closed tab never repeats a batch, pause and stop at any time.</li>
+        <li><strong>Rate limits respected:</strong> a per-minute budget you control, Zendesk's throttling absorbed rather than surfaced as errors.</li>
+        <li><strong>Redaction that does not half-redact:</strong> when two packs overlap (a card-looking run of digits inside an IBAN), the longer value wins, so nothing is left partially visible.</li>
+      </ul>
+      <p><img src="../assets/shots/data-custodian/retention.png" alt="A retention rule dry run: how many tickets match, how many would be processed this run, how many the guard skips, how many wait for later, the sample table and the confirmation field" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Plans</h2>
+      <table>
+        <thead><tr><th></th><th>Free</th><th>Pro · $99</th><th>Business · $199</th><th>Enterprise · $349</th></tr></thead>
+        <tbody>
+          <tr><td>Search with exact counts, saved searches</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Rows on screen per search</td><td>2,000</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>Export rows (CSV, Excel, JSON, with comments)</td><td>500 a month</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>Bulk changes with undo</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>DSAR packs, saved searches shared with the account</td><td>—</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Delete, restore, permanent delete</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Redaction packs, attachment redaction, anonymise, forget a person</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Retention rules with dry run</td><td>—</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Evidence</td><td>Browser</td><td>Browser</td><td>Browser + account</td><td>Browser + account</td></tr>
+          <tr><td>Parallel jobs · requests per minute</td><td>1 · 120</td><td>2 · 200</td><td>2 · 200</td><td>4 · 400</td></tr>
+          <tr><td>Priority support (one business day)</td><td>—</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Free trial</td><td></td><td>14 days</td><td>14 days</td><td>14 days</td></tr>
+        </tbody>
+      </table>
+      <p>Prices are per month per Zendesk account, not per agent, billed through the Zendesk Marketplace and cancellable from Admin Center at any time.</p>
+
+      <h2>Compared with the alternatives</h2>
+      <table>
+        <thead><tr><th></th><th>Data Custodian</th><th>Zendesk ADPP add-on</th><th>Exporter or GDPR apps (vendor-hosted)</th><th>Your own scripts</th></tr></thead>
+        <tbody>
+          <tr><td>Pricing</td><td>Per account, from $0</td><td>Per agent add-on on Suite plans</td><td>Per account or per agent, from about $50–200 per month each</td><td>Engineering time</td></tr>
+          <tr><td>Where your data goes</td><td>Stays in your Zendesk account and the admin's browser</td><td>Stays in Zendesk</td><td>Vendor servers for most</td><td>Wherever you run them</td></tr>
+          <tr><td>Search with exact counts and export with comments</td><td>✓</td><td>Partly (Zendesk's own export)</td><td>✓ (export apps)</td><td>Write it</td></tr>
+          <tr><td>Bulk changes with undo</td><td>✓</td><td>—</td><td>Some</td><td>Write it</td></tr>
+          <tr><td>Redaction with preview and checked patterns</td><td>✓</td><td>Redaction suggestions in the ticket</td><td>Some (per ticket)</td><td>Write it</td></tr>
+          <tr><td>DSAR pack and forget a person</td><td>✓</td><td>Partly</td><td>Some</td><td>Write it</td></tr>
+          <tr><td>Retention with dry run and guards</td><td>✓</td><td>Deletion schedules</td><td>Some</td><td>Write it</td></tr>
+          <tr><td>Evidence of every action</td><td>✓ (browser, and account on Business)</td><td>Access log (Enterprise)</td><td>Varies</td><td>Write it</td></tr>
+        </tbody>
+      </table>
+      <p>Competitor details are from public listings and Zendesk's documentation in September 2026 and may change; check their pages before deciding. <a href="../zendesk-adpp-alternative/">A longer comparison with the ADPP add-on.</a></p>
+
+      <h2>Privacy</h2>
+      <p>The app has no server. It reads tickets, comments, attachment metadata, users, organizations, groups, agents, brands, forms, fields and custom objects through the Zendesk API with the signed-in agent's session, only when you ask, and writes only what you confirm: ticket updates, deletions and restores, redactions, user changes, evidence records and its own settings in the installation. Evidence, saved searches, export history and job ledgers live in the browser's local storage and can be cleared from Settings. Nothing is sent to the developer or to any third party; there are no analytics, cookies or AI services. The same <a href="../privacy/">privacy policy</a> and <a href="../terms/">terms</a> as Help Center Doctor apply.</p>
+
+      <h2>Install</h2>
+      <ol>
+        <li>Open the listing on the Zendesk Marketplace (link added once the listing is approved), click <strong>Install</strong> and choose a plan. You need to be a Zendesk admin.</li>
+        <li>Choose the roles or groups that may use the app, then click <strong>Install</strong>.</li>
+        <li>In Zendesk Support, open <strong>Data Custodian</strong> from the left navigation bar, visit <strong>Setup</strong> once, then go to <strong>Search</strong>.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Does the app store my tickets anywhere?</strong> No. Search results live in the tab while you look at them; exports are built in memory and handed to your browser as a file. Only evidence events, saved searches, export history and job ledgers are kept, in the browser's local storage, and on Business and up the evidence is also written inside your own Zendesk account.</p>
+      <p><strong>Is redaction reversible?</strong> No, neither in the app nor in Zendesk: redacted text is replaced with ▇ characters and redacted attachments become an empty file, for everyone. That is why the app shows every string before replacing it and asks you to type REDACT.</p>
+      <p><strong>What about attachments in DSAR packs?</strong> The pack lists every attachment with its metadata and a link that works for signed-in agents. The files themselves stay in Zendesk: browsers cannot read them from inside an app without exposing the agent's session, and the pack says so.</p>
+      <p><strong>Can agents delete tickets with it?</strong> No. Deleting, redacting, anonymising and retention runs are admin-only by design. Admins can allow agents to search and export, and separately to run bulk changes.</p>
+      <p><strong>Do I have to keep the tab open?</strong> While a job runs, yes: the app has no server. A bulk change on 5,000 tickets takes a few minutes at the default rate. If the tab closes, the ledger makes sure no batch is repeated when you run it again.</p>
+      <p><strong>Also from the same developer:</strong> <a href="../proactive-outreach/">Proactive Outreach</a> creates one proactive ticket per customer; <a href="../">Help Center Doctor</a> finds and fixes broken links, missing images, stale content and structure problems; <a href="../find-replace/">Help Center Find &amp; Replace</a> changes text, links and images across every article; <a href="../print-export/">Help Center Print &amp; Export</a> turns articles into PDF, Word, HTML, Markdown, ZIP and CSV; <a href="../article-templates/">Help Center Article Templates</a> drafts articles from templates; <a href="../link-checker/">Help Center Link Checker</a> is the free link checker.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

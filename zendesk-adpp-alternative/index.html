@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zendesk Advanced Data Privacy and Protection: what the add-on does and an alternative that runs inside Support | Help Center Doctor</title>
+<meta name="description" content="What Zendesk's Advanced Data Privacy and Protection add-on covers (deletion schedules, redaction suggestions, access log, data masking) and what a support team can do instead with Data Custodian: exact-count search, exports with comments, bulk changes with undo, redaction packs with preview, DSAR packs, retention rules with dry run and evidence, per account and without a server.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/zendesk-adpp-alternative/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zendesk ADPP add-on: what it does and an alternative inside Support">
+<meta property="og:description" content="A factual comparison of the Advanced Data Privacy and Protection add-on with Data Custodian, an app that runs inside Zendesk Support without a server.">
+<meta property="og:url" content="https://helpcenterdoctor.app/zendesk-adpp-alternative/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Guide · updated September 2026</span>
+      <h1>Zendesk's Advanced Data Privacy and Protection add-on, and an alternative that runs inside Support</h1>
+      <p class="lead">Disclosure first: we make <a href="../data-custodian/">Data Custodian</a>, one of the alternatives below. The facts about the add-on come from Zendesk's own documentation and pricing pages as of September 2026; check them before deciding, because both products change.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <h2>What the add-on covers</h2>
+      <p>Advanced Data Privacy and Protection (ADPP) is a paid add-on for Zendesk Suite and Support plans, sold per agent on top of the plan. Zendesk lists these capabilities: deletion schedules that remove tickets on a policy, redaction suggestions and a redaction workflow inside the ticket, data masking for agents who should not see certain fields, an access log of who viewed what, and additional encryption options. It is built into the product, respects roles and permissions natively, and is the right tool for organisations that need agent-level masking or an access log across the whole account.</p>
+
+      <h2>Where teams look for an alternative</h2>
+      <ul>
+        <li><strong>Per-agent pricing.</strong> A 40-agent team pays for 40 seats of a capability two admins use a few times a month. Data hygiene and privacy work is done by a handful of people.</li>
+        <li><strong>Bulk work.</strong> Answering an erasure request means finding every ticket a person requested or was copied on, redacting their data in every comment and attachment, anonymising the profile and keeping proof. Deleting last year's closed tickets means a dry run, a cap and evidence. The add-on's workflow is per ticket or per schedule.</li>
+        <li><strong>Exports with comments and exact counts.</strong> Zendesk's search stops at 1,000 results and its export does not carry comments as rows. Auditors and legal teams ask for both.</li>
+        <li><strong>Evidence.</strong> A record of who deleted or redacted what, when, with which criteria, that can be handed to an auditor as a file.</li>
+      </ul>
+
+      <h2>What Data Custodian does instead</h2>
+      <p>Data Custodian is an app in the Zendesk Marketplace that runs entirely inside Zendesk Support, in the admin's browser, with the admin's own session. It has no server: nothing is copied out of the account. Priced per account, not per agent.</p>
+      <table>
+        <thead><tr><th>Need</th><th>ADPP add-on</th><th>Data Custodian</th></tr></thead>
+        <tbody>
+          <tr><td>Find every ticket matching criteria, with the exact count</td><td>Zendesk views and search (1,000-result cap on search)</td><td>Search on the export endpoint: exact counts for the whole account, custom fields, relative dates, saved searches</td></tr>
+          <tr><td>Export tickets with comments</td><td>Zendesk's data export (account level, no comment rows)</td><td>CSV, Excel or JSON with chosen columns; comments as one row per comment; built in the browser</td></tr>
+          <tr><td>Change thousands of tickets safely</td><td>Bulk update in views (100 at a time, no undo)</td><td>Bulk change with review, sample, typed confirmation, batches, per-ticket results and undo</td></tr>
+          <tr><td>Delete on a policy</td><td>Deletion schedules</td><td>Retention rules with a dry run, an update guard, a cap per run and evidence; nothing runs unattended</td></tr>
+          <tr><td>Redact personal data</td><td>Redaction suggestions and redaction in the ticket</td><td>Redaction packs (e-mail, phone, cards with Luhn, IBANs with mod 97, national ids, your patterns) across many tickets, preview of every string, attachment redaction</td></tr>
+          <tr><td>Answer an access request</td><td>Manual</td><td>DSAR pack as a ZIP: printable report, tickets, comments, attachment links, raw JSON</td></tr>
+          <tr><td>Erase a person</td><td>User deletion, redaction per ticket</td><td>Forget sequence: redact in every ticket, anonymise the profile, delete or permanently delete, with one evidence event</td></tr>
+          <tr><td>Mask fields from agents</td><td>✓ data masking</td><td>— (not an app-level capability)</td></tr>
+          <tr><td>Log who viewed a ticket</td><td>✓ access log</td><td>— (the app records its own actions, not views)</td></tr>
+          <tr><td>Evidence of destructive actions</td><td>Audit log (Enterprise)</td><td>Every action: actor, time, criteria, counts, ids; CSV and printable report; on Business and up also written inside the account as custom object records</td></tr>
+          <tr><td>Pricing</td><td>Per agent per month, on top of the plan</td><td>Per account per month: Free, Pro $99, Business $199, Enterprise $349; 14-day trial</td></tr>
+        </tbody>
+      </table>
+
+      <h2>When to choose which</h2>
+      <p><strong>Choose the add-on</strong> if you need agents to be unable to see certain data (masking) or an access log of views, or if your compliance framework requires the capability to be a Zendesk product feature rather than an app.</p>
+      <p><strong>Choose Data Custodian</strong> if the work is done by admins, in bulk, and you need exact-count search, exports with comments, bulk changes with undo, redaction with a preview, DSAR packs, retention with a dry run and evidence you can hand over, at a per-account price. Many accounts use both: the add-on for masking, the app for the bulk work.</p>
+
+      <h2>Try it without installing</h2>
+      <p>The <a href="../demo/index.html?hcd_mock=1">demo</a> runs the real app against a simulated account with three years of tickets, personal data in comments and attachments; every module works, nothing is real. The Marketplace listing link is added here once the listing is approved.</p>
+      <p>Related guides: <a href="../export-zendesk-tickets-with-comments/">how to export Zendesk tickets with comments</a> and <a href="../zendesk-gdpr-ticket-deletion/">how to delete Zendesk tickets for GDPR with evidence</a>.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

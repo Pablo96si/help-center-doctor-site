@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to export Zendesk tickets with comments to CSV or Excel, with exact counts | Help Center Doctor</title>
+<meta name="description" content="Four ways to export Zendesk tickets with their comments: Zendesk's own export, the API, exporter apps, and Data Custodian, which searches the whole account with exact counts and builds CSV, Excel or JSON files with one row per comment in your browser.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/export-zendesk-tickets-with-comments/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to export Zendesk tickets with comments">
+<meta property="og:description" content="Exact counts, chosen columns, comments as rows, CSV/Excel/JSON, built in the browser.">
+<meta property="og:url" content="https://helpcenterdoctor.app/export-zendesk-tickets-with-comments/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">How-to · updated September 2026</span>
+      <h1>How to export Zendesk tickets with comments</h1>
+      <p class="lead">Auditors, legal teams and analysts ask for the same thing: every ticket matching some criteria, with its comments, in a spreadsheet, and a number that matches what the account really holds. Here are the four ways to get it, with their limits.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <h2>1. Zendesk's built-in export</h2>
+      <p>Admin Center → Account → Tools → Reports lets admins export tickets as CSV, XML or JSON for the whole account (the CSV has no comments; XML and JSON carry them). It is a full-account dump on a schedule, not a filtered export, and it is only available on some plans. Good for a periodic backup; not for "the 1,240 tickets tagged <code>refund</code> closed in Q2 with their comments".</p>
+
+      <h2>2. Views and search</h2>
+      <p>A view can be exported as CSV by e-mail, again without comments. Search in Support shows at most 1,000 results and the API's <code>/search</code> endpoint has the same cap, which is why many exporter apps show wrong totals on large accounts. The <code>/search/export</code> endpoint has no cap but is cursor-paginated and returns raw JSON; it needs code.</p>
+
+      <h2>3. The API with a script</h2>
+      <p>The reliable recipe: <code>GET /api/v2/search/count.json</code> for the exact count, <code>GET /api/v2/search/export.json?filter[type]=ticket&amp;query=…</code> page by page, then <code>GET /api/v2/tickets/{id}/comments.json</code> per ticket, then resolve requester and assignee ids to names with <code>users/show_many</code>, then write CSV with proper quoting and a guard against spreadsheet formula injection. It works, takes an afternoon to write, and needs an API token or OAuth app that then has to be protected. Zendesk is retiring API tokens for some integrations, which pushes teams toward OAuth or apps.</p>
+
+      <h2>4. Data Custodian</h2>
+      <p><a href="../data-custodian/">Data Custodian</a> runs inside Zendesk Support with the admin's session, no token, no server:</p>
+      <ol>
+        <li>Open <strong>Search</strong>, add conditions (status, tags, dates such as "older than 365 days", custom fields, requester, free text). The count uses the export endpoint, so it is exact for the whole account.</li>
+        <li>Click <strong>Columns</strong> to pick standard fields, custom fields, metrics (first reply and resolution time, replies, reopens) and satisfaction.</li>
+        <li>Click <strong>Export</strong>, choose CSV, Excel (XLSX) or JSON, choose "everything that matches", tick <strong>Include comments</strong> (one row per comment, internal notes on or off, HTML or plain text).</li>
+        <li>The file is built in your browser and saved by your browser. Names are resolved, dates are ISO, and cells starting with <code>=</code>, <code>+</code>, <code>-</code> or <code>@</code> are neutralised so a customer-written subject cannot run as a formula in Excel.</li>
+      </ol>
+      <p>The Free plan exports 500 rows a month; Pro and up have no limit. Every export is listed in <strong>Exports &amp; changes</strong> with its criteria and can be run again, and appears in <strong>Audit</strong> as evidence (who exported what, when, how many rows).</p>
+
+      <h2>Comments as rows, explained</h2>
+      <p>A ticket with three comments becomes three rows. The ticket columns repeat on each row, followed by comment id, author, public or internal, created date, channel, body and attachment names with links. Pivot on the ticket id in Excel to get back to one row per ticket, or filter "Comment public = true" for customer-visible text only.</p>
+
+      <h2>What about attachments?</h2>
+      <p>Attachment files are not in the export: browsers cannot download them from inside an app without exposing the agent's session. Every attachment is listed with its name, type, size and a link that works for signed-in agents. For a data subject access request, <a href="../data-custodian/">Data Custodian</a>'s DSAR pack does the same for one person and adds a printable report.</p>
+
+      <p>Related: <a href="../zendesk-gdpr-ticket-deletion/">deleting Zendesk tickets for GDPR with evidence</a> · <a href="../zendesk-adpp-alternative/">the ADPP add-on compared</a> · <a href="../demo/index.html?hcd_mock=1">try the demo</a>.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
