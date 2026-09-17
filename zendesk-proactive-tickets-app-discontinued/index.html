@@ -4,16 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zendesk is discontinuing the Proactive Tickets app on 21 October 2026: what to use instead | Help Center Doctor</title>
-<meta name="description" content="Zendesk's Proactive Tickets app is discontinued on 21 October 2026. What stops working, what stays, the alternatives (Proactive Outreach, GrowthDot, Sparkly, your own script) and a migration checklist for support teams.">
+<meta name="description" content="Zendesk's Proactive Tickets app stops working on 21 October 2026. What stops, what stays, a dated comparison of the alternatives (Proactive Outreach, GrowthDot Proactive Campaigns, Sparkly Proactive Bulk Tickets, your own script) and a 20-minute migration plan.">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="canonical" href="https://helpcenterdoctor.app/zendesk-proactive-tickets-app-discontinued/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zendesk is discontinuing the Proactive Tickets app on 21 October 2026: what to use instead">
-<meta property="og:description" content="What stops working, what stays, the alternatives and a migration checklist.">
-<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:description" content="What stops working, what stays, the alternatives compared with dates, and a 20-minute migration plan.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/shots/proactive-outreach/audience.png">
 <meta property="og:url" content="https://helpcenterdoctor.app/zendesk-proactive-tickets-app-discontinued/">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"When does the Zendesk Proactive Tickets app stop working?","acceptedAnswer":{"@type":"Answer","text":"Zendesk's announcement of 7 April 2026 gives three dates: not available for download since 7 April 2026, unsupported after 30 June 2026, and it stops functioning after 21 October 2026."}},
+{"@type":"Question","name":"Do the tickets created by the Proactive Tickets app disappear?","acceptedAnswer":{"@type":"Answer","text":"No. They are ordinary tickets in your account and stay, with their tags, comments and replies. Only the app's own screens, saved audiences and drafts go away."}},
+{"@type":"Question","name":"Will customers notice a difference with a replacement app?","acceptedAnswer":{"@type":"Answer","text":"No. A proactive ticket is a ticket created on the customer's behalf with a public comment. The e-mail comes from your own trigger and support address, whichever tool created the ticket."}},
+{"@type":"Question","name":"Can I import my old campaigns into a new app?","acceptedAnswer":{"@type":"Answer","text":"The discontinued app has no export. The tickets it created remain searchable by the tags you used, and Proactive Outreach can build an audience from the requesters of those tickets."}}
+]}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -27,6 +35,7 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
+        <li><a href="../apps/">Apps</a></li>
         <li><a href="../features/">Features</a></li>
         <li><a href="../pricing/">Pricing</a></li>
         <li><a href="../docs/">Docs</a></li>
@@ -41,16 +50,17 @@
 <main id="main">
   <section class="page-hero">
     <div class="container">
-      <span class="eyebrow">Guide · updated 10 September 2026</span>
+      <span class="eyebrow">Guide · updated 17 September 2026</span>
       <h1>Zendesk is discontinuing the Proactive Tickets app on 21 October 2026: what to use instead</h1>
-      <p class="lead">If your team uses the Proactive Tickets app from the Zendesk Marketplace to e-mail groups of customers, it stops working on 21 October 2026. This page explains what changes, what does not, the options for after that date, and a checklist to move without losing a campaign.</p>
+      <p class="lead">If your team uses the Proactive Tickets app from the Zendesk Marketplace to e-mail groups of customers, it stops working on 21 October 2026. This page explains what changes, what does not, the options for after that date with their prices as listed, and a plan to move in 20 minutes without losing a campaign.</p>
+      <p class="days-left" id="days-left">34 days left, counted on 17 September 2026.</p>
     </div>
   </section>
 
   <div class="container">
     <div class="prose" style="padding: 40px 0 0;">
       <h2>What is happening</h2>
-      <p>On 7 April 2026 Zendesk <a href="https://support.zendesk.com/hc/en-us/articles/10479808424986-Announcing-the-discontinuation-of-select-Built-by-Zendesk-apps" rel="noopener">announced the discontinuation of seven Built-by-Zendesk apps</a>, among them Proactive Tickets, the free Marketplace app that let agents create a ticket for each user in a list and e-mail them in one go. The timeline in the announcement: no longer available for download since 7 April 2026, no longer supported after 30 June 2026, and it <strong>stops functioning after 21 October 2026</strong>. Zendesk's stated reason is low usage and capabilities moving into the Agent Workspace; its suggested replacement is the bulk-create tickets API or a custom app built on it, and it notes that Support has no native bulk-ticketing tool. This guide is written by an independent developer and is not affiliated with or endorsed by Zendesk; the announcement is the authoritative source for dates.</p>
+      <p>On 7 April 2026 Zendesk <a href="https://support.zendesk.com/hc/en-us/articles/10479808424986-Announcing-the-discontinuation-of-select-Built-by-Zendesk-apps" rel="noopener">announced the discontinuation of seven Built-by-Zendesk apps</a>, among them Proactive Tickets, the free Marketplace app that let agents create a ticket for each user in a list and e-mail them in one go. The timeline in the announcement: no longer available for download since 7 April 2026, no longer supported after 30 June 2026, and it <strong>stops functioning after 21 October 2026</strong>. Zendesk's stated reason is low usage and capabilities moving into the Agent Workspace; its suggested replacement is the bulk-create tickets API or a custom app built on it (Zendesk published an <a href="https://community.zendesk.com/platform-and-developer-18/recipe-proactive-tickets-app-for-app-builder-21421" rel="noopener">App Builder recipe</a> on 24 April 2026 with the note that it cannot guarantee the recipe keeps working over time), and it notes that Support has no native bulk-ticketing tool. This guide is written by an independent developer and is not affiliated with or endorsed by Zendesk; the announcement is the authoritative source for dates.</p>
 
       <h2>What stays and what stops</h2>
       <ul>
@@ -60,34 +70,81 @@
         <li><strong>Nothing changes in the API.</strong> Bulk ticket creation, search and job statuses are unchanged; that is what every replacement, including ours, is built on.</li>
       </ul>
 
-      <h2>Your options</h2>
-      <h3>1. Proactive Outreach (this developer)</h3>
-      <p><a href="../proactive-outreach/">Proactive Outreach</a> is a Marketplace app that runs entirely inside Zendesk Support, with no server and no vendor account. Audience from tags, organizations, ticket requesters or a CSV; exclusions and opt-out tags applied before sending; placeholders with fallbacks and one variant per language; a test ticket to yourself; a delivery engine that respects rate limits and resumes without duplicates; a report with replies, opt-outs, failures and retry. Free up to 200 tickets a month, then $19, $49 or $99 per account per month, 14-day trial. <a href="mailto:support@helpcenterdoctor.app?subject=Proactive%20Outreach%20launch&amp;body=Please%20tell%20me%20when%20Proactive%20Outreach%20is%20on%20the%20Zendesk%20Marketplace.">E-mail us to be told when the listing is live.</a></p>
-      <h3>2. Proactive Campaigns by GrowthDot</h3>
-      <p>An established Marketplace app with scheduling, open tracking and more, hosted by the vendor and priced per agent (from about $5 per agent per month on their listing in September 2026). A good fit for marketing-style campaigns where tracking matters more than keeping data in your own account.</p>
-      <h3>3. Sparkly</h3>
-      <p>A vendor-hosted app priced per account (from about $99 per month in September 2026) with caps on tickets per month. Compare the caps with your volume.</p>
-      <h3>4. A script or an App Builder flow of your own</h3>
-      <p>The Zendesk API creates up to 100 tickets per call with <code>POST /api/v2/tickets/create_many.json</code> and returns a job you poll. It is a day of work to get the happy path going and much more to get exclusions, duplicates after a crash, rate limits and opt-outs right; if you have the engineers and a low volume, it is a valid option.</p>
-      <h3>5. Do nothing</h3>
-      <p>Fine if you sent a campaign once a year. Keep the ticket history; when the next incident comes, pick one of the options above.</p>
+      <h2>Your options, side by side</h2>
+      <p>Prices and facts as shown on each vendor's Marketplace listing and website on 10 September 2026; check them before you decide. Proactive Outreach is our app, so read that column knowing who wrote it.</p>
+    </div>
 
-      <h2>Migration checklist</h2>
-      <ol>
-        <li><strong>Before 21 October</strong> (and while the app still opens): write down the audiences you use (tags, organizations, searches) and copy the messages you send regularly out of the discontinued app.</li>
-        <li><strong>Check your triggers.</strong> In Admin Center, confirm that "Notify requester of new proactive ticket" (or your equivalent) is active, so proactive tickets are still e-mailed. Proactive Outreach checks this for you and can create a tag-scoped trigger if it is missing.</li>
-        <li><strong>Decide who may send.</strong> A campaign to thousands of customers should not be one click away for every agent. Restrict the new tool to a group.</li>
-        <li><strong>Add an opt-out path.</strong> Choose an opt-out tag (for example <code>do_not_contact</code>) and a rule that tags users who reply "stop". Proactive Outreach creates the STOP trigger and applies the tag from the report.</li>
-        <li><strong>Run a five-person test</strong> with colleagues' addresses: check the sender address, the subject, the placeholders, the ticket status and where replies land.</li>
-        <li><strong>Send the first real campaign small</strong> (under 100 people), read the report, then scale.</li>
-      </ol>
+    <div class="table-wrap">
+      <table class="compare">
+        <caption>Replacements for the Proactive Tickets app, read on 10 September 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" class="ours">Proactive Outreach (this developer)</th>
+            <th scope="col">GrowthDot Proactive Campaigns</th>
+            <th scope="col">Sparkly Proactive Bulk Tickets</th>
+            <th scope="col">Your own script or App Builder app</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Where it runs</th><td class="ours">Inside Zendesk Support, in the agent's browser. No server, no vendor account.</td><td>Vendor-hosted; data on the vendor's servers.</td><td>Vendor-hosted.</td><td>Wherever you run it.</td></tr>
+          <tr><th scope="row">Pricing model</th><td class="ours">Per account per month: Free (200 tickets a month), $19 (1,000), $49 (10,000), $99 (50,000). 14-day trial on paid plans.</td><td>Per agent with app access: $5, $15 or $25 per agent per month on the vendor's site; 14-day trial.</td><td>Per account: $99 or $199 per month on the listing (a higher tier on the vendor's site), with monthly ticket caps; 7-day trial.</td><td>Engineering time. Zendesk's own recipe warns it may stop working as App Builder changes.</td></tr>
+          <tr><th scope="row">Audience</th><td class="ours">User filters (tags, organizations, language, dates), organizations, requesters of tickets, CSV files; deduplicated by e-mail; exclusions and opt-out tags applied before sending.</td><td>Filters and lists in the vendor's interface.</td><td>Lists in the vendor's interface.</td><td>Whatever you code.</td></tr>
+          <tr><th scope="row">Message</th><td class="ours">Placeholders with fallbacks, a variant per language (Pro), macros as templates, test ticket to yourself.</td><td>Templates, A/B tests, drip sequences.</td><td>Templates.</td><td>Whatever you code.</td></tr>
+          <tr><th scope="row">Delivery</th><td class="ours">Batches through the bulk-create API with rate limiting; pause, resume and crash recovery without duplicates. The tab stays open while it sends.</td><td>Scheduled sends, SMS.</td><td>Bulk sends.</td><td>You handle rate limits, retries and duplicates.</td></tr>
+          <tr><th scope="row">After sending</th><td class="ours">Report with created, failed, replied, solved and opted-out counts; retry of failures; a Zendesk view per campaign (Pro); STOP replies tagged by a trigger the app creates for you.</td><td>Open and click tracking, reports.</td><td>Reports.</td><td>Explore reports on the tags you set.</td></tr>
+          <tr><th scope="row">Not included by design</th><td class="ours">No open or click tracking, no scheduling in version 1.</td><td>Data leaves your account.</td><td>Data leaves your account.</td><td>Everything is on you.</td></tr>
+          <tr><th scope="row">Listing</th><td class="ours">Submitted to the Marketplace; <a href="mailto:support@helpcenterdoctor.app?subject=Proactive%20Outreach%20launch&amp;body=Please%20tell%20me%20when%20Proactive%20Outreach%20is%20on%20the%20Zendesk%20Marketplace.">e-mail us</a> to be told the day it is live.</td><td><a href="https://www.zendesk.com/marketplace/apps/support/188538/proactive-campaigns/" rel="noopener">Marketplace listing</a></td><td><a href="https://www.zendesk.com/marketplace/apps/support/263885/proactive-bulk-tickets/" rel="noopener">Marketplace listing</a></td><td><a href="https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#create-many-tickets" rel="noopener">API reference</a></td></tr>
+        </tbody>
+      </table>
+    </div>
 
+    <div class="prose">
+      <h3>How to choose in one minute</h3>
+      <ul>
+        <li><strong>Choose GrowthDot</strong> if you run marketing-style campaigns where open and click tracking, scheduling and A/B tests matter more than keeping data inside your own account, and your team is small enough for per-agent pricing.</li>
+        <li><strong>Choose Sparkly</strong> if you want a vendor-hosted tool priced per account and its monthly caps match your volume.</li>
+        <li><strong>Write your own</strong> if you have engineers, a low volume and time to get exclusions, duplicates after a crash, rate limits and opt-outs right.</li>
+        <li><strong>Choose Proactive Outreach</strong> if you want the tickets created from inside Support with your own session, nothing leaving the account, a free plan that covers the long tail the discontinued app served, and a report that counts replies and opt-outs.</li>
+        <li><strong>Do nothing</strong> if you sent a campaign once a year. Keep the ticket history; when the next incident comes, pick one of the options above.</li>
+      </ul>
+
+      <h2>Move in 20 minutes</h2>
+      <p>The full walkthrough with screenshots is on its own page: <a href="../migrate-from-zendesk-proactive-tickets/">Migrate from the Proactive Tickets app to Proactive Outreach in 20 minutes</a>. The short version:</p>
+    </div>
+
+    <ol class="steps" style="margin: 8px 0 32px;">
+      <li><h3>Copy your audiences and messages</h3><p>While the old app still opens, write down the tags, organizations and searches you use and paste your regular messages into a document. Three minutes.</p></li>
+      <li><h3>Check the delivery setup</h3><p>Proactive Outreach checks that the notification trigger is active and creates a tag-scoped one if it is missing, plus the STOP-reply trigger, each with one click from Delivery setup.</p></li>
+      <li><h3>Decide who may send</h3><p>A campaign to thousands of customers should not be one click away for every agent. Restrict sending to a group and set the opt-out tag.</p></li>
+      <li><h3>Run a five-person test</h3><p>Send a test ticket to yourself, then a campaign of five colleagues: check the sender address, the subject, the placeholders, the ticket status and where replies land.</p></li>
+      <li><h3>Send the first real one small</h3><p>Under 100 people. Read the report, then scale.</p></li>
+    </ol>
+
+    <div class="grid grid-2" style="margin-bottom: 40px;">
+      <figure class="shot-frame" style="margin: 0;"><img src="../assets/shots/proactive-outreach/audience.png" alt="Proactive Outreach audience step: users by filter, organizations, ticket requesters and CSV as sources, exclusions and the count of people who will receive a ticket" loading="lazy"><figcaption class="muted" style="padding: 10px 14px;">Audience: sources, exclusions and the final count before you write a word.</figcaption></figure>
+      <figure class="shot-frame" style="margin: 0;"><img src="../assets/shots/proactive-outreach/report.png" alt="Proactive Outreach campaign report: tickets created, failed, replied, solved, open and opted out, with the recipient table" loading="lazy"><figcaption class="muted" style="padding: 10px 14px;">Report: every recipient with its ticket, status, reply and opt-out.</figcaption></figure>
+    </div>
+
+    <div class="prose">
       <h2>Questions</h2>
       <p><strong>Will customers notice a difference?</strong> No. A proactive ticket is a ticket created on the customer's behalf with a public comment; the e-mail they receive comes from your trigger and your support address, whichever tool created the ticket.</p>
       <p><strong>Can I import my old campaigns?</strong> The discontinued app has no export. The tickets it created remain searchable, for example by the tags you used; Proactive Outreach can build an audience from the requesters of those tickets, which is often what "send it again" means.</p>
+      <p><strong>Can I keep using the app after 21 October?</strong> Zendesk says it stops functioning after that date. Plan the move before, while the app still opens and you can copy your audiences out.</p>
       <p><strong>Where do I ask something?</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
     </div>
   </div>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Be told the day Proactive Outreach is on the Marketplace</h2>
+      <p>The listing is submitted and in Zendesk's review queue. One e-mail when it is live, nothing else.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary btn-lg" href="mailto:support@helpcenterdoctor.app?subject=Proactive%20Outreach%20launch&amp;body=Please%20tell%20me%20when%20Proactive%20Outreach%20is%20on%20the%20Zendesk%20Marketplace.">Tell me when it is live</a>
+        <a class="btn btn-secondary btn-lg" href="../proactive-outreach/">See the app</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -96,5 +153,16 @@
   </div>
 </footer>
 <script src="../assets/site.js"></script>
+<script>
+(function () {
+  var el = document.getElementById('days-left');
+  if (!el) return;
+  var end = Date.UTC(2026, 9, 21);
+  var days = Math.ceil((end - Date.now()) / 86400000);
+  if (days > 1) el.textContent = days + ' days left until the app stops working.';
+  else if (days === 1) el.textContent = 'One day left until the app stops working.';
+  else el.textContent = 'The Proactive Tickets app has reached its end date.';
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zendesk help center audit checklist: 34 checks | Help Center Doctor</title>
+<meta name="description" content="A printable audit checklist for a Zendesk help center: 34 checks on links, images, accessibility, stale content, structure, organization and translations, each with why it matters, how to find it by hand and how to fix it.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/zendesk-help-center-audit-checklist/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zendesk help center audit checklist: 34 checks">
+<meta property="og:description" content="Links, images, accessibility, stale content, structure, organization and translations. Printable, with how to find each problem by hand.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/shots/findings.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/zendesk-help-center-audit-checklist/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+.audit-group { margin: 0 0 36px; }
+.audit-group h2 { margin-bottom: 6px; }
+.audit-group > p { margin-top: 0; color: var(--muted); }
+.audit { list-style: none; padding: 0; margin: 0; }
+.audit li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid var(--border); }
+.audit li:last-child { border-bottom: 1px solid var(--border); }
+.audit .box { width: 18px; height: 18px; border: 2px solid var(--blue-border); border-radius: 4px; margin-top: 3px; }
+.audit h3 { margin: 0 0 4px; font-size: 1.05rem; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.audit p { margin: 0 0 4px; }
+.audit .fix { color: var(--muted); }
+@media print {
+  .site-header, .site-footer, .cta-band, .nav-toggle, .page-hero .lead, .btn { display: none !important; }
+  .audit li { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../apps/">Apps</a></li>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Checklist · 17 September 2026</span>
+      <h1>Zendesk help center audit checklist: 34 checks</h1>
+      <p class="lead">The checks a knowledge manager runs before a launch, a migration or a quarterly review, written so you can do each one by hand in Guide or with the API. Print this page and tick the boxes; or run the same 34 checks automatically with the free scan of <a href="../">Help Center Doctor</a> and fix them from the findings list.</p>
+      <p><a class="btn btn-secondary" href="javascript:window.print()">Print the checklist</a></p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 8px;">
+      <h2>How to use it</h2>
+      <p>Work one group at a time. For each check the entry says why it matters to a reader, how to find the cases by hand (Guide menu or API field), and the usual fix. Severity is what we assign in the scan: <span class="badge badge-critical">critical</span> sends readers to a dead end, <span class="badge badge-warning">warning</span> costs trust or time, <span class="badge badge-info">info</span> is worth a look when you are already editing. A help center with no critical findings and fewer than one warning per ten articles is in good shape.</p>
+      <p>By hand, the raw material is the article list with translations: <code>GET /api/v2/help_center/articles.json?include=translations</code> (and <code>/incremental/articles.json</code> for what changed since a date). Most checks below are a question about those fields or about the links in <code>body</code>.</p>
+    </div>
+
+    <section class="audit-group" id="links">
+      <h2>Links <span class="muted" style="font-weight:400;font-size:0.9rem">9 checks</span></h2>
+      <p>Nine checks on every link in every translation. By hand: extract the href attributes from each body, resolve internal ones against the article, section and category lists (an archived target still returns a page, so compare ids, not HTTP status), and request the external ones with a short timeout. Anchors (#heading) need the target article body to confirm the id exists.</p>
+      <ol class="audit">
+        <li id="link-missing-article">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>1. Link to an article that no longer exists <span class="badge badge-critical">critical</span></h3>
+            <p>Readers who click this link land on a "page not found" error. The target article was archived, deleted, or the id in the URL is wrong.</p>
+            <p class="fix"><strong>Fix:</strong> Point the link to the right article (use the suggestions), or remove the link and keep the text.</p>
+          </div>
+        </li>
+        <li id="link-missing-section">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>2. Link to a section or category that no longer exists <span class="badge badge-critical">critical</span></h3>
+            <p>The section or category behind this link has been removed, so readers get an error page.</p>
+            <p class="fix"><strong>Fix:</strong> Link to the section or category that replaced it, or remove the link.</p>
+          </div>
+        </li>
+        <li id="link-to-draft">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>3. Link to an unpublished (draft) article <span class="badge badge-warning">warning</span></h3>
+            <p>The target is a draft, so visitors cannot open it: they see a "page not found" error until it is published.</p>
+            <p class="fix"><strong>Fix:</strong> Publish the target article, or remove the link until it is ready.</p>
+          </div>
+        </li>
+        <li id="link-to-restricted">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>4. Link to an article with narrower visibility <span class="badge badge-warning">warning</span></h3>
+            <p>The target article is restricted to a user segment that readers of this article may not belong to. Those readers get an access error.</p>
+            <p class="fix"><strong>Fix:</strong> Give both articles the same visibility, or mention in the text that the linked page needs sign-in.</p>
+          </div>
+        </li>
+        <li id="link-broken-anchor">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>5. Link to a heading that does not exist <span class="badge badge-warning">warning</span></h3>
+            <p>The link points to an anchor (#something) that is not defined in the target article, so the page opens at the top instead of the promised place.</p>
+            <p class="fix"><strong>Fix:</strong> Add an id to the target heading, or update the anchor in the link.</p>
+          </div>
+        </li>
+        <li id="link-old-domain">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>6. Link to an old help center address <span class="badge badge-warning">warning</span></h3>
+            <p>These links point at a domain you listed as retired (for example a previous subdomain or host mapping). They may redirect today, but redirects are slow, break anchors, and disappear when the old domain lapses.</p>
+            <p class="fix"><strong>Fix:</strong> Use Find and Replace to swap the old host for the current one in every article at once.</p>
+          </div>
+        </li>
+        <li id="link-insecure">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>7. Insecure HTTP link or image <span class="badge badge-info">info</span></h3>
+            <p>Plain http links trigger browser warnings and http images are blocked as mixed content on a secure help center, so they simply do not show.</p>
+            <p class="fix"><strong>Fix:</strong> Change plain HTTP links to HTTPS when the destination supports it (most do). The Fix Center can upgrade them in bulk.</p>
+          </div>
+        </li>
+        <li id="link-external-broken">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>8. Broken external link <span class="badge badge-critical">critical</span></h3>
+            <p>The website behind this link answered "not found" (404/410). Readers hit a dead end and lose trust in the article.</p>
+            <p class="fix"><strong>Fix:</strong> Find the new location of the page and update the link, or remove it.</p>
+          </div>
+        </li>
+        <li id="link-external-unverified">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>9. External link could not be verified <span class="badge badge-info">info</span></h3>
+            <p>The site did not give a clear answer (timeout, login wall, bot protection or a server error). The link may be fine; it just needs a human look.</p>
+            <p class="fix"><strong>Fix:</strong> Open the link in your browser. If it works, add the site to the skip list so it is not checked again.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="audit-group" id="images">
+      <h2>Images <span class="muted" style="font-weight:400;font-size:0.9rem">2 checks</span></h2>
+      <p>By hand: list img src attributes, request each one, and note the file size from the response headers. Attachments of archived articles are the usual broken ones.</p>
+      <ol class="audit">
+        <li id="image-broken">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>10. Broken image <span class="badge badge-critical">critical</span></h3>
+            <p>The image file cannot be loaded (the server answered "not found"), so readers see an empty box or a broken-image icon.</p>
+            <p class="fix"><strong>Fix:</strong> Upload the image again in the article editor, or remove the image tag.</p>
+          </div>
+        </li>
+        <li id="image-large">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>11. Very large image <span class="badge badge-info">info</span></h3>
+            <p>Images wider than about 2,000 pixels are scaled down by the browser anyway; they only slow the page, especially on mobile.</p>
+            <p class="fix"><strong>Fix:</strong> Resize or compress the image before uploading (1,600 px wide is plenty for screenshots).</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="audit-group" id="accessibility">
+      <h2>Accessibility <span class="muted" style="font-weight:400;font-size:0.9rem">3 checks</span></h2>
+      <p>By hand: in each body look for img tags without a non-empty alt, tables without a thead or th cells, and heading tags that skip a level (h2 followed by h4). Screen readers and search engines read the same markup.</p>
+      <ol class="audit">
+        <li id="image-missing-alt">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>12. Image without alt text <span class="badge badge-warning">warning</span></h3>
+            <p>Screen readers announce nothing useful for an image without alt text, and search engines cannot index it. It is also a WCAG requirement.</p>
+            <p class="fix"><strong>Fix:</strong> Describe what the image shows in one short sentence. Decorative images can use an empty alt.</p>
+          </div>
+        </li>
+        <li id="heading-structure">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>13. Heading levels are out of order <span class="badge badge-info">info</span></h3>
+            <p>The article title is already the H1. Bodies that start with H1, or jump from H2 to H4, confuse screen readers and the automatic table of contents.</p>
+            <p class="fix"><strong>Fix:</strong> Use H2 for main sections and H3 inside them; do not use H1 in the body.</p>
+          </div>
+        </li>
+        <li id="table-no-header">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>14. Table without a header row <span class="badge badge-warning">warning</span></h3>
+            <p>Screen readers rely on header cells (th) to tell users what each column means. Tables built from plain cells only are read as a stream of words.</p>
+            <p class="fix"><strong>Fix:</strong> Mark the first row as a header row in the editor (Table &gt; Header row).</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="audit-group" id="stale">
+      <h2>Stale content <span class="muted" style="font-weight:400;font-size:0.9rem">4 checks</span></h2>
+      <p>By hand: compare edited_at with today, check draft articles that were created long ago, and read the vote_sum and vote_count fields. Set your own thresholds; ours default to 12 months for edits and 90 days for drafts.</p>
+      <ol class="audit">
+        <li id="stale-not-edited">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>15. Article not updated for a long time <span class="badge badge-warning">warning</span></h3>
+            <p>Content that has not been touched in a long time is the most likely to describe old screens, prices or policies. Readers notice, and so do search engines.</p>
+            <p class="fix"><strong>Fix:</strong> Review the article. If it is still correct, make a small edit (for example the date) so it counts as reviewed; otherwise update or archive it.</p>
+          </div>
+        </li>
+        <li id="stale-draft">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>16. Old draft never published <span class="badge badge-info">info</span></h3>
+            <p>Drafts that sit for months are usually forgotten work. They clutter the article list and may hold useful content nobody can see.</p>
+            <p class="fix"><strong>Fix:</strong> Finish and publish it, or archive it.</p>
+          </div>
+        </li>
+        <li id="stale-promoted">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>17. Promoted article is stale <span class="badge badge-warning">warning</span></h3>
+            <p>Promoted articles are shown first in their section, so a stale one is the most visible outdated content you have.</p>
+            <p class="fix"><strong>Fix:</strong> Refresh it, or remove the promotion so a current article takes its place.</p>
+          </div>
+        </li>
+        <li id="negative-votes">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>18. Readers vote this article down <span class="badge badge-warning">warning</span></h3>
+            <p>More thumbs-down than thumbs-up is the clearest signal readers have that an article does not solve their problem.</p>
+            <p class="fix"><strong>Fix:</strong> Read the article as a customer would; check it answers the question in the title and that the steps still work.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="audit-group" id="structure">
+      <h2>Structure <span class="muted" style="font-weight:400;font-size:0.9rem">6 checks</span></h2>
+      <p>By hand: read the body length, count headings against the length, search for style= attributes and script or form tags, and look at title lengths in the article list. These are the checks a quick skim misses.</p>
+      <ol class="audit">
+        <li id="body-empty">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>19. Empty article <span class="badge badge-critical">critical</span></h3>
+            <p>A published article with no content is a dead end that still shows up in search results.</p>
+            <p class="fix"><strong>Fix:</strong> Write the content, or archive the article.</p>
+          </div>
+        </li>
+        <li id="body-short">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>20. Very short article <span class="badge badge-warning">warning</span></h3>
+            <p>Articles with only a sentence or two rarely answer the question fully and tend to collect negative votes.</p>
+            <p class="fix"><strong>Fix:</strong> Add the missing steps or context, or merge it into a related article.</p>
+          </div>
+        </li>
+        <li id="no-headings">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>21. Long article without headings <span class="badge badge-info">info</span></h3>
+            <p>Long articles without H2/H3 headings are hard to scan, and anchors cannot be linked to. Headings also feed the article table of contents.</p>
+            <p class="fix"><strong>Fix:</strong> Split the content into sections with H2 headings (and H3 for sub-steps).</p>
+          </div>
+        </li>
+        <li id="inline-styles">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>22. Heavy use of inline styles <span class="badge badge-info">info</span></h3>
+            <p>Inline style attributes (usually pasted from Word or Google Docs) override your theme, break dark mode and mobile layouts, and bloat the article.</p>
+            <p class="fix"><strong>Fix:</strong> Paste as plain text and re-apply formatting with the editor, or clean the source in the editor code view.</p>
+          </div>
+        </li>
+        <li id="embedded-script">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>23. Script or form embedded in the article <span class="badge badge-warning">warning</span></h3>
+            <p>Scripts and forms inside article bodies are stripped or blocked by most help center themes and browsers, and are a security smell in shared content.</p>
+            <p class="fix"><strong>Fix:</strong> Remove the embedded code; use a supported embed (video, image) or link to the tool instead.</p>
+          </div>
+        </li>
+        <li id="title-too-long">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>24. Title is very long <span class="badge badge-info">info</span></h3>
+            <p>Long titles get cut off in search results and section lists, so readers cannot tell articles apart.</p>
+            <p class="fix"><strong>Fix:</strong> Keep titles under about 70 characters and put the detail in the first paragraph.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="audit-group" id="organization">
+      <h2>Organization <span class="muted" style="font-weight:400;font-size:0.9rem">6 checks</span></h2>
+      <p>By hand: sort the article list by title to find duplicates and near duplicates, list label_names, and compare each section and category with its published article count.</p>
+      <ol class="audit">
+        <li id="duplicate-title">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>25. Two articles share the same title <span class="badge badge-warning">warning</span></h3>
+            <p>Identical titles compete in search and confuse readers and agents about which one is current.</p>
+            <p class="fix"><strong>Fix:</strong> Merge the articles, or make each title specific (add the product or the situation).</p>
+          </div>
+        </li>
+        <li id="near-duplicate-title">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>26. Two articles have nearly the same title <span class="badge badge-info">info</span></h3>
+            <p>Titles that differ by a word or two usually mean the same topic was written twice. Readers pick one at random.</p>
+            <p class="fix"><strong>Fix:</strong> Compare the two articles; merge them or make the titles clearly different.</p>
+          </div>
+        </li>
+        <li id="no-labels">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>27. Article has no labels <span class="badge badge-info">info</span></h3>
+            <p>Labels power help center search, Answer Bot and article recommendations. Unlabelled articles are found less often.</p>
+            <p class="fix"><strong>Fix:</strong> Add two or three labels that describe the product area and the task. Bulk actions can label many articles at once.</p>
+          </div>
+        </li>
+        <li id="section-empty">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>28. Section with no published articles <span class="badge badge-warning">warning</span></h3>
+            <p>Empty sections still appear in navigation and search, leading readers to a page with nothing on it.</p>
+            <p class="fix"><strong>Fix:</strong> Move articles into it, or delete the section.</p>
+          </div>
+        </li>
+        <li id="category-single-section">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>29. Category with a single section <span class="badge badge-info">info</span></h3>
+            <p>A category that only holds one section adds a click without adding structure. Readers navigate faster when categories group several sections.</p>
+            <p class="fix"><strong>Fix:</strong> Merge the category into another one, or split the section if it has grown large.</p>
+          </div>
+        </li>
+        <li id="article-no-section">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>30. Article in a section that no longer exists <span class="badge badge-critical">critical</span></h3>
+            <p>The article points at a section that was deleted, so it cannot be reached from navigation.</p>
+            <p class="fix"><strong>Fix:</strong> Move the article to an existing section.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="audit-group" id="localization">
+      <h2>Translations <span class="muted" style="font-weight:400;font-size:0.9rem">4 checks</span></h2>
+      <p>By hand: for each article compare the set of translations with the locales enabled in the help center, read outdated and draft on each translation, and check that source_locale is one of the enabled locales.</p>
+      <ol class="audit">
+        <li id="translation-missing">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>31. Article missing in some languages <span class="badge badge-warning">warning</span></h3>
+            <p>Your help center is enabled in several languages, but this article exists only in some of them. Visitors in the other languages get the fallback or nothing.</p>
+            <p class="fix"><strong>Fix:</strong> Add the missing translations, or hide the article from those languages if it does not apply.</p>
+          </div>
+        </li>
+        <li id="translation-outdated">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>32. Translation is out of date <span class="badge badge-warning">warning</span></h3>
+            <p>The source article changed after this translation was written, so readers in this language see old instructions.</p>
+            <p class="fix"><strong>Fix:</strong> Update the translation, then mark it as current. If the change was cosmetic, just mark it current.</p>
+          </div>
+        </li>
+        <li id="translation-draft">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>33. Translation is unpublished while the source is live <span class="badge badge-info">info</span></h3>
+            <p>The article is published in its source language but this translation is still a draft, so visitors in that language cannot read it.</p>
+            <p class="fix"><strong>Fix:</strong> Publish the translation when it is ready.</p>
+          </div>
+        </li>
+        <li id="source-locale-mismatch">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>34. Source language is not one of the enabled languages <span class="badge badge-info">info</span></h3>
+            <p>The article was written in a language your help center no longer offers, so its "source" version is invisible and every translation is compared against it.</p>
+            <p class="fix"><strong>Fix:</strong> Change the source language of the article in the editor, or re-enable that language.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+
+    <div class="prose">
+      <h2>Do it automatically</h2>
+      <p>Help Center Doctor runs all 34 checks on every article and language in a minute or two, from inside Zendesk, with your own permissions and without anything leaving the account. The Free plan scans up to 200 articles and checks external links; Pro ($29 per account per month) adds one-click and bulk fixes, find and replace, bulk actions and documents. The <a href="../link-checker/">free Link Checker</a> covers the links and images groups on its own.</p>
+      <p>Related guides: <a href="../zendesk-broken-links/">finding broken links</a>, <a href="../zendesk-find-and-replace/">find and replace across articles</a>, <a href="../zendesk-bulk-update-articles/">bulk update beyond the page limit</a>, <a href="../export-zendesk-articles-to-pdf/">export articles to PDF and Word</a>.</p>
+    </div>
+  </div>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Run the 34 checks on sample data</h2>
+      <p>The demo runs the real scanner on a generated help center with planted problems. See the findings, the explanations and the fixes.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary btn-lg" href="../demo/index.html?hcd_mock=1">Open the live demo</a>
+        <a class="btn btn-secondary btn-lg" href="../features/">See the features</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
