@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ticket Print & PDF, print ticket history and export Zendesk tickets as PDF, Word, HTML or ZIP | Help Center Doctor</title>
+<meta name="description" content="Ticket Print & PDF runs inside Zendesk Support with no server: print one ticket from the sidebar or thousands from a view or a search, with the conversation, internal notes, attachment links, cover and contents, as PDF, Word, HTML or ZIP with a hash manifest. The replacement for Print Ticket History, priced per account.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/ticket-print-pdf/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ticket Print & PDF for Zendesk Support">
+<meta property="og:description" content="Print or export one ticket or thousands as PDF, Word, HTML or ZIP, with internal notes, attachment links, cover and contents. Free for one ticket; Pro and Business per account.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/ticket-print-pdf/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../apps/">Apps</a></li>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">App for Zendesk Support · Free, Pro and Business</span>
+      <h1>Ticket Print &amp; PDF</h1>
+      <p class="lead">Print or export a ticket, or thousands of them, from inside Zendesk Support and without a server: the whole conversation with public replies and internal notes marked, the attachments listed with links, a cover page and a table of contents, as PDF, Word, HTML or ZIP. One ticket from the ticket sidebar; batches from pasted ids, a view or a search with an exact count for the whole account.</p>
+      <p class="lead">Built as the replacement for Zendesk's Print Ticket History app, which <a href="../print-ticket-history-alternatives/">stops working on 21 October 2026</a>, and for the bulk printing the Agent Workspace does not offer. An independent app from a third-party developer, not affiliated with or endorsed by Zendesk.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <p><img src="../assets/shots/ticket-print-pdf/document.png" alt="The document builder in Ticket Print & PDF: options for internal notes, attachments, metrics, custom fields, date range, cover and contents on the left, format buttons for PDF, HTML, Word, ZIP and CSV, and a live preview of the first tickets with a cover page and a table of contents on the right" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>What it does</h2>
+      <ol>
+        <li><strong>One ticket, two clicks.</strong> Open a ticket and the app is in the sidebar: Print / Save as PDF, HTML or Word for that ticket, with the options that matter there (internal notes, attachments, order, language of the labels).</li>
+        <li><strong>Batches from ids, a view or a search.</strong> Paste ticket ids or links (one per line, in any mix), pick any of your views, or build a search by status, priority, type, channel, dates, tags, requester, assignee, group, organization, brand, custom fields and text. The count is exact for the whole account because the app uses Zendesk's export endpoint, not the search endpoint that stops at 1,000.</li>
+        <li><strong>A complete page per ticket.</strong> Header with status, priority, type, channel, requester with e-mail, assignee, group, organization, brand, form, created, updated and solved dates, tags, the custom fields you pick, satisfaction rating with comment and, on request, first-reply and resolution metrics. Then the conversation in chronological or reverse order, each message with author, date, channel and a badge that says public reply or internal note (internal notes on a coloured background). Then the attachments with name, type, size and a link.</li>
+        <li><strong>Every format the situation asks for.</strong> Print / Save as PDF through your browser's dialog, a single HTML file, a Word document (.docx) that opens in Word, LibreOffice and Google Docs, a ZIP with one HTML file per ticket plus <code>index.csv</code> and <code>manifest.json</code>, and a CSV index on its own.</li>
+        <li><strong>Cover, contents, branding.</strong> Cover page with title, criteria, account, count, date and author; table of contents with one link per ticket; page breaks; A4 or Letter; your logo, company name and footer.</li>
+        <li><strong>Trim what goes in.</strong> Internal notes on or off (admins decide whether agents may include them at all), attachments on or off, a date range that keeps only the comments of a period, the custom fields to print.</li>
+        <li><strong>For legal holds and archives.</strong> On Business every ticket file carries its SHA-256 hash in <code>index.csv</code> and <code>manifest.json</code>, runs of up to 5,000 tickets are split into ZIP files of 500 with a run manifest, and every generated document leaves an evidence record (who, when, criteria, ticket ids, files, hash) exportable as CSV.</li>
+        <li><strong>History and presets.</strong> Every document is listed with a Repeat button that reads the same tickets again with the same options. Option presets can be saved in the browser (Pro) or shared with every agent of the account (Business).</li>
+      </ol>
+      <p><img src="../assets/shots/ticket-print-pdf/view.png" alt="Tickets read from a view in Ticket Print & PDF: the view picker, the count, the progress and a table with id, subject, status, comments and attachments per ticket" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>What is in the document</h2>
+      <table>
+        <thead><tr><th>Part</th><th>Content</th><th>Option</th></tr></thead>
+        <tbody>
+          <tr><td>Cover</td><td>Title, criteria (the view, the search or the ids), company, account, number of tickets, date, author, logo</td><td>Pro and up</td></tr>
+          <tr><td>Contents</td><td>One link per ticket with id and subject</td><td>Pro and up</td></tr>
+          <tr><td>Header</td><td>Status, priority, type, channel, requester and e-mail, assignee, group, organization, brand, form, created / updated / solved, tags, custom fields, satisfaction, metrics</td><td>Custom fields and metrics are opt-in</td></tr>
+          <tr><td>Conversation</td><td>Every comment with author, date, channel, public or internal badge; HTML bodies sanitised, images kept as links</td><td>Internal notes and order</td></tr>
+          <tr><td>Attachments</td><td>File name, type, size and a link that works for signed-in agents; redacted files marked</td><td>On or off</td></tr>
+          <tr><td>Footer</td><td>Your footer text and the list of tickets whose conversation could not be read</td><td>Pro and up</td></tr>
+        </tbody>
+      </table>
+      <p>Labels in the document (Status, Requester, Internal note, Attachments, Contents, Generated…) can be printed in English, Spanish, German, French or Portuguese, independently of the app language.</p>
+      <p><img src="../assets/shots/ticket-print-pdf/sidebar.png" alt="The Ticket Print & PDF panel in the ticket sidebar: the ticket id and subject, the number of comments and attachments, checkboxes for internal notes and attachments, the label language and order, and the Print / PDF, HTML and Word buttons" width="1280" height="800" loading="lazy" style="border:1px solid #d8dcde;border-radius:8px;max-width:100%;height:auto"></p>
+
+      <h2>Plans</h2>
+      <table>
+        <thead><tr><th></th><th>Free</th><th>Pro · $19</th><th>Business · $49</th></tr></thead>
+        <tbody>
+          <tr><td>Tickets per document</td><td>1</td><td>500</td><td>500</td></tr>
+          <tr><td>Tickets per run</td><td>1</td><td>500</td><td>5,000 (in files of 500)</td></tr>
+          <tr><td>Sources</td><td>The open ticket, one pasted id</td><td>Ids, views, searches</td><td>Ids, views, searches</td></tr>
+          <tr><td>Formats</td><td>Print / PDF, HTML</td><td>Print / PDF, HTML, Word, ZIP, CSV index</td><td>Print / PDF, HTML, Word, ZIP, CSV index</td></tr>
+          <tr><td>Internal notes, attachments list, date range, custom fields, metrics, five label languages</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Cover page, contents, logo, company name, footer</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Option presets</td><td>—</td><td>In the browser</td><td>Shared with the account</td></tr>
+          <tr><td>SHA-256 hash manifest</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Evidence records with CSV export</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>History</td><td>Last 20 documents</td><td>Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>Priority support (one business day)</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Free trial</td><td></td><td>14 days</td><td>14 days</td></tr>
+        </tbody>
+      </table>
+      <p>Prices are per month per Zendesk account, not per agent, billed through the Zendesk Marketplace and cancellable from Admin Center at any time. A 30-agent team pays $19, not $30.</p>
+
+      <h2>Compared with native printing and with per-agent apps</h2>
+      <table>
+        <thead><tr><th></th><th>Ticket Print &amp; PDF</th><th>Agent Workspace print (browser)</th><th>Print Ticket History (retired)</th><th>Per-agent PDF apps</th></tr></thead>
+        <tbody>
+          <tr><td>Pricing</td><td>Per account, from $0</td><td>Included</td><td>Free, stops 21 October 2026</td><td>About $1 per agent per month, or vendor-hosted</td></tr>
+          <tr><td>Batches (a view, a search, a list of ids)</td><td>✓ up to 5,000 per run</td><td>—</td><td>—</td><td>Some, per ticket in most</td></tr>
+          <tr><td>Internal notes marked</td><td>✓ (admins decide for agents)</td><td>Depends on what is on screen</td><td>✓</td><td>Varies</td></tr>
+          <tr><td>Attachments listed with links</td><td>✓</td><td>—</td><td>—</td><td>Varies</td></tr>
+          <tr><td>Word, HTML, ZIP, CSV index</td><td>✓</td><td>—</td><td>—</td><td>Mostly PDF only</td></tr>
+          <tr><td>Cover, contents, logo, footer</td><td>✓ (Pro)</td><td>—</td><td>—</td><td>Some</td></tr>
+          <tr><td>Hash manifest and evidence</td><td>✓ (Business)</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Where your data goes</td><td>Stays in your Zendesk account and the agent's browser</td><td>Stays in Zendesk</td><td>Stayed in Zendesk</td><td>Vendor servers for some</td></tr>
+        </tbody>
+      </table>
+      <p>Competitor details are from public listings and Zendesk's documentation in September 2026 and may change; check their pages before deciding. <a href="../print-ticket-history-alternatives/">The longer guide on what to use when Print Ticket History stops.</a></p>
+
+      <h2>Privacy</h2>
+      <p>The app has no server. It reads tickets, comments, attachment metadata, users, organizations, groups, brands, forms, ticket fields and views through the Zendesk API with the signed-in agent's session, only when you ask, and never writes to tickets. Documents are built in memory and printed or saved by your browser. Attachments are linked, not embedded: a browser cannot read them from inside an app without exposing the agent's session, so every document lists them with name, type, size and a link that works for signed-in agents. History, evidence, presets and settings live in the browser's local storage and can be cleared from Settings; the agent permission and the shared presets live in the app's own installation setting inside your account. Nothing is sent to the developer or to any third party; there are no analytics, cookies or AI services. The same <a href="../privacy/">privacy policy</a> and <a href="../terms/">terms</a> as Help Center Doctor apply.</p>
+
+      <h2>Install</h2>
+      <ol>
+        <li>Open the listing on the Zendesk Marketplace (link added once the listing is approved), click <strong>Install</strong> and choose a plan. You need to be a Zendesk admin.</li>
+        <li>Choose the roles or groups that may use the app, then click <strong>Install</strong>.</li>
+        <li>Open any ticket: the app is in the sidebar. For batches, open <strong>Ticket Print &amp; PDF</strong> from the left navigation bar, read the tickets and go to <strong>Document</strong>.</li>
+        <li>In <strong>Settings</strong>, decide whether agents may include internal notes in documents. The choice is shared with the whole account.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Is the PDF a real PDF?</strong> The app builds a print-ready HTML document and opens it with a "Print or save as PDF" button; your browser's own PDF engine writes the file, with page breaks, a cover and a linked table of contents. There is no PDF library in the app, which is also why nothing leaves your account.</p>
+      <p><strong>Are attachments inside the PDF?</strong> No. Browsers cannot read attachment files from inside a Zendesk app, so the documents list every attachment with its name, type, size and a link that works for signed-in agents. The listing, the app and this page say so.</p>
+      <p><strong>Can agents print internal notes?</strong> Admins always can. For agents there is one switch in Settings, shared with the whole account through the app installation: on by default, off if your policy says so. When it is off, agents get the public conversation only and the option is greyed out for them.</p>
+      <p><strong>How many tickets at once?</strong> One on Free, 500 per document on Pro, 5,000 per run on Business (HTML, Word and ZIP are split into files of 500; Print / PDF handles up to 500 in one window). Reading 5,000 tickets with their conversations takes a few minutes at Zendesk's normal rate; the tab has to stay open.</p>
+      <p><strong>What is the hash manifest for?</strong> Legal holds and archives: <code>manifest.json</code> names every file with its SHA-256 and <code>index.csv</code> repeats it per ticket, so anyone can verify later that a file has not changed since it was generated. Business only.</p>
+      <p><strong>Does it replace Print Ticket History?</strong> Yes for what that app did (one ticket, the conversation, print), and it adds what it never had: batches, Word and ZIP, attachment links, cover and contents, a hash manifest. <a href="../print-ticket-history-alternatives/">The migration guide.</a></p>
+      <p><strong>Also from the same developer:</strong> <a href="../data-custodian/">Data Custodian</a> searches, exports, changes, deletes and redacts tickets with evidence; <a href="../proactive-outreach/">Proactive Outreach</a> creates one proactive ticket per customer; <a href="../">Help Center Doctor</a> finds and fixes broken links, missing images, stale content and structure problems; <a href="../print-export/">Help Center Print &amp; Export</a> turns articles into PDF, Word, HTML, Markdown, ZIP and CSV.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

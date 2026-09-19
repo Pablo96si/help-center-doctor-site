@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Ticket History alternatives: how to print or export Zendesk tickets in bulk after 21 October 2026 | Help Center Doctor</title>
+<meta name="description" content="Zendesk's Print Ticket History app stops working on 21 October 2026 and the Agent Workspace has no bulk printing. Three ways to print or export tickets today (browser print, the API, Ticket Print & PDF), a migration checklist and answers to the usual questions.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/print-ticket-history-alternatives/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Print Ticket History alternatives for Zendesk">
+<meta property="og:description" content="What Zendesk retires on 21 October 2026, what the Agent Workspace does and does not print, and three ways to print or export tickets in bulk today.">
+<meta property="og:url" content="https://helpcenterdoctor.app/print-ticket-history-alternatives/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When does the Print Ticket History app stop working?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Zendesk announced that seven Built-by-Zendesk apps, Print Ticket History among them, were removed from the Marketplace on 7 April 2026, are unsupported since 30 June 2026 and will not function after 21 October 2026." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the Zendesk Agent Workspace print tickets in bulk?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Zendesk's own announcement says the Agent Workspace doesn't currently support bulk printing operations. One ticket at a time can be printed with the browser's print command; batches need the API or a Marketplace app." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I print a Zendesk ticket with its internal notes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The browser's print command prints what is on screen, so internal notes appear only if they are expanded. Ticket Print & PDF prints the full conversation with internal notes marked on a coloured background, when the admin allows agents to include them." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I export hundreds of Zendesk tickets as PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Either script it against the Zendesk API (tickets, comments, users) and render your own HTML, or use Ticket Print & PDF, which reads a view or a search with an exact count and produces one document or a ZIP with one file per ticket, up to 5,000 tickets per run, in your browser." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are attachments included in the exported PDF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not by any browser-side app: a Zendesk app cannot read attachment files across origins. Ticket Print & PDF lists every attachment with its name, type, size and a link that works for signed-in agents; the files stay in Zendesk." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../apps/">Apps</a></li>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Guide · updated 20 September 2026</span>
+      <h1>Print Ticket History alternatives: printing and exporting Zendesk tickets after 21 October 2026</h1>
+      <p class="lead">Zendesk's Print Ticket History app stops working on 21 October 2026, and Zendesk's own announcement says the Agent Workspace has no bulk printing. Here is what changes, what still works, three ways to print or export tickets today, and a checklist for the switch.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <h2>What Zendesk retires, and when</h2>
+      <p>On 7 April 2026 Zendesk announced the discontinuation of seven Built-by-Zendesk apps: Print Ticket History, Project Management, Sidebar Search, Assignment Control, iFrame, Attachment Manager and Proactive Tickets. The announcement (<a href="https://support.zendesk.com/hc/en-us/articles/10479808424986" rel="noopener">support article 10479808424986</a>) gives three dates: the apps were removed from the Marketplace on 7 April 2026, are unsupported since 30 June 2026, and will not function after <strong>21 October 2026</strong>. The stated reason is that their capabilities are being incorporated into the Agent Workspace, together with low usage.</p>
+      <p>For Print Ticket History the replacement Zendesk points to is the browser's print command on the ticket page. On batches Zendesk is explicit, and worth quoting because it is the whole point of this page: "The Agent Workspace doesn't currently support bulk printing operations".</p>
+      <p>So on 22 October 2026 the situation is: one ticket can be printed from the browser; a list of tickets cannot be printed or exported as documents with anything Zendesk ships.</p>
+
+      <h2>What the browser's print command does and does not print</h2>
+      <ul>
+        <li>It prints the page as it is on screen: the conversation as far as it is loaded and expanded, collapsed messages collapsed, internal notes only if they are open, the sidebar apps and context panels included unless you hide them.</li>
+        <li>It has no cover, no table of contents, no attachment list, no page break logic, no choice of paper size beyond the print dialog.</li>
+        <li>It is one ticket at a time, by hand. There is no way to print a view, a search or a list of ids.</li>
+      </ul>
+      <p>For a quick paper copy of a short ticket it is fine. For a legal request, an insurance file, a customer's records or an archive before deletion, it is not.</p>
+
+      <h2>Three ways to print or export tickets in bulk today</h2>
+
+      <h3>1. The browser, ticket by ticket</h3>
+      <p>Open each ticket, expand every message, hide the sidebar, print to PDF. Free and immediate; at 3 to 4 minutes per ticket a list of 50 tickets is an afternoon and the result has no index, no attachment list and no guarantee that every note was expanded.</p>
+
+      <h3>2. The API with a script</h3>
+      <p>The reliable recipe for developers: <code>GET /api/v2/search/export.json?filter[type]=ticket&amp;query=…</code> to list the tickets with an exact count (the plain search endpoint stops at 1,000), <code>GET /api/v2/tickets/{id}/comments.json</code> per ticket, <code>GET /api/v2/users/show_many.json</code> to turn requester and author ids into names, then render HTML and convert to PDF with a headless browser. It works and it is what Ticket Print &amp; PDF does internally; it also takes a few days to write and maintain, needs an API token or OAuth app that then has to be protected, and Zendesk is retiring API tokens for some integrations in April 2027, which pushes the script towards OAuth or an app.</p>
+
+      <h3>3. Ticket Print &amp; PDF (our app, disclosure: we sell it)</h3>
+      <p><a href="../ticket-print-pdf/">Ticket Print &amp; PDF</a> is our Zendesk Marketplace app, and this page exists because we built it for exactly this retirement. It runs inside Zendesk Support with the agent's session, no server, no token:</p>
+      <ol>
+        <li>Open a ticket and use the sidebar panel: <strong>Print / PDF</strong>, <strong>HTML</strong> or <strong>Word</strong> for that ticket, free.</li>
+        <li>For batches, open the app from the navigation bar: paste ids or links, pick a view, or build a search (status, dates, tags, requester, group, brand, custom fields, text) with an exact count for the whole account.</li>
+        <li>Click <strong>Read tickets</strong>: the app reads each ticket, its conversation and the names, with progress, and reports any ticket it could not read without stopping the batch.</li>
+        <li>On <strong>Document</strong>, choose internal notes on or off, attachments, metrics, custom fields, a date range, order, cover, contents, page breaks, paper size, logo and footer, and the language of the labels; then Print / Save as PDF, HTML, Word, ZIP (one file per ticket with <code>index.csv</code> and <code>manifest.json</code>) or a CSV index.</li>
+      </ol>
+      <p>Free prints one ticket at a time. Pro ($19 per account per month) reads up to 500 tickets per document from ids, views or searches and adds Word, ZIP, CSV, cover, contents and branding. Business ($49) reads up to 5,000 per run in files of 500, writes a SHA-256 hash of every ticket file into the index and the manifest for legal holds, shares presets with the account and keeps an evidence record of every document. Attachments are listed with links, not embedded, because a browser-side app cannot read them; the listing says so.</p>
+
+      <h2>Comparison, dated September 2026</h2>
+      <table>
+        <thead><tr><th></th><th>Browser print</th><th>API script</th><th>Ticket Print &amp; PDF</th></tr></thead>
+        <tbody>
+          <tr><td>Batches (view, search, ids)</td><td>—</td><td>✓ (you write it)</td><td>✓ up to 5,000 per run</td></tr>
+          <tr><td>Exact count of the tickets matched</td><td>—</td><td>✓ with search/export</td><td>✓</td></tr>
+          <tr><td>Internal notes marked</td><td>Only if expanded</td><td>✓ (you render it)</td><td>✓, admins decide for agents</td></tr>
+          <tr><td>Attachments listed with links</td><td>—</td><td>✓ (you render it)</td><td>✓</td></tr>
+          <tr><td>Cover, contents, page breaks, paper size</td><td>—</td><td>✓ (you render it)</td><td>✓ (Pro)</td></tr>
+          <tr><td>Word, HTML, ZIP, CSV</td><td>—</td><td>✓ (you render it)</td><td>✓ (Pro)</td></tr>
+          <tr><td>Hash manifest and evidence record</td><td>—</td><td>✓ (you write it)</td><td>✓ (Business)</td></tr>
+          <tr><td>Credentials</td><td>None</td><td>API token or OAuth app</td><td>None: the agent's session</td></tr>
+          <tr><td>Where the data goes</td><td>Stays in Zendesk</td><td>Wherever the script runs</td><td>Stays in Zendesk and the agent's browser</td></tr>
+          <tr><td>Cost</td><td>Time</td><td>Days of engineering</td><td>$0 / $19 / $49 per account per month</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Migration checklist</h2>
+      <ol>
+        <li><strong>Find out who used Print Ticket History.</strong> Admin Center → Apps and integrations → Zendesk Support apps shows the installation and its role restrictions; ask those teams what they print (single tickets? files for legal? archives before deletion?).</li>
+        <li><strong>Decide the internal-notes policy.</strong> Print Ticket History printed everything. If some teams must not hand internal notes to customers or third parties, use an app that lets admins switch notes off for agents.</li>
+        <li><strong>Decide what "the file" needs.</strong> A cover with the criteria and the date, a contents page, the attachment list, a hash for legal holds: write it down before choosing a tool.</li>
+        <li><strong>Test on a real case.</strong> Print one long ticket with notes and attachments, and one batch of 50 from a view; check the page breaks, the order and the names.</li>
+        <li><strong>Install before 21 October 2026</strong> and remove the old app so nobody discovers the retirement on the day they need a file.</li>
+        <li><strong>Archives before deletion:</strong> if you delete old tickets under a retention rule, export them first; <a href="../data-custodian/">Data Custodian</a> runs the retention side with a dry run and evidence, and Ticket Print &amp; PDF produces the archive from the same search.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>When does the Print Ticket History app stop working?</strong> After 21 October 2026, per Zendesk's announcement. It has been unsupported since 30 June 2026 and off the Marketplace since 7 April 2026.</p>
+      <p><strong>Can the Agent Workspace print tickets in bulk?</strong> No; Zendesk says so in the same announcement. One ticket at a time from the browser is the native option.</p>
+      <p><strong>How do I print a Zendesk ticket with its internal notes?</strong> With the browser, expand every note first. With Ticket Print &amp; PDF, tick "Include internal notes" (admins decide whether agents may) and the notes are printed on a coloured background with an "Internal note" badge.</p>
+      <p><strong>How do I export hundreds of tickets as PDF?</strong> A script against the API, or Ticket Print &amp; PDF from a view or a search: one document up to 500 tickets, or a ZIP with one file per ticket, up to 5,000 per run on Business.</p>
+      <p><strong>Are attachments included in the PDF?</strong> Not by any browser-side app; they are listed with name, type, size and a link that works for signed-in agents. The files stay in Zendesk.</p>
+      <p><strong>Is there a free plan?</strong> Yes: one ticket at a time, Print / PDF and HTML, from the sidebar or by id, without a time limit.</p>
+
+      <p>Related: <a href="../ticket-print-pdf/">Ticket Print &amp; PDF</a> · <a href="../export-zendesk-tickets-with-comments/">exporting tickets with comments to CSV or Excel</a> · <a href="../zendesk-proactive-tickets-app-discontinued/">the Proactive Tickets retirement, same date</a> · <a href="../demo/index.html?hcd_mock=1">try the demo</a>.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
