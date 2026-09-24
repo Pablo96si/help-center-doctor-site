@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zendesk SOC 2 evidence checklist: 40 security controls to check by hand, with the evidence auditors accept | Help Center Doctor</title>
+<meta name="description" content="The 40 configuration controls a SOC 2, ISO 27001, HIPAA or PCI DSS review asks about a Zendesk account: two-factor, passwords, sessions, roles, apps, webhooks, tokens, deletion schedules, e-mail authentication, help center and logging. For each one: where to check it in Admin Center, the API field, the fix, and what evidence an auditor accepts.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/zendesk-soc2-evidence-checklist/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zendesk SOC 2 evidence checklist: 40 controls">
+<meta property="og:description" content="Where to check each control in Admin Center, how to fix it, and what evidence an auditor accepts. SOC 2, ISO 27001, HIPAA, PCI DSS, GDPR references.">
+<meta property="og:url" content="https://helpcenterdoctor.app/zendesk-soc2-evidence-checklist/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this checklist make my Zendesk SOC 2 compliant?","acceptedAnswer":{"@type":"Answer","text":"No. SOC 2 is an attestation of your organisation's controls by an auditor; Zendesk's own SOC 2 report covers Zendesk. This checklist covers the configuration you are responsible for as a customer, and it produces the evidence your auditor asks for on the Zendesk system."}},{"@type":"Question","name":"Which Zendesk plan do I need?","acceptedAnswer":{"@type":"Answer","text":"The security settings, team members, apps, webhooks, tokens, schedules, addresses and brands are readable on every plan. Custom roles and the audit log are Enterprise features and answer 403 elsewhere; a sandbox is an Enterprise feature or the premium sandbox add-on. Those controls are marked as not checkable on other plans."}},{"@type":"Question","name":"Where does the audit log fit?","acceptedAnswer":{"@type":"Answer","text":"The audit log records who changed what, and it is only on Enterprise. On other plans, keep a snapshot of the configuration at each review: the comparison shows what changed between reviews, not who changed it."}},{"@type":"Question","name":"Can I do this without the app?","acceptedAnswer":{"@type":"Answer","text":"Yes: every control above says where to look in Admin Center and which API endpoint answers it. The app runs the 40 checks in about a minute, keeps the snapshots and builds the evidence pack with hashes."}},{"@type":"Question","name":"What does the evidence pack contain?","acceptedAnswer":{"@type":"Answer","text":"A printable report, the snapshot as JSON without any secret, the findings and inventories as CSV, the framework map and a manifest with the SHA-256 of every file so nothing can be altered unnoticed after generation."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../apps/">Apps</a></li>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Checklist · 24 September 2026</span>
+      <h1>Zendesk SOC 2 evidence checklist: 40 controls</h1>
+      <p class="lead">What an auditor asks about the Zendesk account during a SOC 2, ISO 27001, HIPAA, PCI DSS or GDPR review, written so you can check each item by hand in Admin Center (or through the API), fix it, and file evidence that is accepted. The same 40 controls run automatically, with a score, drift between runs and an evidence pack with hashes, in <a href="../security-audit/">Security Audit &amp; Evidence</a>.</p>
+      <p><a class="btn btn-secondary" href="javascript:window.print()">Print the checklist</a></p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 8px;">
+      <h2>How to use it</h2>
+      <p>Work one area at a time. For each control the entry gives the criterion, where to see it by hand, what an auditor accepts as evidence, the fix with the Admin Center path, and the SOC 2 (Trust Services Criteria), ISO/IEC 27001:2022 Annex A, HIPAA Security Rule, PCI DSS v4.0 and GDPR references it speaks to. Severity is what we assign: <span class="badge badge-critical">critical</span> or <span class="badge badge-critical">high</span> puts accounts or data at direct risk, <span class="badge badge-warning">medium</span> weakens a safeguard, <span class="badge badge-info">low</span> or <span class="badge badge-info">info</span> is an inventory to confirm or a hardening step.</p>
+      <p>Through the API, the raw material is a handful of read-only endpoints an admin can call with their own session: <code>GET /api/v2/security_settings</code>, <code>GET /api/v2/account/settings</code>, <code>GET /api/v2/users?role[]=admin&amp;role[]=agent</code>, <code>GET /api/v2/custom_roles</code> (Enterprise), <code>GET /api/v2/groups</code> and <code>/group_memberships</code>, <code>GET /api/v2/apps/installations</code>, <code>GET /api/v2/webhooks</code>, <code>GET /api/v2/targets</code>, <code>GET /api/v2/oauth/clients</code> and <code>/oauth/tokens?all=true</code>, <code>GET /api/v2/api_tokens</code>, <code>GET /api/v2/triggers</code> and <code>/automations</code>, <code>GET /api/v2/deletion_schedules</code>, <code>GET /api/v2/recipient_addresses</code>, <code>GET /api/v2/brands</code>, <code>GET /api/v2/guide/permission_groups</code> and <code>/help_center/user_segments</code>, <code>GET /api/v2/audit_logs</code> (Enterprise) and <code>GET /api/v2/sessions</code>. Save the JSON with the date: that is your snapshot, and the diff with the previous one is your drift.</p>
+    </div>
+
+    <section class="audit-group" id="authentication">
+      <h2>Authentication <span class="muted" style="font-weight:400;font-size:0.9rem">9 checks</span></h2>
+      <p>How people prove who they are. Everything here lives in Admin Center → Security, and the API mirrors it at GET /api/v2/security_settings (admins only).</p>
+      <ol class="audit">
+        <li id="auth.2fa-enforced">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>1. Two-factor authentication required for team members <span class="badge badge-critical">critical</span></h3>
+            <p><strong>Criterion:</strong> Admin Center requires a second factor for every admin and agent, or enterprise SSO is enforced.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Team member authentication → Zendesk authentication: the "Require two-factor authentication" box for team members. If SSO is used, check External authentication → "Zendesk authentication" is unticked so passwords are not accepted at all.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the setting with the date, or the security_settings JSON showing two_factor_enforce: true (or enforce_sso: true), plus the identity provider's MFA policy when SSO carries the second factor.</p>
+            <p class="fix"><strong>Fix:</strong> Turn on "Require two-factor authentication" for team members, or enforce SSO with MFA at the identity provider. <span class="muted">(Admin Center → Security → Team member authentication → Zendesk authentication → Two-factor authentication)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.8.5 · HIPAA 164.312(d) · PCI DSS 8.4</p>
+          </div>
+        </li>
+        <li id="auth.agents-without-2fa">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>2. Team members without two-factor authentication <span class="badge badge-critical">high</span></h3>
+            <p><strong>Criterion:</strong> Every active admin and agent has a second factor enrolled (unless SSO is enforced).</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team members: the column "Two-factor authentication" (or filter by it). Through the API, two_factor_auth_enabled on every user with role admin or agent.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The team member list with the two-factor column exported on the review date, and the tickets or e-mails that chased the people who had not enrolled.</p>
+            <p class="fix"><strong>Fix:</strong> Require two-factor authentication (the listed people are prompted to enrol at their next sign-in), or enforce SSO. <span class="muted">(Admin Center → People → Team members (filter by two-factor) · Security → Team member authentication)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.8.5 · HIPAA 164.312(d) · PCI DSS 8.4</p>
+          </div>
+        </li>
+        <li id="auth.pw-policy">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>3. Password policy at the recommended level or stronger <span class="badge badge-critical">high</span></h3>
+            <p><strong>Criterion:</strong> The team member security policy is "recommended", "high" or a custom policy with 12+ characters, complexity, mixed case and a lockout after at most 10 failed attempts.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Team member authentication → Zendesk authentication → Password level. "Recommended" or "High" pass; a custom policy passes with 12+ characters, letters and numbers, mixed case and a lockout after at most 10 failed attempts.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the password level, or security_settings JSON with security_policy_id 300 or 350, or the custom policy values.</p>
+            <p class="fix"><strong>Fix:</strong> Choose the "Recommended" or "High" password level, or configure a custom policy with at least 12 characters, letters and numbers, mixed case and a lockout. <span class="muted">(Admin Center → Security → Team member authentication → Zendesk authentication → Password level)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.17 · PCI DSS 8.3 · HIPAA 164.312(d)</p>
+          </div>
+        </li>
+        <li id="auth.agent-session-timeout">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>4. Team member sessions expire after inactivity <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Team members are signed out after at most 8 hours of inactivity (PCI DSS asks for 15 minutes).</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Advanced → Session expiration → Team members. 8 hours or less; PCI DSS asks for 15 minutes of idle time.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the session expiration settings, or agent_session_timeout in security_settings (minutes).</p>
+            <p class="fix"><strong>Fix:</strong> Lower the team member session expiration to 8 hours or less (15 minutes where PCI DSS applies) and enable a maximum session duration. <span class="muted">(Admin Center → Security → Advanced → Session expiration)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.8.5 · HIPAA 164.312(a)(2)(iii) · PCI DSS 8.2.8</p>
+          </div>
+        </li>
+        <li id="auth.end-user-session-timeout">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>5. End-user sessions expire after inactivity <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> End users are signed out after at most 8 hours of inactivity.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Advanced → Session expiration → End users. 8 hours or less.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the setting, or end_user_session_timeout in security_settings.</p>
+            <p class="fix"><strong>Fix:</strong> Lower the end-user session expiration to 8 hours or less. <span class="muted">(Admin Center → Security → Advanced → Session expiration → End users)</span></p>
+            <p class="muted" style="font-size:0.85rem">ISO 27001 A.8.5 · GDPR 32</p>
+          </div>
+        </li>
+        <li id="auth.ip-restrictions">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>6. IP restrictions for team members <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> Sign-in to Support is limited to the organisation's IP ranges (end users may stay unrestricted).</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Advanced → IP restrictions: enabled, with the office and VPN ranges listed, and "Customers can bypass IP restrictions" ticked so end users are not locked out.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the IP restrictions page with the ranges, and the change ticket that approved the ranges.</p>
+            <p class="fix"><strong>Fix:</strong> Enable IP restrictions with your office and VPN ranges and keep "Customers can bypass IP restrictions" on so end users are not blocked. <span class="muted">(Admin Center → Security → Advanced → IP restrictions)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.6 · ISO 27001 A.8.20</p>
+          </div>
+        </li>
+        <li id="auth.sso-enforced">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>7. Enterprise SSO enforced for team members <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Team members sign in through enterprise SSO (SAML or OIDC) and Zendesk password sign-in is disabled.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Team member authentication → External authentication: SAML or OpenID Connect configured, and "Zendesk authentication" unticked so passwords are no longer accepted.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the authentication page showing SSO on and Zendesk authentication off, plus the identity provider configuration export.</p>
+            <p class="fix"><strong>Fix:</strong> Configure SAML or OpenID Connect for team members and untick "Zendesk authentication" so passwords are no longer accepted; keep the admin bypass for emergencies. <span class="muted">(Admin Center → Security → Team member authentication → External authentication)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.16 · ISO 27001 A.8.5</p>
+          </div>
+        </li>
+        <li id="auth.social-login">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>8. Google or Microsoft sign-in restricted <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> Team members cannot sign in with personal Google or Microsoft accounts; Microsoft sign-in, if used, is restricted to your tenant.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Team member authentication → Business accounts: Google and Microsoft sign-in off, or Microsoft sign-in restricted to your Entra ID tenant.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the business accounts section; for Microsoft, the allowed tenant id.</p>
+            <p class="fix"><strong>Fix:</strong> Disable Google and Microsoft sign-in for team members, or restrict Microsoft sign-in to your Entra ID tenant. <span class="muted">(Admin Center → Security → Team member authentication → Business accounts)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.16</p>
+          </div>
+        </li>
+        <li id="auth.admins-set-pw">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>9. Admins cannot set other people's passwords <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Admins can only send password resets; they cannot type a password for another user.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Advanced → Passwords: "Admins can set passwords" unticked, so admins can only send resets.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the setting, or admins_can_set_user_passwords: false in security_settings.</p>
+            <p class="fix"><strong>Fix:</strong> Untick "Admins can set passwords" so every credential is known only to its owner. <span class="muted">(Admin Center → Security → Advanced → Passwords → Admins can set passwords)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.17 · HIPAA 164.312(a)(2)(i)</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="audit-group" id="access">
+      <h2>Access &amp; roles <span class="muted" style="font-weight:400;font-size:0.9rem">7 checks</span></h2>
+      <p>Who can do what. The team member list (GET /api/v2/users?role[]=admin&amp;role[]=agent) carries the role, the two-factor flag and the last sign-in; custom roles exist on Enterprise (GET /api/v2/custom_roles, 403 elsewhere).</p>
+      <ol class="audit">
+        <li id="access.admin-count">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>10. Number of admins is proportionate <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> At most 3 admins, or at most 25 % of active team members.</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team members, filter by role Admin. Count them against the active team: 3 or fewer, or at most a quarter of the team, is proportionate.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The admin list on the review date with a one-line justification per admin, signed by the person accountable for access.</p>
+            <p class="fix"><strong>Fix:</strong> Downgrade admins who only need agent work to agents (or to a custom role on Enterprise) and keep a short, documented list of admins. <span class="muted">(Admin Center → People → Team members → Role)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.8.2 · PCI DSS 7.2</p>
+          </div>
+        </li>
+        <li id="access.inactive-admins">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>11. Admins who have not signed in for 90 days <span class="badge badge-critical">high</span></h3>
+            <p><strong>Criterion:</strong> Every admin has signed in within the last 90 days.</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team members, role Admin, sort by "Last sign-in". Anyone beyond 90 days is downgraded, suspended or deleted.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The list with last sign-in dates and the action taken per inactive admin (downgrade, suspension, deletion) with its date.</p>
+            <p class="fix"><strong>Fix:</strong> Downgrade, suspend or delete admins who no longer use the account; review the list every quarter. <span class="muted">(Admin Center → People → Team members)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.2 · SOC 2 CC6.3 · ISO 27001 A.5.18 · PCI DSS 8.6</p>
+          </div>
+        </li>
+        <li id="access.inactive-agents">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>12. Agents who have not signed in for 90 days <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Every agent has signed in within the last 90 days.</p>
+            <p><strong>By hand:</strong> Same list, role Agent, sorted by last sign-in; the API field is last_login_at.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The list with last sign-in dates and the actions taken; suspended seats show the review happened.</p>
+            <p class="fix"><strong>Fix:</strong> Suspend or delete agents who no longer use the account (suspended seats can be reassigned). <span class="muted">(Admin Center → People → Team members)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.5.18 · PCI DSS 8.6</p>
+          </div>
+        </li>
+        <li id="access.suspended-with-role">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>13. Suspended team members still hold a role <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> Suspended admins and agents are downgraded or deleted, not left with their role.</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team members → Suspended: nobody suspended should still hold admin or agent; delete them or downgrade to end user.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The suspended list on the review date, empty or with the deletion dates.</p>
+            <p class="fix"><strong>Fix:</strong> Delete the suspended team members or downgrade them to end users so the seat and the permissions are released. <span class="muted">(Admin Center → People → Team members → Suspended)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.5.18</p>
+          </div>
+        </li>
+        <li id="access.custom-roles-sensitive">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>14. Custom roles with sensitive permissions <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> No non-admin custom role with members grants ticket deletion, redaction, view export, API credentials, role or team management, audit log access, app management or deletion schedules.</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team → Roles (Enterprise): open each non-admin role that has members and check ticket deletion, redaction, export views, API credentials, role or team management, audit log, app management and deletion schedules.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The role definitions (screenshots or the custom_roles JSON) and the member count per role, with a note on why each sensitive permission is needed.</p>
+            <p class="fix"><strong>Fix:</strong> Split the sensitive permissions into a small role for the people who need them and keep the everyday agent roles without them. <span class="muted">(Admin Center → People → Team → Roles)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.8.2 · PCI DSS 7.2</p>
+          </div>
+        </li>
+        <li id="access.empty-groups">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>15. Groups without members <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> Every group has at least one member (empty groups leave tickets unattended and confuse routing).</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team → Groups: every group shows its member count; delete or staff the empty ones after checking the triggers and views that route to them.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The group list with member counts.</p>
+            <p class="fix"><strong>Fix:</strong> Delete the empty groups or add members; check triggers and views that route to them first. <span class="muted">(Admin Center → People → Team → Groups)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.5.15</p>
+          </div>
+        </li>
+        <li id="access.light-agents">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>16. Light agents reviewed <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> Light agents (view and private comments only) are listed and confirmed as needed.</p>
+            <p><strong>By hand:</strong> Admin Center → People → Team members, filter role Light agent (Enterprise): confirm each one still needs read access to tickets.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The list of light agents with a confirmation per person.</p>
+            <p class="fix"><strong>Fix:</strong> Confirm each light agent still needs read access to tickets; remove the others. <span class="muted">(Admin Center → People → Team members (role: Light agent))</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.5.18</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="audit-group" id="integrations">
+      <h2>Integrations <span class="muted" style="font-weight:400;font-size:0.9rem">7 checks</span></h2>
+      <p>Everything that can take ticket data out of the account: apps, webhooks, targets, OAuth clients and tokens, API tokens, and the triggers and automations that call them.</p>
+      <ol class="audit">
+        <li id="int.third-party-apps">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>17. Third-party apps inventoried <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> Every enabled app from a third-party author is known, needed and restricted to the roles or groups that use it.</p>
+            <p><strong>By hand:</strong> Admin Center → Apps and integrations → Apps → Zendesk Support apps: for every enabled app from a third party, the author, the version and whether it is restricted to roles or groups.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The app inventory (name, author, version, restrictions, installed on) and the vendor assessment or DPA for each third-party app that sees ticket data.</p>
+            <p class="fix"><strong>Fix:</strong> Disable apps nobody uses and restrict the rest to the roles or groups that need them; an app runs with the permissions of the signed-in agent. <span class="muted">(Admin Center → Apps and integrations → Apps → Zendesk Support apps)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.7 · ISO 27001 A.5.15 · GDPR 25</p>
+          </div>
+        </li>
+        <li id="int.webhooks">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>18. Active webhooks use HTTPS and authentication <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Every active webhook points at an HTTPS endpoint and carries authentication (bearer token, basic auth or API key).</p>
+            <p><strong>By hand:</strong> Admin Center → Apps and integrations → Webhooks: every active webhook uses an https:// endpoint and has authentication (bearer token, basic auth or API key) configured.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The webhook inventory with endpoint, authentication method and status; deactivation dates for the ones no longer used.</p>
+            <p class="fix"><strong>Fix:</strong> Edit the webhook: use an https:// endpoint and add authentication; deactivate webhooks that are no longer used. <span class="muted">(Admin Center → Apps and integrations → Webhooks)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.7 · ISO 27001 A.8.20 · HIPAA 164.312(e)(1) · GDPR 32</p>
+          </div>
+        </li>
+        <li id="int.legacy-targets">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>19. No active legacy URL targets <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> URL and branded targets (stopped working on 28 October 2024) are not left active; e-mail targets are fine.</p>
+            <p><strong>By hand:</strong> Admin Center → Apps and integrations → Targets: URL and branded targets stopped working on 28 October 2024; deactivate or delete them and move the notification to a webhook. E-mail targets are fine.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The target list showing no active URL or branded target, or the migration ticket.</p>
+            <p class="fix"><strong>Fix:</strong> Deactivate or delete the legacy targets and move the notifications to webhooks. <span class="muted">(Admin Center → Apps and integrations → Targets)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC8.1 · ISO 27001 A.8.20</p>
+          </div>
+        </li>
+        <li id="int.oauth-clients">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>20. OAuth clients inventoried <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> Every OAuth client registered on the account maps to a known integration.</p>
+            <p><strong>By hand:</strong> Admin Center → Apps and integrations → APIs → OAuth clients: every client maps to an integration in use; delete the rest (their tokens die with them).</p>
+            <p><strong>Evidence an auditor accepts:</strong> The OAuth client inventory with the owning integration and owner named for each.</p>
+            <p class="fix"><strong>Fix:</strong> Delete OAuth clients that belong to integrations you no longer use; their tokens die with them. <span class="muted">(Admin Center → Apps and integrations → APIs → OAuth clients)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.16 · PCI DSS 8.6</p>
+          </div>
+        </li>
+        <li id="int.oauth-tokens">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>21. No stale OAuth tokens <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Every live OAuth access token was used in the last 90 days.</p>
+            <p><strong>By hand:</strong> Same page, per client: the active tokens and their last use. Revoke tokens not used in 90 days. Through the API, GET /api/v2/oauth/tokens?all=true (admins) lists used_at per token without exposing the token.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The token inventory (id, user, client, scopes, last used) on the review date and the revocations made.</p>
+            <p class="fix"><strong>Fix:</strong> Revoke tokens not used in 90 days (delete them from the OAuth client or the user); integrations that still need access will request a new one. <span class="muted">(Admin Center → Apps and integrations → APIs → OAuth clients)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.16 · PCI DSS 8.6</p>
+          </div>
+        </li>
+        <li id="int.api-tokens">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>22. API tokens under control <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> API token access is disabled, or every active API token is known and scheduled for migration to OAuth (Zendesk retires API tokens on 30 April 2027; unused ones are deleted after 30 days from 28 July 2026).</p>
+            <p><strong>By hand:</strong> Admin Center → Apps and integrations → APIs → Zendesk API → Settings: token access, and the token list with descriptions. Zendesk deletes tokens unused for 30 days from 28 July 2026 and retires all API tokens on 30 April 2027; migrate integrations to OAuth before then and disable token access.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The API token list with descriptions and creation dates, the migration plan to OAuth, and the date token access was disabled.</p>
+            <p class="fix"><strong>Fix:</strong> Delete tokens nobody uses, migrate the rest to OAuth clients before April 2027, then disable token access. <span class="muted">(Admin Center → Apps and integrations → APIs → Zendesk API → Settings)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.5.16 · PCI DSS 8.6</p>
+          </div>
+        </li>
+        <li id="int.rules-external">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>23. Business rules that notify external endpoints <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> Triggers and automations that call webhooks or targets are listed and intended.</p>
+            <p><strong>By hand:</strong> Admin Center → Objects and rules → Business rules → Triggers and Automations: the ones whose actions "Notify webhook" or "Notify target"; confirm each is still needed and its webhook authenticated.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The list of rules with external actions and the confirmation per rule.</p>
+            <p class="fix"><strong>Fix:</strong> Confirm each rule that sends ticket data outside Zendesk is still needed and that its webhook is authenticated. <span class="muted">(Admin Center → Objects and rules → Business rules → Triggers / Automations)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.7 · GDPR 25</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="audit-group" id="data">
+      <h2>Data &amp; privacy <span class="muted" style="font-weight:400;font-size:0.9rem">8 checks</span></h2>
+      <p>Retention and exposure of ticket data: deletion schedules, attachment settings, agent deletion, sandbox, API password access. Most of it is in GET /api/v2/account/settings (note that the API flags come back as strings, "true" and "1").</p>
+      <ol class="audit">
+        <li id="data.deletion-schedule-tickets">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>24. Deletion schedule for tickets <span class="badge badge-critical">high</span></h3>
+            <p><strong>Criterion:</strong> An active deletion schedule removes old tickets automatically (retention by design).</p>
+            <p><strong>By hand:</strong> Admin Center → Account → Security → Deletion schedules: an active schedule for tickets (for example closed for more than 2 years). Dry-run the criteria first, for instance with Data Custodian.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The schedule definition with its conditions and activation date, and the retention policy it implements.</p>
+            <p class="fix"><strong>Fix:</strong> Create a deletion schedule for tickets (for example closed for more than 2 years) and let it run; use Data Custodian for a dry run first. <span class="muted">(Admin Center → Account → Security → Deletion schedules)</span></p>
+            <p class="muted" style="font-size:0.85rem">GDPR 5(1)(e) · GDPR 25 · ISO 27001 A.8.10 · SOC 2 CC6.5</p>
+          </div>
+        </li>
+        <li id="data.deletion-schedule-users">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>25. Deletion schedule for end users <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> An active deletion schedule removes inactive end users automatically.</p>
+            <p><strong>By hand:</strong> Same page: an active schedule for end users without activity for a defined period.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The schedule definition and the retention policy.</p>
+            <p class="fix"><strong>Fix:</strong> Create a deletion schedule for end users without tickets or activity for a defined period. <span class="muted">(Admin Center → Account → Security → Deletion schedules)</span></p>
+            <p class="muted" style="font-size:0.85rem">GDPR 5(1)(e) · ISO 27001 A.8.10 · SOC 2 CC6.5</p>
+          </div>
+        </li>
+        <li id="data.private-attachments">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>26. Attachments require authentication <span class="badge badge-critical">high</span></h3>
+            <p><strong>Criterion:</strong> "Require authentication to download" is on, so attachment links only work for signed-in users.</p>
+            <p><strong>By hand:</strong> Admin Center → Objects and rules → Tickets → Settings → Attachments: "Require authentication to download" ticked, so attachment links only work for signed-in users.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the attachments settings (or private_attachments: true in account settings).</p>
+            <p class="fix"><strong>Fix:</strong> Enable "Require authentication to download" under Attachments (end users receive links that ask them to sign in). <span class="muted">(Admin Center → Objects and rules → Tickets → Settings → Attachments)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · SOC 2 CC6.6 · HIPAA 164.312(a)(2)(i) · GDPR 32</p>
+          </div>
+        </li>
+        <li id="data.attachment-link-expiry">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>27. Public attachment links expire <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> When attachments are public, their links expire within 24 hours.</p>
+            <p><strong>By hand:</strong> Same page, only when attachments are public: link expiration enabled with 24 hours or less.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the setting, or attachment_public_expiration and attachment_public_duration in account settings.</p>
+            <p class="fix"><strong>Fix:</strong> Enable link expiration for attachments (24 hours or less), or require authentication to download. <span class="muted">(Admin Center → Objects and rules → Tickets → Settings → Attachments)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.6 · GDPR 32</p>
+          </div>
+        </li>
+        <li id="data.agent-ticket-deletion">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>28. Only admins can delete tickets <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> "Agents can delete tickets" is off (custom roles are checked separately).</p>
+            <p><strong>By hand:</strong> Admin Center → Objects and rules → Tickets → Settings: "Agents can delete tickets" unticked; give deletion to a small custom role if a few agents need it.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the setting, or agent_ticket_deletion: false in account settings.</p>
+            <p class="fix"><strong>Fix:</strong> Untick "Agents can delete tickets"; give deletion to a small custom role if some agents really need it. <span class="muted">(Admin Center → Objects and rules → Tickets → Settings → Agents can delete tickets)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.3 · ISO 27001 A.8.2 · GDPR 5(1)(e)</p>
+          </div>
+        </li>
+        <li id="data.sandbox">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>29. A sandbox exists for testing changes <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> The account has a sandbox, so configuration and app changes can be tried outside production.</p>
+            <p><strong>By hand:</strong> Admin Center → Account → Sandbox: a standard sandbox (Enterprise) or the premium sandbox add-on exists, and changes to triggers, roles and apps are tried there first.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The sandbox page, and the change tickets that reference a sandbox test.</p>
+            <p class="fix"><strong>Fix:</strong> Create a standard sandbox (Enterprise) or the premium sandbox add-on and test triggers, apps and roles there first. <span class="muted">(Admin Center → Account → Sandbox)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC8.1 · ISO 27001 A.8.31</p>
+          </div>
+        </li>
+        <li id="data.email-attachments">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>30. Attachments are not sent as e-mail files <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Notification e-mails link to attachments instead of carrying the files.</p>
+            <p><strong>By hand:</strong> Admin Center → Objects and rules → Tickets → Settings → Attachments: "Attachments in email notifications" unticked, so notifications carry links instead of files.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the setting, or email_attachments: false in account settings.</p>
+            <p class="fix"><strong>Fix:</strong> Untick "Attachments in email notifications"; recipients get a link (with authentication when required). <span class="muted">(Admin Center → Objects and rules → Tickets → Settings → Attachments)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.7 · HIPAA 164.312(e)(1) · GDPR 32</p>
+          </div>
+        </li>
+        <li id="data.api-pw-access">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>31. Password access to the API disabled <span class="badge badge-critical">high</span></h3>
+            <p><strong>Criterion:</strong> The API accepts tokens and OAuth only; a team member password is not an API credential.</p>
+            <p><strong>By hand:</strong> Admin Center → Apps and integrations → APIs → Zendesk API → Settings: "Password access" off, so a team member password is never an API credential.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the API settings, or api_password_access: "false" in account settings.</p>
+            <p class="fix"><strong>Fix:</strong> Turn off "Password access" for the API; integrations use OAuth clients (or API tokens until their retirement). <span class="muted">(Admin Center → Apps and integrations → APIs → Zendesk API → Settings)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.1 · ISO 27001 A.8.5 · PCI DSS 8.3 · PCI DSS 8.6</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="audit-group" id="email">
+      <h2>E-mail &amp; domains <span class="muted" style="font-weight:400;font-size:0.9rem">4 checks</span></h2>
+      <p>Support addresses on your own domains need SPF, DKIM (two CNAME records), a domain verification TXT record and working forwarding. Addresses ending in .zendesk.com are handled by Zendesk.</p>
+      <ol class="audit">
+        <li id="email.spf">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>32. SPF verified for external support addresses <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Every support address on your own domain has a verified SPF record.</p>
+            <p><strong>By hand:</strong> Admin Center → Channels → Talk and email → Email → Support addresses: each address on your own domain shows SPF verified; the domain's SPF record includes include:mail.zendesk.com.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The support address list with the SPF status, or a dig/nslookup of the TXT record on the review date.</p>
+            <p class="fix"><strong>Fix:</strong> Add "include:mail.zendesk.com" to the domain's SPF record and click "Verify" on the address. <span class="muted">(Admin Center → Channels → Talk and email → Email → Support addresses)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.6 · ISO 27001 A.8.20 · GDPR 32</p>
+          </div>
+        </li>
+        <li id="email.dkim">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>33. DKIM (CNAME) verified for external support addresses <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Every support address on your own domain has the DKIM CNAME records verified.</p>
+            <p><strong>By hand:</strong> Same page: DKIM status verified, which needs the zendesk1 and zendesk2 CNAME records on the domain.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The address list with the DKIM status, or the CNAME records.</p>
+            <p class="fix"><strong>Fix:</strong> Create the two zendesk1/zendesk2 CNAME records for the domain and verify them on the address. <span class="muted">(Admin Center → Channels → Talk and email → Email → Support addresses)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.6 · ISO 27001 A.8.20 · GDPR 32</p>
+          </div>
+        </li>
+        <li id="email.domain-verification">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>34. Domain verification for external support addresses <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> Every support address on your own domain has passed domain verification (TXT record).</p>
+            <p><strong>By hand:</strong> Same page: domain verification verified (the TXT record Zendesk shows for the domain).</p>
+            <p><strong>Evidence an auditor accepts:</strong> The address list with the domain verification status, or the TXT record.</p>
+            <p class="fix"><strong>Fix:</strong> Add the TXT record Zendesk shows for the domain and verify it on the address. <span class="muted">(Admin Center → Channels → Talk and email → Email → Support addresses)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.6 · ISO 27001 A.5.16</p>
+          </div>
+        </li>
+        <li id="email.forwarding">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>35. Forwarding verified for external support addresses <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> Every support address on your own domain forwards to Zendesk and the forwarding check passed.</p>
+            <p><strong>By hand:</strong> Same page: forwarding verified for every external address (mail from the address reaches Zendesk).</p>
+            <p><strong>Evidence an auditor accepts:</strong> The address list with the forwarding status.</p>
+            <p class="fix"><strong>Fix:</strong> Set up forwarding at the mail provider and click "Verify forwarding" on the address. <span class="muted">(Admin Center → Channels → Talk and email → Email → Support addresses)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC6.6</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="audit-group" id="help_center">
+      <h2>Help center <span class="muted" style="font-weight:400;font-size:0.9rem">2 checks</span></h2>
+      <p>What the help center exposes and who may publish to it.</p>
+      <ol class="audit">
+        <li id="hc.publish-permissions">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>36. Article publishing restricted to editors <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> Management permission groups let a defined set of agents publish, not every agent.</p>
+            <p><strong>By hand:</strong> Guide admin → Settings → Manage permissions → Management permissions: the group that may publish is limited to the knowledge team, not every agent.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the management permissions with the user segments allowed to publish.</p>
+            <p class="fix"><strong>Fix:</strong> Edit the management permission group so only the knowledge team can publish; give everyone else edit rights at most. <span class="muted">(Guide admin → Settings → Manage permissions → Management permissions)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC8.1 · ISO 27001 A.5.15</p>
+          </div>
+        </li>
+        <li id="hc.public-help-center">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>37. Public help centers confirmed <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> Brands whose help center is public are known; internal content lives in restricted sections.</p>
+            <p><strong>By hand:</strong> Guide admin → Settings → Guide settings → "Require sign in" for internal help centers; for public ones, the user segments of sections with internal content.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The list of brands with the help center state (public or restricted) and, for public ones, the section permissions of sensitive sections.</p>
+            <p class="fix"><strong>Fix:</strong> Restrict the help center (sign-in required) if it is internal, or check the user segments of the sensitive sections. <span class="muted">(Guide admin → Settings → Guide settings → Require sign in)</span></p>
+            <p class="muted" style="font-size:0.85rem">GDPR 25 · SOC 2 CC6.1</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="audit-group" id="logging">
+      <h2>Logging &amp; monitoring <span class="muted" style="font-weight:400;font-size:0.9rem">3 checks</span></h2>
+      <p>Whether changes are recorded and sessions are bounded. The audit log is an Enterprise feature; on other plans, a snapshot of the configuration taken at each review is the practical substitute.</p>
+      <ol class="audit">
+        <li id="log.audit-log">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>38. Audit log available and active <span class="badge badge-warning">medium</span></h3>
+            <p><strong>Criterion:</strong> The account audit log answers and has recorded activity in the last 30 days.</p>
+            <p><strong>By hand:</strong> Admin Center → Account → Audit log (Enterprise): entries exist for the last 30 days and can be filtered and exported. Through the API, GET /api/v2/audit_logs with filter[created_at][] answers 200 on plans that have it and 403 elsewhere.</p>
+            <p><strong>Evidence an auditor accepts:</strong> An export of the audit log for the review period (Enterprise), or, on other plans, the snapshots of the configuration taken at each review and the drift between them.</p>
+            <p class="fix"><strong>Fix:</strong> On plans without the audit log, keep this app's snapshots (drift shows what changed between runs); on Enterprise export the audit log periodically. <span class="muted">(Admin Center → Account → Audit log)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC7.2 · ISO 27001 A.8.15 · HIPAA 164.312(b) · PCI DSS 10.2</p>
+          </div>
+        </li>
+        <li id="log.sessions">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>39. No long-lived sessions <span class="badge badge-info">low</span></h3>
+            <p><strong>Criterion:</strong> No team member session has been open for more than 30 days.</p>
+            <p><strong>By hand:</strong> Admin Center → Security → Advanced → Session expiration: a maximum session duration is enabled. Through the API, GET /api/v2/sessions (admins) lists every open session with its start time.</p>
+            <p><strong>Evidence an auditor accepts:</strong> A screenshot of the session settings, and the session list on the review date.</p>
+            <p class="fix"><strong>Fix:</strong> Enable a maximum session duration, or end the old sessions from the person's profile. <span class="muted">(Admin Center → Security → Advanced → Session expiration)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC7.2 · ISO 27001 A.8.16 · HIPAA 164.312(a)(2)(iii)</p>
+          </div>
+        </li>
+        <li id="log.snapshot-history">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>40. Configuration baseline kept <span class="badge badge-info">info</span></h3>
+            <p><strong>Criterion:</strong> An earlier snapshot from the last 90 days exists, so drift between runs can be shown.</p>
+            <p><strong>By hand:</strong> Keep a copy of the security configuration at each review (settings pages exported or the JSON of the endpoints above) so the next review can show what changed.</p>
+            <p><strong>Evidence an auditor accepts:</strong> The previous snapshot with its date and hash, and the comparison with the current one.</p>
+            <p class="fix"><strong>Fix:</strong> Run the audit at least monthly (or before each review); snapshots stay in the browser and, on Business, in the account. <span class="muted">(Security Audit &amp; Evidence → Overview → Run audit)</span></p>
+            <p class="muted" style="font-size:0.85rem">SOC 2 CC8.1 · ISO 27001 A.8.16</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="prose">
+      <h2>Frequently asked questions</h2>
+      <p><strong>Does this checklist make my Zendesk SOC 2 compliant?</strong> No. SOC 2 is an attestation of your organisation's controls by an auditor; Zendesk's own SOC 2 report covers Zendesk. This checklist covers the configuration you are responsible for as a customer, and it produces the evidence your auditor asks for on the Zendesk system.</p>
+      <p><strong>Which Zendesk plan do I need?</strong> The security settings, team members, apps, webhooks, tokens, schedules, addresses and brands are readable on every plan. Custom roles and the audit log are Enterprise features and answer 403 elsewhere; a sandbox is an Enterprise feature or the premium sandbox add-on. Those controls are marked as not checkable on other plans.</p>
+      <p><strong>Where does the audit log fit?</strong> The audit log records who changed what, and it is only on Enterprise. On other plans, keep a snapshot of the configuration at each review: the comparison shows what changed between reviews, not who changed it.</p>
+      <p><strong>Can I do this without the app?</strong> Yes: every control above says where to look in Admin Center and which API endpoint answers it. The app runs the 40 checks in about a minute, keeps the snapshots and builds the evidence pack with hashes.</p>
+      <p><strong>What does the evidence pack contain?</strong> A printable report, the snapshot as JSON without any secret, the findings and inventories as CSV, the framework map and a manifest with the SHA-256 of every file so nothing can be altered unnoticed after generation.</p>
+      <h2>Do it automatically</h2>
+      <p>Security Audit &amp; Evidence runs the 40 controls in about a minute from inside Zendesk Support with your own admin session, keeps a snapshot without secrets at each run, shows what changed since the previous one, and builds the evidence pack: a printable report, the snapshot, findings and inventory CSVs, the framework map and a manifest with the SHA-256 of every file. The Free plan runs the 12 authentication and access controls; Pro ($149 per account per month) runs all 40 with the pack and drift; Business ($249) stores evidence inside the account and adds quarterly access review packs with sign-off. It does not certify compliance and does not replace the Zendesk audit log.</p>
+      <p>Related: <a href="../zendesk-gdpr-ticket-deletion/">deleting tickets for GDPR retention with a dry run and evidence</a>, <a href="../zendesk-adpp-alternative/">an alternative to the Advanced Data Privacy and Protection add-on</a>, <a href="../zendesk-help-center-audit-checklist/">the help center audit checklist</a>.</p>
+    </div>
+  </div>
+
+  <section class="cta-band">
+    <div class="container">
+      <h2>Run the 40 controls on your account</h2>
+      <p>Install Security Audit &amp; Evidence from the Zendesk Marketplace, click Run audit, and hand your auditor the pack.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary btn-lg" href="../security-audit/">See the app</a>
+        <a class="btn btn-secondary btn-lg" href="../apps/">All the apps</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
