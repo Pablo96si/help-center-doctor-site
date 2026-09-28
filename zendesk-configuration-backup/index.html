@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to back up and restore your Zendesk configuration (triggers, macros, views, fields) | Help Center Doctor</title>
+<meta name="description" content="Native options, the API scripts that stop working on 30 April 2027, and the apps that keep dated copies of your Zendesk Support configuration: triggers, automations, macros, views, fields, forms, SLA policies and schedules. What to back up, how often, and how to restore without breaking anything.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/zendesk-configuration-backup/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to back up and restore your Zendesk configuration">
+<meta property="og:description" content="Native options, scripts that die in April 2027, and apps: a practical guide to keeping copies of triggers, macros, views and fields and restoring them safely.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/zendesk-configuration-backup/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../apps/">Apps</a></li>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Guide · Zendesk administration</span>
+      <h1>How to back up and restore your Zendesk configuration</h1>
+      <p class="lead">Zendesk keeps no version history of triggers, automations, macros, views, fields and forms outside the Enterprise plan. This guide covers what to copy, the native options, the scripts many teams rely on and why they stop working in April 2027, and how to restore without breaking your queue.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <h2>What "configuration" means in Zendesk Support</h2>
+      <p>Everything an admin builds in Admin Center that decides how tickets flow, and that a wrong click can undo in seconds:</p>
+      <ul>
+        <li><strong>Business rules:</strong> triggers and their categories, automations, SLA policies, schedules with holidays.</li>
+        <li><strong>Agent tools:</strong> macros (with their categories and restrictions) and views (with columns, grouping and sorting).</li>
+        <li><strong>Data model:</strong> ticket fields and their dropdown options, ticket forms and their conditions, user and organization fields, custom ticket statuses, groups.</li>
+        <li><strong>Reusable text:</strong> dynamic content and its variants per language.</li>
+      </ul>
+      <p>Tickets, users and organizations are data, not configuration; they have their own export tools. Apps, channels, Guide themes and Explore dashboards are configured elsewhere and are not covered here.</p>
+
+      <h2>What Zendesk gives you natively</h2>
+      <table>
+        <thead><tr><th>Option</th><th>Plans</th><th>What it does</th><th>What it does not do</th></tr></thead>
+        <tbody>
+          <tr><td>Trigger revisions</td><td>Enterprise</td><td>History of each trigger's changes with the author</td><td>Nothing for automations, macros, views, fields, forms; no bulk restore</td></tr>
+          <tr><td>Sandbox, snapshots and deployments</td><td>Enterprise (premium sandbox)</td><td>Copy configuration between a sandbox and production, compare snapshots</td><td>Not on Team, Growth or Professional; not a point-in-time backup of production</td></tr>
+          <tr><td>Audit log</td><td>Enterprise</td><td>Who changed what, when</td><td>Does not restore anything</td></tr>
+          <tr><td>Deactivate instead of delete</td><td>All</td><td>Inactive rules and fields keep their definition</td><td>Deleted objects are gone; deleting a field also deletes its values on tickets</td></tr>
+        </tbody>
+      </table>
+      <p>On Team, Growth and Professional there is no history and no undo. A deleted trigger has to be rebuilt from memory.</p>
+
+      <h2>The script route, and the date that ends it</h2>
+      <p>For years the standard answer has been a script: call <code>GET /api/v2/triggers</code>, <code>/automations</code>, <code>/macros</code>, <code>/views</code>, <code>/ticket_fields</code>, <code>/ticket_forms</code>, <code>/slas/policies</code>, <code>/business_hours/schedules</code> and <code>/dynamic_content/items</code>, save the JSON somewhere, and hope nobody needs to restore. Two problems:</p>
+      <ol>
+        <li><strong>Authentication by API key ends.</strong> Zendesk announced the removal of API access by key: no new keys after 27 October 2026, unused keys switched off from 28 July 2026, every key off on 30 April 2027. Scripts must move to OAuth, which means registering a client and handling refresh flows, or they simply stop.</li>
+        <li><strong>Restoring is the hard part.</strong> A saved JSON contains ids of groups, fields, forms, statuses, schedules and webhooks. When the referenced object was deleted too, the rule cannot be recreated as it was; when a deleted object is recreated it gets a new id, and every rule that pointed at the old one has to be rewired. Views need their column list rebuilt as an "output" object, dynamic content variants are updated one by one, ticket field options are replaced as a whole (omit one and it is deleted). Few scripts handle any of this.</li>
+      </ol>
+
+      <h2>What a good backup does</h2>
+      <ul>
+        <li>Takes a <strong>dated, hashed copy</strong> of every type above, with the read permissions of an admin, and keeps it where the team can reach it: inside the Zendesk account itself, in the browser, and as a file.</li>
+        <li><strong>Compares</strong> two copies, or a copy with the live account, and shows each changed value before and after in the words Zendesk uses.</li>
+        <li><strong>Restores with a simulation first</strong>, an automatic copy right before writing, dependency checks (create the group before the trigger that assigns to it, rewire ids), safe defaults (rules written inactive), and undo.</li>
+        <li><strong>Never deletes fields</strong> automatically, because that deletes ticket data; deactivates instead.</li>
+        <li>Flags <strong>broken references</strong> (a trigger that assigns to a deleted group), <strong>unused rules</strong>, <strong>duplicates</strong> and <strong>views that show inactive fields</strong>, so the configuration gets cleaner over time instead of only bigger.</li>
+      </ul>
+
+      <h2>How often, and when</h2>
+      <p>A copy before every change session in Admin Center, and at least weekly. Before onboarding a new admin, before a migration or a merger of accounts, before the annual clean-up, and right before you deactivate anything that other rules may depend on. Keep the copies for a year; the cost is a few megabytes.</p>
+
+      <h2>Restoring without breaking the queue</h2>
+      <ol>
+        <li>Compare the copy with the live account and read the list of changes; restore only what you recognise.</li>
+        <li>Run the simulation and read every warning. A missing group or field means the rule will be skipped or created pointing nowhere; create the dependency first.</li>
+        <li>Restore triggers and automations inactive, check them in Admin Center, then activate them one by one. A trigger activated with the wrong condition can e-mail every requester in minutes.</li>
+        <li>Keep the pre-restore copy until you are sure; that copy is your undo.</li>
+      </ol>
+
+      <h2>Apps that do this inside Zendesk</h2>
+      <p><a href="../config-guardian/">Config Guardian</a>, from the developer of this site, runs inside Zendesk Support with no server: snapshots of the fourteen types above, comparison, restore with simulation, pre-restore copy, dependency rewiring, safe mode and undo, health checks, and copies stored inside your own account as a custom object. Free for snapshots and comparison; Pro at $69 per account per month adds restore and account storage; Business at $149 adds restore from another account (sandbox to production), evidence records and a printable change report.</p>
+      <p>Other options, from public documentation in September 2026: configuration platforms such as Salto and Keepit keep copies on their own servers with a per-company subscription; single-purpose Marketplace apps show configuration dependencies or list broken rules without restoring; the Enterprise plan bundles sandbox deployments and the audit log. Check their pages before deciding; details change.</p>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Does restoring a trigger run it on old tickets?</strong> No. Triggers act on ticket events after they are saved; updating or creating one does not touch existing tickets.</p>
+      <p><strong>Can I copy the configuration from my sandbox to production?</strong> With Enterprise, through deployments. Without it, a snapshot taken on the sandbox can be restored on production by an app that matches objects by title and lists what could not be matched; Config Guardian does this on its Business plan.</p>
+      <p><strong>Is a JSON export enough for an auditor?</strong> An auditor wants a dated copy, its hash and proof that it was not altered. Export a ZIP with a manifest of hashes, or keep the copy inside the account where it cannot be edited by hand.</p>
+      <p><strong>What about Guide?</strong> Articles, sections and categories are content; <a href="../">Help Center Doctor</a> keeps snapshots before bulk changes and offers undo there.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

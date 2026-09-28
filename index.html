@@ -41,7 +41,8 @@
 </header>
 
 <main id="main">
-  <div class="announce"><div class="container">All seven apps are now on the <a href="./apps/">Zendesk Marketplace</a>. Zendesk's Proactive Tickets app stops working on 21 October 2026: <a href="./zendesk-proactive-tickets-app-discontinued/">what to use instead</a> · <a href="./migrate-from-zendesk-proactive-tickets/">migrate in 20 minutes</a></div></div>
+  <div class="announce"><div class="container">Seven apps are live on the <a href="./apps/">Zendesk Marketplace</a> and three more are in review. <span id="announce-po">Zendesk's Proactive Tickets app stops working on 21 October 2026</span>: <a href="./zendesk-proactive-tickets-app-discontinued/">what to use instead</a> · <a href="./migrate-from-zendesk-proactive-tickets/">migrate in 20 minutes</a></div></div>
+  <script>(function () { var e = document.getElementById("announce-po"); if (e && Date.now() >= Date.UTC(2026, 9, 21)) { e.textContent = "Zendesk's Proactive Tickets app stopped working on 21 October 2026"; } })();</script>
   <section class="hero">
     <div class="container hero-grid">
       <div>
@@ -240,7 +241,7 @@
           <ul>
             <li>Everything in Pro</li>
             <li>3,000 external links checked per scan</li>
-            <li>Multi-brand scanning <span class="badge badge-soon">coming soon</span></li>
+            <li>Several brands from one installation</li>
           </ul>
           <a class="btn btn-secondary" href="./pricing/">Compare plans</a>
         </div>
@@ -292,7 +293,7 @@
         </details>
         <details>
           <summary>I have several brands. Which help center is scanned?</summary>
-          <div><p>Version 1.0 scans the help center of the account you are signed in to and lists your other brands in Settings. Multi-brand scanning is planned for the Business plan once cross-brand access has been verified. Until then, open the app while signed in to the other brand's subdomain.</p></div>
+          <div><p>The one you pick. Since version 1.1 the Brands card on the Scan page lists every brand with a help center; choose one and the scan reads that help center with your own permissions. Zendesk keeps a separate sign-in per brand, so another brand needs one click on Connect the first time (Zendesk signs you in to that brand without a password when you are already signed in). Results, link checks and ignored findings are kept per brand.</p></div>
         </details>
         <details>
           <summary>Which languages is the app itself available in?</summary>

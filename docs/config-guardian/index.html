@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Config Guardian guide | Help Center Doctor docs</title>
+<meta name="description" content="How Config Guardian takes snapshots of your Zendesk Support configuration, compares them, restores rules safely, checks health and stores copies in your account. Plan limits, Zendesk plan differences and answers to common questions.">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/docs/config-guardian/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Config Guardian guide | Help Center Doctor docs">
+<meta property="og:description" content="Snapshots, compare, restore, health, storage and limits of Config Guardian for Zendesk Support.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/docs/config-guardian/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../../"><img src="../../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../../apps/">Apps</a></li>
+        <li><a href="../../features/">Features</a></li>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../docs/">Docs</a></li>
+        <li><a href="../../compare/">Compare</a></li>
+        <li><a href="../../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="container docs-layout">
+    <nav class="docs-side" aria-label="Documentation">
+      <h2>Config Guardian</h2>
+      <ul>
+        <li><a href="#snapshots">Snapshots</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#restore">Restore</a></li>
+        <li><a href="#health">Health and dependencies</a></li>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#plans">Plans and Zendesk plan differences</a></li>
+        <li><a href="#faq">Questions</a></li>
+      </ul>
+      <h2>Other apps</h2>
+      <ul>
+        <li><a href="../">Help Center Doctor docs</a></li>
+        <li><a href="../../security-audit/">Security Audit &amp; Evidence</a></li>
+        <li><a href="../../data-custodian/">Data Custodian</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+      <h1>Config Guardian</h1>
+      <p class="lead">Dated copies of your Zendesk Support configuration, the difference between any two of them or against the live account, and a restore that simulates first, copies before writing and can be undone. Everything runs in your browser with your own admin session; nothing leaves your account.</p>
+
+      <h2 id="snapshots">Snapshots</h2>
+      <p>Open the app from the left navigation bar of Support and click <strong>Take a snapshot</strong> on the Dashboard or on the Snapshots screen. The app reads, in this order, groups, ticket fields, user and organization fields, ticket forms, custom statuses, dynamic content with every variant, schedules with holidays, SLA policies, trigger categories, macros, views, automations and triggers, plus brands, webhooks, targets and support addresses to resolve references. A thousand triggers and two thousand macros take about a hundred requests and a minute or two; keep the tab open.</p>
+      <p>Every snapshot carries the date, who took it, an optional note, the counts per type, and a SHA-256 hash of its content. It is kept in your browser; on Pro and Business you can also save it inside your Zendesk (see <a href="#storage">Storage</a>), and on any plan you can download it as JSON. Pro and Business also download a ZIP with <code>snapshot.json</code>, a <code>MANIFEST.json</code> listing the hash of every file, and a README.</p>
+      <p>Zendesk plans that do not include SLA policies or schedules answer "forbidden" for those types; the snapshot records that fact and everything else works. Usage counts of triggers, automations and macros (last 30 days) are included when your Zendesk plan exposes them (Support Professional, Suite Growth and above).</p>
+
+      <h2 id="compare">Compare</h2>
+      <p>Pick side A and side B: a snapshot each, or the live account on one side (the app takes a fresh copy in memory without saving it). The result is grouped by type with four counts: created, deleted, changed and reordered. Open a changed object to see every changed value before and after, with the path in the words Zendesk uses ("Conditions (all) › 2 › value", "Actions › 1 › value", "Options › Beta › name"). A deleted object and a created one with the same title are shown as a pair, because that is usually a rule someone recreated.</p>
+      <p>Tick the objects you want to bring back and click <strong>Restore the selection</strong>, or restore a whole type or the whole snapshot from the Restore screen.</p>
+
+      <h2 id="restore">Restore</h2>
+      <p>A restore always happens in three steps.</p>
+      <ol>
+        <li><strong>Simulation.</strong> The app lists every operation it would send, in the order it would send them (groups first, then fields, forms, statuses, dynamic content, schedules, SLA policies, categories, macros, views, automations, triggers, then positions), with a warning where something needs your attention: a rule that references a group or a field that no longer exists, a system field of which only some attributes can change, a macro with attachments that cannot be restored, a trigger that will be written inactive. Nothing is sent during the simulation.</li>
+        <li><strong>Automatic copy.</strong> Right before the first write, the app takes a snapshot of the live account tagged "pre-restore" and saves it. If that copy cannot be taken, the restore does not start.</li>
+        <li><strong>Run.</strong> Operations go out one by one through Zendesk's API, with progress and a cancel button. Each result is listed: done, skipped with the reason, or failed with the message Zendesk returned. Objects that no longer existed are created again and get a new id; rules restored later that referenced the old id are rewired to the new one.</li>
+      </ol>
+      <p><strong>Safe mode</strong> (on by default) writes triggers and automations inactive whatever their state in the snapshot, and lists them afterwards so you can activate them one by one in Admin Center or in the app. Switch it off only when you know what you are restoring.</p>
+      <p><strong>Extras.</strong> An object that exists in the account but not in the snapshot is left alone unless you tick "delete objects missing from the snapshot" for that type. Ticket, user and organization fields and custom statuses are never deleted by the app: deleting a field destroys the data it held in every ticket, so the app only deactivates them.</p>
+      <p><strong>Undo.</strong> Every run shows the pre-restore copy it took; restoring that copy undoes the run. Runs with more than ten operations or with any deletion ask you to type RESTORE before starting.</p>
+      <p><strong>From another account (Business).</strong> Upload a snapshot taken on your sandbox or on another account. Objects are matched by title (fields also by tag, groups by name, brands by subdomain); the simulation lists what could not be matched so you can create it first.</p>
+
+      <h2 id="health">Health and dependencies</h2>
+      <p>The Health screen reads the latest snapshot and lists: references to deleted or inactive fields, groups, users, forms, statuses, schedules, webhooks, targets and dynamic content (critical); rules and macros unused in the last 30 days (warning, only when usage is available); rules inactive for more than 90 days; two rules with the same conditions; macros with identical actions; triggers without actions; views and forms that show inactive fields; custom fields in no form; dynamic content with outdated variants; empty trigger categories; schedules without intervals. Each finding names the objects involved and links to Admin Center. Export the list as CSV.</p>
+      <p>The Dependencies screen (Pro and Business) answers two questions for any object: what does it reference, and what references it. Look there before you deactivate a group or a field.</p>
+
+      <h2 id="storage">Storage</h2>
+      <p>Copies live in three places. Your browser keeps them per Zendesk account (two on Free, thirty on Pro, unlimited on Business). Files are yours to keep anywhere. On Pro and Business, <strong>Settings › Storage › Enable account storage</strong> creates a custom object named "Config Guardian snapshot" in your Zendesk and saves each copy as a few compressed records of at most 32 KB each (Zendesk's limit per record), so any admin of the account can restore from them even from another computer. Pro keeps the last thirty copies in the account; Business keeps all of them. Suite Team accounts have three custom objects: if all three are in use the app tells you and keeps working with the browser and files.</p>
+      <p>Uninstalling the app does not delete the custom object or its records; delete them from Settings before uninstalling, or later from Admin Center › Objects and rules › Custom objects.</p>
+
+      <h2 id="plans">Plans and Zendesk plan differences</h2>
+      <table>
+        <thead><tr><th></th><th>Free</th><th>Pro · $69</th><th>Business · $149</th></tr></thead>
+        <tbody>
+          <tr><td>Snapshots, JSON download, compare with the live account, structural health</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Compare any two snapshots</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Restore with simulation, pre-restore copy and undo</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Usage-based health, dependency map, ZIP with hashes</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Copies stored in your account</td><td>—</td><td>Last 30</td><td>Unlimited</td></tr>
+          <tr><td>Restore from another account, evidence records, printable change report, priority support</td><td>—</td><td>—</td><td>✓</td></tr>
+        </tbody>
+      </table>
+      <p>Prices are per Zendesk account per month, with a 14-day free trial on paid plans. Zendesk's own plan changes what the app can read: SLA policies and schedules exist on Support Professional and Suite Growth and above; usage counts on the same plans; custom objects on Suite Team (3), Growth (5), Professional (30) and Enterprise (50).</p>
+
+      <h2 id="faq">Questions</h2>
+      <p><strong>Does a restore fire the triggers it touches?</strong> Updating or creating a trigger does not run it on existing tickets; triggers act on future ticket events. With safe mode on they are written inactive anyway.</p>
+      <p><strong>Why was an operation skipped?</strong> The most common reason is a reference to an object that exists neither in the account nor in the same restore: a group deleted last month, a field somebody removed. Create it, or include it in the restore, and run the simulation again.</p>
+      <p><strong>Can I restore only the positions?</strong> Yes: select the type and tick only "restore order" in the options; the simulation shows a single reorder operation.</p>
+      <p><strong>Where are dynamic content changes?</strong> Zendesk lets an item change only its name; its variants are separate operations (created, updated or deleted per language) and the simulation shows them under the item.</p>
+      <p><strong>Can agents use it?</strong> No. The app is for administrators; an agent sees an explanation screen. Restrict the app to the admin role on the installation screen.</p>
+      <p><strong>How do I verify a downloaded ZIP?</strong> <code>MANIFEST.json</code> lists the SHA-256 of every file; on Windows <code>certutil -hashfile snapshot.json SHA256</code>, on macOS or Linux <code>sha256sum snapshot.json</code> must match. The snapshot's own hash is shown in the app and printed in the README.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../../privacy/">Privacy</a> · <a href="../../terms/">Terms</a> · <a href="../../support/">Support</a> · <a href="../../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

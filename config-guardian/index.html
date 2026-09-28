@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Config Guardian, backup, compare and restore of your Zendesk configuration | Help Center Doctor</title>
+<meta name="description" content="Config Guardian runs inside Zendesk Support with no server: dated copies of triggers, automations, macros, views, fields, forms, statuses, dynamic content, SLA policies and schedules; what changed between two copies or against the live account; restore with a simulation, an automatic pre-restore copy and undo; health checks for broken references, unused rules and duplicates. Free plan; Pro and Business per account.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://helpcenterdoctor.app/config-guardian/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Config Guardian for Zendesk Support">
+<meta property="og:description" content="Back up, compare and restore triggers, automations, macros, views, fields, forms and more, from inside Zendesk. Nothing leaves your account.">
+<meta property="og:image" content="https://helpcenterdoctor.app/assets/logo.png">
+<meta property="og:url" content="https://helpcenterdoctor.app/config-guardian/">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="32" height="32">Help Center Doctor</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../apps/">Apps</a></li>
+        <li><a href="../features/">Features</a></li>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../docs/">Docs</a></li>
+        <li><a href="../compare/">Compare</a></li>
+        <li><a href="../support/">Support</a></li>
+        <li><a class="btn btn-primary" href="../demo/index.html?hcd_mock=1">Try the demo</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">App for Zendesk Support · Free, Pro and Business</span>
+      <h1>Config Guardian</h1>
+      <p class="lead">Keep a dated copy of your Zendesk Support configuration inside your own account, see exactly what changed, and put it back when a trigger, a macro, a view or a field breaks. Simulation before every write, an automatic copy right before it, and undo after it.</p>
+      <p class="lead">Built for admins on Team, Growth and Professional plans, who have no version history for their rules and whose home-made backup scripts stop working when Zendesk retires API access by key on 30 April 2027. An independent app from a third-party developer, not affiliated with Zendesk.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 0;">
+      <p><img src="../assets/shots/config-guardian/compare.png" alt="The Compare screen: a snapshot from last week against the live account, with triggers created, deleted and changed, and one trigger expanded to show the condition and the action that changed, before and after." width="1280" height="800" loading="lazy"></p>
+
+      <h2>What it does</h2>
+      <ol>
+        <li><strong>Takes a snapshot in one click.</strong> Triggers and their categories, automations, macros, views, ticket, user and organization fields, ticket forms, groups, custom statuses, dynamic content with every variant, SLA policies and schedules with holidays, read with your own admin session. Brands, webhooks, targets and support addresses are read too, so every reference can be checked. A hash of the whole copy is printed on every export.</li>
+        <li><strong>Shows what changed.</strong> A snapshot against the live account, or any two snapshots (Pro): created, deleted, changed and reordered objects, and for each change every value before and after, in the words Zendesk uses. A deleted rule that was created again with the same title is shown as a pair.</li>
+        <li><strong>Restores safely.</strong> Pick one rule, a selection or everything. The app simulates first and shows the exact operations and warnings; nothing is sent. It takes an automatic copy right before writing, re-creates what was deleted and rewires the rules that depended on it, writes triggers and automations inactive unless you choose otherwise, never deletes a field (fields are deactivated, because deleting one destroys ticket data), and offers undo.</li>
+        <li><strong>Finds what is broken or useless.</strong> References to deleted or inactive fields, groups, forms, statuses, schedules, webhooks and dynamic content; rules without use in 30 days when your Zendesk plan exposes usage; duplicated conditions; macros with identical actions; triggers without actions; views and forms that still show inactive fields; fields in no form; dynamic content with outdated variants.</li>
+        <li><strong>Maps dependencies.</strong> What an object references and what references it, before you touch it.</li>
+        <li><strong>Keeps copies where you want them.</strong> In your browser, as JSON or ZIP files with a hash manifest, and on paid plans inside your Zendesk as records of a custom object, so any admin of the account can restore from them.</li>
+      </ol>
+      <p><img src="../assets/shots/config-guardian/restore.png" alt="The Restore screen after a simulation: the list of operations grouped by type, two warnings about a missing group and a trigger that will be restored inactive, the typed confirmation box and the pre-restore copy notice." width="1280" height="800" loading="lazy"></p>
+
+      <h2>What it does not do</h2>
+      <ul>
+        <li><strong>It does not run on a schedule.</strong> Copies are taken when an admin opens the app. The dashboard shows how old the last copy is and recommends a cadence; there is no server that could run at night.</li>
+        <li><strong>It does not cover everything.</strong> Skills and routing attributes, custom roles (see <a href="../security-audit/">Security Audit &amp; Evidence</a>), installed apps, channels, Guide themes and articles (see <a href="../">Help Center Doctor</a>), Explore, action flows, AI settings and macro attachments are out of scope and listed as such in the app.</li>
+        <li><strong>It does not replace the Zendesk audit log.</strong> Comparing two copies tells what changed, not who changed it.</li>
+        <li><strong>It never sends data anywhere.</strong> No server of ours is involved; nothing leaves your Zendesk account and your browser.</li>
+      </ul>
+      <p><img src="../assets/shots/config-guardian/health.png" alt="The Health screen: findings filtered to broken references, each with the object, the missing field or group it points at, the severity and a link to Admin Center." width="1280" height="800" loading="lazy"></p>
+
+      <h2>Plans</h2>
+      <table>
+        <thead><tr><th></th><th>Free</th><th>Pro · $69</th><th>Business · $149</th></tr></thead>
+        <tbody>
+          <tr><td>Snapshot of the whole configuration</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>JSON download</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Compare with the live account</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Compare any two snapshots</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Structural health checks</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Usage-based health (unused rules)</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Restore with simulation, automatic pre-restore copy and undo</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Dependency map</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Snapshots stored inside your account</td><td>—</td><td>Last 30</td><td>Unlimited</td></tr>
+          <tr><td>Snapshots kept in the browser</td><td>2</td><td>30</td><td>Unlimited</td></tr>
+          <tr><td>ZIP export with hash manifest</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Restore from another account (sandbox to production)</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Restore log kept as evidence in your account</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Printable change report</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Priority support (one business day)</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Free trial</td><td></td><td>14 days</td><td>14 days</td></tr>
+        </tbody>
+      </table>
+      <p>Prices are per month per Zendesk account, not per agent, billed through the Zendesk Marketplace and cancellable from Admin Center at any time.</p>
+
+      <h2>Compared with the alternatives</h2>
+      <table>
+        <thead><tr><th></th><th>Config Guardian</th><th>Zendesk Enterprise (sandbox, deployments, audit log)</th><th>Configuration platforms (Salto, Keepit)</th><th>Your own scripts</th></tr></thead>
+        <tbody>
+          <tr><td>Pricing</td><td>Per account, from $0; Pro $69</td><td>Enterprise plan for every agent</td><td>Per company, hundreds to thousands per month</td><td>Engineering time, and API access by key ends on 30 April 2027</td></tr>
+          <tr><td>Where copies live</td><td>Your Zendesk (custom object), your browser, your files</td><td>Zendesk</td><td>The platform's servers</td><td>Wherever you run them</td></tr>
+          <tr><td>Restore</td><td>One rule, a selection or everything; simulation, pre-restore copy, dependency rewiring, undo</td><td>Deployments between environments</td><td>Yes, through the platform</td><td>Write it</td></tr>
+          <tr><td>Health and dependencies</td><td>Broken references, unused rules, duplicates, dependency map</td><td>—</td><td>Partly</td><td>Write it</td></tr>
+          <tr><td>Plans</td><td>Team, Growth, Professional, Enterprise</td><td>Enterprise only</td><td>Any</td><td>Any</td></tr>
+        </tbody>
+      </table>
+      <p>Competitor details are from public documentation in September 2026 and may change; check their pages before deciding.</p>
+
+      <h2>Privacy</h2>
+      <p>The app has no server. It reads the configuration objects listed above with the signed-in admin's permissions, only when the admin takes a snapshot or opens Health. It writes only what the admin confirms after a simulation, and, when account storage is enabled, snapshot records into a custom object of your own Zendesk. It never reads or stores API keys, credentials, webhook signing keys, ticket content or end-user data, and it never transmits anything outside your Zendesk account. Uninstalling removes the app; the custom object and its records stay in your account until you delete them from Settings or from Admin Center.</p>
+
+      <h2>Install</h2>
+      <ol>
+        <li>Open the listing on the Zendesk Marketplace (link added once the listing is approved), click <strong>Install</strong> and choose a plan. You need to be a Zendesk admin.</li>
+        <li>Restrict the app to admins (it reads and writes account configuration), then click <strong>Install</strong>.</li>
+        <li>In Zendesk Support, open <strong>Config Guardian</strong> from the left navigation bar and click <strong>Take a snapshot</strong>.</li>
+      </ol>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Why does it need an admin?</strong> Triggers, automations, SLA policies, schedules and dynamic content answer to admins only, and restoring writes account configuration. An agent who opens the app sees a screen that explains this.</p>
+      <p><strong>What happens on Team or Growth plans?</strong> SLA policies and schedules answer 403 on plans that do not include them; the app marks those types "not available on your plan" and everything else works. Usage counts for rules and macros come from Zendesk on Professional and above; below that, "unused" is not computed and the app says so. Suite Team accounts have three custom objects: if all are in use, account storage is not offered and copies stay in the browser and in files.</p>
+      <p><strong>Can a restore fire triggers by surprise?</strong> Updating a trigger does not run it, and the app writes triggers and automations inactive by default; you activate them from the list the app shows after the run, or you switch off safe mode when you know what you are restoring.</p>
+      <p><strong>What if a rule references a group or a field that no longer exists?</strong> The simulation says so before anything is sent. If the missing object is part of the same restore, it is created first and the rule is rewired to the new id; if it is not, that operation is skipped with the reason.</p>
+      <p><strong>Can I move a configuration from a sandbox to production?</strong> On Business: take a snapshot on the sandbox, download it, upload it on production and restore; objects are matched by title, and the simulation lists what could not be matched.</p>
+      <p><strong>How big is a copy?</strong> A thousand triggers and two thousand macros make about 1.5 MB of JSON, stored compressed in a dozen records of the custom object; taking it needs about a hundred API requests, well under Zendesk's limits.</p>
+      <p><strong>Also from the same developer:</strong> <a href="../security-audit/">Security Audit &amp; Evidence</a> checks the security configuration; <a href="../data-custodian/">Data Custodian</a> searches, exports, redacts and deletes tickets with evidence; <a href="../">Help Center Doctor</a> keeps the help center healthy.</p>
+      <p><strong>Support:</strong> <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a>, answered within one business day.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>© 2026 Help Center Doctor · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a> · <a href="../changelog/">Changelog</a></div>
+  </div>
+</footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
