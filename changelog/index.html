@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Changelog | Help Center Doctor</title>
-<meta name="description" content="Release notes for Help Center Doctor, the Zendesk Marketplace app that scans and fixes help centers from inside Zendesk. Version 1.0.0.">
+<meta name="description" content="Release notes for Help Center Doctor, the Zendesk Marketplace app that scans and fixes help centers from inside Zendesk. Version 1.1.0.">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
 <link rel="canonical" href="https://helpcenterdoctor.app/changelog/">
@@ -51,23 +51,28 @@
   <div class="container">
     <div class="prose" style="padding: 40px 0 64px;">
       <section class="release">
+        <h2>Ten apps on the Marketplace</h2>
+        <p class="meta">6 October 2026</p>
+        <p>Ticket Print &amp; PDF, Security Audit &amp; Evidence and Config Guardian were approved by the Zendesk Marketplace review and published on 6 October 2026: <a href="https://www.zendesk.com/marketplace/apps/support/1297164/ticket-print--pdf/" rel="noopener">Ticket Print &amp; PDF</a>, <a href="https://www.zendesk.com/marketplace/apps/support/1297165/security-audit--evidence/" rel="noopener">Security Audit &amp; Evidence</a> and <a href="https://www.zendesk.com/marketplace/apps/support/1298017/config-guardian/" rel="noopener">Config Guardian</a>. All ten apps are now live on the Marketplace.</p>
+      </section>
+      <section class="release">
         <h2>Config Guardian 1.0.0</h2>
-        <p class="meta">26 September 2026. Tenth app, being submitted to the Zendesk Marketplace.</p>
+        <p class="meta">26 September 2026. Tenth app, live on the <a href="https://www.zendesk.com/marketplace/apps/support/1298017/config-guardian/" rel="noopener">Zendesk Marketplace</a> since 6 October 2026.</p>
         <p><a href="../config-guardian/">Config Guardian</a> takes dated, hashed copies of the Support configuration (triggers and categories, automations, macros, views, ticket, user and organization fields, forms, groups, custom statuses, dynamic content, SLA policies, schedules), compares two copies or a copy with the live account, and restores one rule, a selection or everything after a simulation, with an automatic pre-restore copy, dependency rewiring, safe mode and undo. Health checks list broken references, unused rules, duplicates, views and forms with inactive fields and outdated dynamic content. Copies live in the browser, in files with a hash manifest and, on paid plans, inside the account as a custom object. Free, Pro $69 and Business $149 per account per month.</p>
       </section>
       <section class="release">
         <h2>Help Center Doctor 1.1.0 and Help Center Link Checker 1.1.0</h2>
-        <p class="meta">26 September 2026. Submitted to the Zendesk Marketplace review; the listings update when the review approves them.</p>
+        <p class="meta">26 September 2026. Live on the Zendesk Marketplace: <a href="https://www.zendesk.com/marketplace/apps/support/1290743/help-center-doctor/" rel="noopener">Help Center Doctor</a> and <a href="https://www.zendesk.com/marketplace/apps/support/1290776/help-center-link-checker/" rel="noopener">Help Center Link Checker</a>.</p>
         <p><strong>Several brands from one installation.</strong> The Brands card on the Scan page lists every brand of the account that has a help center. Pick one and the scan reads that help center with your own permissions; results, the link cache and ignored findings are kept per brand. Zendesk keeps a separate sign-in per brand, so another brand needs one click on Connect the first time: Zendesk opens a page in a new tab and signs you in to that brand without a password when you are already signed in. The earlier advice to open the app on the other brand's subdomain did not work, because Support always returns agents to the agent brand; the Brands card now says so. Available on every plan of both apps.</p>
       </section>
       <section class="release">
         <h2>Security Audit &amp; Evidence 1.0.0</h2>
-        <p class="meta">24 September 2026. Ninth app, being submitted to the Zendesk Marketplace.</p>
+        <p class="meta">24 September 2026. Ninth app, live on the <a href="https://www.zendesk.com/marketplace/apps/support/1297165/security-audit--evidence/" rel="noopener">Zendesk Marketplace</a> since 6 October 2026.</p>
         <p><a href="../security-audit/">Security Audit &amp; Evidence</a> reads the account's security configuration with the admin's own session and judges it against 40 controls: two-factor enforcement and who has not enrolled, password level, session timeouts, IP restrictions, SSO, admin count and inactive people, custom roles with sensitive permissions, third-party apps, webhooks without HTTPS or authentication, legacy targets, OAuth clients and stale tokens, API tokens before their 2027 retirement, deletion schedules, attachment settings, password access to the API, SPF, DKIM and domain verification of support addresses, help center publishing and exposure, audit log availability and long-lived sessions. A score weighted by severity, findings with the remedy and the Admin Center page, inventories of people and integrations as CSV, drift between snapshots, accepted findings with a reason, and an evidence pack (printable report, snapshot without secrets, findings and inventory CSVs, framework map, SHA-256 manifest). Controls a plan does not expose are reported as not checkable, never guessed. Business stores evidence in a custom object of the account and builds quarterly access review packs with sign-off. <a href="../zendesk-soc2-evidence-checklist/">The 40 controls, and how to check each by hand</a>.</p>
       </section>
       <section class="release">
         <h2>Ticket Print &amp; PDF 1.0.0</h2>
-        <p class="meta">20 September 2026. Eighth app, submitted to the Zendesk Marketplace.</p>
+        <p class="meta">20 September 2026. Eighth app, live on the <a href="https://www.zendesk.com/marketplace/apps/support/1297164/ticket-print--pdf/" rel="noopener">Zendesk Marketplace</a> since 6 October 2026.</p>
         <p><a href="../ticket-print-pdf/">Ticket Print &amp; PDF</a> prints or exports one ticket from the ticket sidebar or thousands from pasted ids, a view or a search with an exact count: the whole conversation with internal notes marked, attachments listed with links, cover page, table of contents, page breaks, logo and footer, as PDF (browser print), HTML, Word, ZIP with one file per ticket plus <code>index.csv</code> and <code>manifest.json</code>, or a CSV index. Admins decide whether agents may include internal notes. Business adds runs of 5,000 tickets in files of 500, SHA-256 hashes of every file for legal holds, shared presets and an evidence record of every document. Built for the retirement of Zendesk's Print Ticket History app on 21 October 2026: <a href="../print-ticket-history-alternatives/">the guide</a>.</p>
       </section>
       <section class="release">
@@ -97,7 +102,7 @@
         </ul>
         <h3>Known limitations</h3>
         <ul>
-          <li>Single brand per account; multi-brand scanning is planned for the Business plan.</li>
+          <li>Single brand per account (multi-brand scanning arrived in 1.1.0, on every plan).</li>
           <li>PDF output uses the browser's print dialog; there is no built-in PDF renderer.</li>
           <li>Images in Word documents are embedded only when publicly reachable; otherwise they become links.</li>
         </ul>
@@ -144,7 +149,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2026 Pablo Simón. Help Center Doctor is an independent app and is not affiliated with or endorsed by Zendesk, Inc. Zendesk is a trademark of Zendesk, Inc.</p>
-      <p>Version 1.0.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
+      <p>Version 1.1.0 · <a href="mailto:support@helpcenterdoctor.app">support@helpcenterdoctor.app</a></p>
     </div>
   </div>
 </footer>
